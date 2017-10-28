@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.apache.commons.beanutils.Converter;
 
 import caotinging.domain.User;
 import caotinging.service.UserService;
+import caotinging.utils.MailUtils;
 import caotinging.utils.RandomID;
 
 /**
@@ -67,9 +69,19 @@ public class RegisterServlet extends HttpServlet {
 		boolean isSuccess = service.register(user);
 		
 		if(isSuccess) {
-			response.sendRedirect(request.getContextPath()+"/registerSuccess.jsp");
+			String userCode = user.getCode();
+			
+			String emailMsg = "恭喜您，注册成功！点击链接激活账户<a href='http://localhost:8080/xycqShop/servlet/login?code="+userCode+"'>" + "http://localhost:8080/xycqShop/servlet/login?code=" +userCode+ "</a>";
+			//发送激活邮件
+			try {
+				MailUtils.sendMail(user.getEmail(), emailMsg );
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+			
+			response.sendRedirect(request.getContextPath()+"/registerSuccess.jsp?email="+user.getEmail());
 		} else {
-			response.sendRedirect(request.getContextPath()+"/registerFailed.jsp");
+			response.sendRedirect(request.getContextPath()+"/error.jsp");
 		}
 		
 	}

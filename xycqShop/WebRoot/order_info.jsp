@@ -44,13 +44,12 @@ body {
 							<th>小计</th>
 						</tr>
 						<tr class="active">
-							<td width="60" width="40%"><input type="hidden" name="id"
-								value="22"> <img src="./image/dadonggua.jpg" width="70"
-								height="60"></td>
-							<td width="30%"><a target="_blank"> 有机蔬菜 大冬瓜...</a></td>
-							<td width="20%">￥298.00</td>
-							<td width="10%">5</td>
-							<td width="15%"><span class="subtotal">￥596.00</span></td>
+							<td style="width: 40%; width: 60px; "><input type="hidden" name="id" value="22"> 
+							<img src="./image/dadonggua.jpg" width="70" height="60"></td>
+							<td style="width: 30%; "><a target="_blank"> 有机蔬菜 大冬瓜...</a></td>
+							<td style="width: 20%; ">￥298.00</td>
+							<td style="width: 10%; ">5</td>
+							<td style="width: 15%; "><span class="subtotal">￥596.00</span></td>
 						</tr>
 					</tbody>
 				</table>
@@ -94,30 +93,29 @@ body {
 			<div style="margin-top: 5px; margin-left: 150px;">
 				<strong>选择银行：</strong>
 				<p>
-					<br /> <input type="radio" name="pd_FrpId" value="ICBC-NET-B2C"
-						checked="checked" />工商银行 <img src="./bank_img/icbc.bmp"
-						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="pd_FrpId" value="BOC-NET-B2C" />中国银行 <img
-						src="./bank_img/bc.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="ABC-NET-B2C" />农业银行 <img
-						src="./bank_img/abc.bmp" align="middle" /> <br /> <br /> <input
-						type="radio" name="pd_FrpId" value="BOCO-NET-B2C" />交通银行 <img
-						src="./bank_img/bcc.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<br/>
+					<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked" />工商银行
+					<img src="./bank_img/icbc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="pd_FrpId" value="BOC-NET-B2C" />中国银行 
+					<img src="./bank_img/bc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="pd_FrpId" value="ABC-NET-B2C" />农业银行 
+					<img src="./bank_img/abc.bmp" style="margin: auto;" /> <br /> <br /> 
+					<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C" />交通银行 
+					<img src="./bank_img/bcc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="pd_FrpId" value="PINGANBANK-NET" />平安银行
-					<img src="./bank_img/pingan.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="CCB-NET-B2C" />建设银行 <img
-						src="./bank_img/ccb.bmp" align="middle" /> <br /> <br /> <input
-						type="radio" name="pd_FrpId" value="CEB-NET-B2C" />光大银行 <img
-						src="./bank_img/guangda.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<img src="./bank_img/pingan.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="pd_FrpId" value="CCB-NET-B2C" />建设银行 
+					<img src="./bank_img/ccb.bmp" style="margin: auto;" /> <br /> <br /> 
+					<input type="radio" name="pd_FrpId" value="CEB-NET-B2C" />光大银行 
+					<img src="./bank_img/guangda.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C" />招商银行
-					<img src="./bank_img/cmb.bmp" align="middle" />
+					<img src="./bank_img/cmb.bmp" style="margin: auto;" />
 
 				</p>
 				<hr />
 				<p style="text-align: right; margin-right: 100px;">
 					<a href="javascript:document.getElementById('orderForm').submit();">
-						<img src="./images/finalbutton.gif" width="204" height="51"
-						border="0" />
+						<img src="./images/finalbutton.gif" style="width: 204px; height: 51px; border: 0px;" />
 					</a>
 				</p>
 				<hr />

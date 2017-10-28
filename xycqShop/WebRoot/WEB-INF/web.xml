@@ -13,6 +13,27 @@
     <description>用户注册</description>
     <servlet-class>caotinging.web.servlet.RegisterServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <display-name>LoginServlet</display-name>
+    <description>用户首次激活登录</description>
+    <servlet-class>caotinging.web.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CheckUserName</servlet-name>
+    <display-name>CheckUserName</display-name>
+    <description>检验用户名是否存在</description>
+    <servlet-class>caotinging.web.servlet.CheckUserNameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CheckCodeServlet</servlet-name>
+    <display-name>CheckCodeServlet</display-name>
+    <description>验证验证码是否正确</description>
+    <servlet-class>caotinging.web.servlet.CheckCodeServlet</servlet-class>
+  </servlet>
+
+
+
 
 
   <servlet-mapping>
@@ -22,6 +43,18 @@
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/servlet/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckUserName</servlet-name>
+    <url-pattern>/servlet/CheckUserName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckCodeServlet</servlet-name>
+    <url-pattern>/servlet/CheckCodeServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

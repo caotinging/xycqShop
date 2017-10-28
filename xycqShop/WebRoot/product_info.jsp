@@ -104,15 +104,15 @@ body {
 								<th colspan="2">基本参数</th>
 							</tr>
 							<tr>
-								<th width="10%">级别</th>
-								<td width="30%">标准</td>
+								<th style="width: 10%; ">级别</th>
+								<td style="width: 30%; ">标准</td>
 							</tr>
 							<tr>
-								<th width="10%">标重</th>
+								<th style="width: 10%; ">标重</th>
 								<td>500</td>
 							</tr>
 							<tr>
-								<th width="10%">浮动</th>
+								<th style="width: 10%; ">浮动</th>
 								<td>200</td>
 							</tr>
 						</tbody>

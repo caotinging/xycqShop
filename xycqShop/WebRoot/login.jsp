@@ -52,7 +52,7 @@ font {
 			<div class="col-md-5">
 				<div
 					style="width: 440px; border: 1px solid #E7E7E7; padding: 20px 0 20px 30px; border-radius: 5px; margin-top: 60px; background: #fff;">
-					<font>会员登录</font>USER LOGIN
+					<span>会员登录</span>USER LOGIN
 					<div>&nbsp;</div>
 					<form class="form-horizontal">
 						<div class="form-group">
@@ -82,9 +82,11 @@ font {
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label> <input type="checkbox"> 自动登录
-									</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label> <input
-										type="checkbox"> 记住用户名
+									<label>
+										<input type="checkbox"> 自动登录 
+									</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									<label> 
+										<input type="checkbox"> 记住用户名
 									</label>
 								</div>
 							</div>

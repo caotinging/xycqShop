@@ -64,7 +64,7 @@
 				<div class="col-md-12">
 					<h2>热门商品&nbsp;&nbsp;<img src="img/title2.jpg"/></h2>
 				</div>
-				<div class="col-md-2" style="border:1px solid #E7E7E7;border-right:0;padding:0;">
+				<div class="col-md-2" style="border:1px; solid #E7E7E7; border-right:0;padding:0;">
 					<img src="products/hao/big01.jpg" width="205" height="404" style="display: inline-block;"/>
 				</div>
 				<div class="col-md-10">
@@ -79,7 +79,7 @@
 							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 	
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -87,7 +87,7 @@
 							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 
 					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
@@ -95,7 +95,7 @@
 							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 					
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -103,7 +103,7 @@
 							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 	
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -111,7 +111,7 @@
 							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 
 					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
@@ -119,14 +119,14 @@
 							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
 						<a href="product_info.htm">
 							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 	
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -134,7 +134,7 @@
 							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -142,7 +142,7 @@
 							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 				</div>
 			</div>
@@ -157,7 +157,7 @@
 				<div class="col-md-12">
 					<h2>最新商品&nbsp;&nbsp;<img src="img/title2.jpg"/></h2>
 				</div>
-				<div class="col-md-2" style="border:1px solid #E7E7E7;border-right:0;padding:0;">
+				<div class="col-md-2" style="border:1px; solid #E7E7E7; border-right:0;padding:0;">
 					<img src="products/hao/big01.jpg" width="205" height="404" style="display: inline-block;"/>
 				</div>
 				<div class="col-md-10">
@@ -172,7 +172,7 @@
 							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 	
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -180,7 +180,7 @@
 							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 
 					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
@@ -188,7 +188,7 @@
 							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 					
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -196,7 +196,7 @@
 							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 	
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -204,7 +204,7 @@
 							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 
 					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
@@ -212,14 +212,14 @@
 							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
 						<a href="product_info.htm">
 							<img src="products/hao/small03.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 	
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
@@ -227,7 +227,7 @@
 							<img src="products/hao/small04.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 
 					<div class="col-md-2 yes-right-border" style="text-align:center;height:200px;padding:10px 0px;">
@@ -235,7 +235,7 @@
 							<img src="products/hao/small05.jpg" width="130" height="130" style="display: inline-block;">
 						</a>
 						<p><a href="product_info.html" style='color:#666'>冬瓜</a></p>
-						<p><font color="#E4393C" style="font-size:16px">&yen;299.00</font></p>
+						<p><span style="color: #E4393C; font-size: 16px; ">&yen;299.00</span></p>
 					</div>
 				</div>
 			</div>			

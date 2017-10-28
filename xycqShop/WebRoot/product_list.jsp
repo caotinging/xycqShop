@@ -47,7 +47,7 @@ body {
 				<a href="product_info.html" style='color: green'>冬瓜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 
@@ -59,7 +59,7 @@ body {
 				<a href="product_info.html" style='color: green'>圆白菜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 
@@ -71,7 +71,7 @@ body {
 				<a href="product_info.html" style='color: green'>甜玉米</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 
@@ -83,7 +83,7 @@ body {
 				<a href="product_info.html" style='color: green'>胡萝卜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 		<div class="col-md-2">
@@ -94,7 +94,7 @@ body {
 				<a href="product_info.html" style='color: green'>芹菜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 
@@ -106,7 +106,7 @@ body {
 				<a href="product_info.html" style='color: green'>韭菜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 
@@ -118,7 +118,7 @@ body {
 				<a href="product_info.html" style='color: green'>香菜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 		<div class="col-md-2">
@@ -129,7 +129,7 @@ body {
 				<a href="product_info.html" style='color: green'>土豆</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 		<div class="col-md-2">
@@ -140,7 +140,7 @@ body {
 				<a href="product_info.html" style='color: green'>香菜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 		<div class="col-md-2">
@@ -151,7 +151,7 @@ body {
 				<a href="product_info.html" style='color: green'>土豆</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 		<div class="col-md-2">
@@ -162,7 +162,7 @@ body {
 				<a href="product_info.html" style='color: green'>香菜</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 		<div class="col-md-2">
@@ -173,7 +173,7 @@ body {
 				<a href="product_info.html" style='color: green'>土豆</a>
 			</p>
 			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
+				<span style="color: #FF0000;">商城价：&yen;299.00</span>
 			</p>
 		</div>
 
