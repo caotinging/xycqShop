@@ -35,7 +35,9 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" id="category_id">
+					
+				
 					<li class="active"><a href="product_list.htm">手机数码<span class="sr-only">(current)</span></a></li>
 					<li><a href="#">电脑办公</a></li>
 					<li><a href="#">电脑办公</a></li>
@@ -48,6 +50,11 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
+			<script type="text/javascript">
+				$.ajax({
+					
+				});
+			</script>
 		</div>
 	</nav>
 </div>
