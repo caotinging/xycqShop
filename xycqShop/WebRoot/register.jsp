@@ -46,16 +46,36 @@ font {
 				$.ajax({
 					//这里只能同步，因为下面的操作需要获取这里的返回结果
 					"async": false,
-					"data": {"username": value},
+					"data": {"username": value, "method": "checkUserName"},
 					"dataType": "json",
 					"type": "POST",
-					"url": "servlet/CheckUserName",
+					"url": "servlet/UserServlet",
 					"success": function(data) {
 						isNotExist = data.isExist;
 					}
 				});
 			}
 			return !isNotExist;
+		});
+		
+		$("#checkCode").blur(function(){
+			var checkcode_res = document.getElementById("checkCode").value;
+			
+			$.ajax({
+				"async": true,
+				"data": {"checkcode_res": checkcode_res, "method": "checkCode"},
+				"dataType": "json",
+				"type": "POST",
+				"url": "servlet/UserServlet",
+				"success": function(data) {
+					var flag = !data.res;
+					if(flag) {
+						$("#checkCode_span").css("display", "block");
+					}else {
+						$("#checkCode_span").css("display", "none");
+					}
+				}
+			});
 		});
 		
 		$("#userInfo").validate({
@@ -129,7 +149,8 @@ font {
 			<div class="col-md-8"
 				style="background: #fff; padding: 40px 80px; margin: 30px; border: 7px solid #ccc;">
 				会员注册 USER REGISTER
-				<form id="userInfo" class="form-horizontal" style="margin-top: 5px;" action="servlet/RegisterServlet" method="post">
+				<form id="userInfo" class="form-horizontal" style="margin-top: 5px;" action="servlet/UserServlet" method="post">
+					<input type="hidden" name="method" value="register">
 					<div class="form-group">
 						<label for="username" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-6">
@@ -182,8 +203,8 @@ font {
 					<div class="form-group">
 						<label for="date" class="col-sm-2 control-label">验证码</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="checkCode" name="checkCode" onblur="check();" >
-							<label for="checkCode" class="error" style="display: none;">验证码错误</label>
+							<input type="text" class="form-control" id="checkCode" name="checkCode" >
+							<span id="checkCode_span" class="error" style="display: none;">验证码错误</span>
 						</div>
 						<div class="col-sm-2">
 							<img src="servlet/CheckImgServlet " alt="验证码" id="check_code_img" />
@@ -214,33 +235,6 @@ font {
 			$("#checkCode").val("");
 		}
 		
-		function check() {
-			var checkcode_res = $("#checkCode").val();
-		
-			/* $.post(
-				"servlet/CheckCodeServlet",
-				{"checkcode_res": checkcode_res },
-				function(data) {
-					if(!data.res) {
-						$("#checkCode").css("display", "block");
-					}
-				},
-				"json"
-			); */
-			
-			$.ajax({
-				"async": false,
-				"data": {"checkcode_res": checkcode_res},
-				"dataType": "json",
-				"type": "POST",
-				"url": "servlet/CheckCodeServlet",
-				"success": function(data) {
-					if(!data.res) {
-						$("#checkCode").css("display", "block");
-					}
-				}
-			});
-		}
 	</script>
 </body>
 </html>

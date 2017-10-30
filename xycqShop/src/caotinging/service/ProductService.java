@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import caotinging.dao.ProductDao;
+import caotinging.domain.Category;
+import caotinging.domain.PageItem;
 import caotinging.domain.Product;
 
 public class ProductService {
@@ -36,6 +38,32 @@ public class ProductService {
 			e.printStackTrace();
 		}
 		return new_pro_list;
+	}
+
+	/**
+	 * 获取所有的商品类别
+	 * @return
+	 */
+	public List<Category> getCategoryList() {
+		List<Category> categoryList = null;
+		try {
+			categoryList = dao.getCategoryList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return categoryList;
+	}
+
+	/**
+	 * 获取该商品分类下的所有商品分页信息
+	 * @param cid
+	 * @return
+	 */
+	public List<PageItem> getpageItems(String cid) {
+		
+		
+		
+		return null;
 	}
 
 }

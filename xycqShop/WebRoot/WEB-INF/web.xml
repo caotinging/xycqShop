@@ -8,35 +8,32 @@
     <servlet-class>caotinging.web.servlet.CheckImgServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <display-name>RegisterServlet</display-name>
-    <description>用户注册</description>
-    <servlet-class>caotinging.web.servlet.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <display-name>LoginServlet</display-name>
-    <description>用户首次激活登录</description>
-    <servlet-class>caotinging.web.servlet.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>CheckUserName</servlet-name>
-    <display-name>CheckUserName</display-name>
-    <description>检验用户名是否存在</description>
-    <servlet-class>caotinging.web.servlet.CheckUserNameServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>CheckCodeServlet</servlet-name>
-    <display-name>CheckCodeServlet</display-name>
-    <description>验证验证码是否正确</description>
-    <servlet-class>caotinging.web.servlet.CheckCodeServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>IndexServlet</servlet-name>
     <display-name>IndexServlet</display-name>
     <description>首页数据的展示</description>
     <servlet-class>caotinging.web.servlet.IndexServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>BaseServlet</servlet-name>
+    <display-name>BaseServlet</display-name>
+    <description>Servlet去冗余</description>
+    <servlet-class>caotinging.web.servlet.BaseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <display-name>UserServlet</display-name>
+    <description>用户信息模块</description>
+    <servlet-class>caotinging.web.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ProductServlet</servlet-name>
+    <display-name>ProductServlet</display-name>
+    <description>商品信息模块</description>
+    <servlet-class>caotinging.web.servlet.ProductServlet</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -48,24 +45,20 @@
     <url-pattern>/servlet/CheckImgServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/servlet/RegisterServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/servlet/login</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>CheckUserName</servlet-name>
-    <url-pattern>/servlet/CheckUserName</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>CheckCodeServlet</servlet-name>
-    <url-pattern>/servlet/CheckCodeServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/servlet/IndexServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BaseServlet</servlet-name>
+    <url-pattern>/servlet/BaseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/servlet/UserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductServlet</servlet-name>
+    <url-pattern>/servlet/ProductServlet</url-pattern>
   </servlet-mapping>
     <welcome-file-list>
         <welcome-file>default.jsp</welcome-file>

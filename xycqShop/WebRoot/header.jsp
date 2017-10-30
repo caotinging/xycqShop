@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <!-- 登录 注册 购物车... -->
 <div class="container-fluid">
@@ -35,14 +35,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav" id="category_id">
-					
-				
-					<li class="active"><a href="product_list.htm">手机数码<span class="sr-only">(current)</span></a></li>
-					<li><a href="#">电脑办公</a></li>
-					<li><a href="#">电脑办公</a></li>
-					<li><a href="#">电脑办公</a></li>
-				</ul>
+				<ul class="nav navbar-nav" id="category_id"></ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
@@ -51,9 +44,21 @@
 				</form>
 			</div>
 			<script type="text/javascript">
+				var content = "";
 				$.ajax({
-					
+					"async": true,
+					"url": "servlet/ProductServlet",
+					"data": {"method": "categoryList"},
+					"dataType": "json",
+					"type": "GET",
+					"success": function(data){
+						for(var i=0; i<data.length; i++) {
+							content += "<li><a href='servlet/ProductServlet?method=pageItems&cid="+data[i].cid+"'>"+data[i].cname+"</a></li>";
+						}
+						$("#category_id").html(content);
+					}
 				});
+				
 			</script>
 		</div>
 	</nav>
