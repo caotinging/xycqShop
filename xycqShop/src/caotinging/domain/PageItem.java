@@ -1,13 +1,16 @@
 package caotinging.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageItem {
+@SuppressWarnings("serial")
+public class PageItem implements Serializable {
 	private int totalPage;
 	private int totalProduct;
 	private int currentPage;
 	private int countProPage;
 	private List<Product> productList;
+	private String cid;
 	public int getTotalPage() {
 		return totalPage;
 	}
@@ -37,5 +40,11 @@ public class PageItem {
 	}
 	public void setProductList(List<Product> productList) {
 		this.productList = productList;
+	}
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
 	}
 }

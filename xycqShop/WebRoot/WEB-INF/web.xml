@@ -42,23 +42,23 @@
 
   <servlet-mapping>
     <servlet-name>CheckImgServlet</servlet-name>
-    <url-pattern>/servlet/CheckImgServlet</url-pattern>
+    <url-pattern>/CheckImgServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
-    <url-pattern>/servlet/IndexServlet</url-pattern>
+    <url-pattern>/IndexServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BaseServlet</servlet-name>
-    <url-pattern>/servlet/BaseServlet</url-pattern>
+    <url-pattern>/BaseServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
-    <url-pattern>/servlet/UserServlet</url-pattern>
+    <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ProductServlet</servlet-name>
-    <url-pattern>/servlet/ProductServlet</url-pattern>
+    <url-pattern>/ProductServlet</url-pattern>
   </servlet-mapping>
     <welcome-file-list>
         <welcome-file>default.jsp</welcome-file>

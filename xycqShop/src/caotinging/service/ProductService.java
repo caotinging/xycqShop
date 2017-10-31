@@ -57,13 +57,47 @@ public class ProductService {
 	/**
 	 * 获取该商品分类下的所有商品分页信息
 	 * @param cid
+	 * @param countProPage 
+	 * @param currentPage 
 	 * @return
 	 */
-	public List<PageItem> getpageItems(String cid) {
+	public PageItem getpageItems(String cid, int currentPage, int countProPage) {
+		PageItem pageItem = new PageItem();
+		try {
+			List<Product> productList = dao.getProductListByCid(cid, currentPage, countProPage);
+			
+			pageItem.setCurrentPage(currentPage);
+			pageItem.setCountProPage(countProPage);
+			pageItem.setProductList(productList);
+			
+			int totalProduct = dao.getTotalProductOfCid(cid);
+			pageItem.setTotalProduct(totalProduct);
+			
+			int totalPage = (int) Math.ceil(1.0*totalProduct/countProPage);
+			pageItem.setTotalPage(totalPage);
+			
+			pageItem.setCid(cid);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		
-		
-		return null;
+		return pageItem;
+	}
+
+	/**
+	 * 通过id获取指定商品信息
+	 * @param pid
+	 * @return 该id对应的商品信息
+	 */
+	public Product getProductById(String pid) {
+		Product product = null;
+		try {
+			product = dao.getProductById(pid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
 	}
 
 }

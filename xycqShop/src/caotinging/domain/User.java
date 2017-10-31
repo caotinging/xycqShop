@@ -1,8 +1,10 @@
 package caotinging.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+@SuppressWarnings("serial")
+public class User implements Serializable {
 	private String uid;
 	private String username;
 	private String password;

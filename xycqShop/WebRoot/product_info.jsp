@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,21 +40,21 @@ body {
 				<div class="col-md-6">
 					<img style="opacity: 1; width: 400px; height: 350px;" title=""
 						class="medium"
-						src="image/r___________renleipic_01/bigPic5f3622b8-028a-4e62-a77f-f41a16d715ed.jpg">
+						src="${pageContext.request.contextPath }/${product.pimage }">
 				</div>
 
 				<div class="col-md-6">
 					<div>
-						<strong>大冬瓜</strong>
+						<strong>${product.pname }</strong>
 					</div>
 					<div
 						style="border-bottom: 1px dotted #dddddd; width: 350px; margin: 10px 0 10px 0;">
-						<div>编号：751</div>
+						<div>编号：${product.pid }</div>
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
-						亿家价: <strong style="color: #ef0101;">￥：4.78元/份</strong> 参 考 价：
-						<del>￥6.00元/份</del>
+						亿家价: <strong style="color: #ef0101;">￥：${product.shop_price }元</strong> 参 考 价：
+						<del>￥${product.market_price }元</del>
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
@@ -64,7 +64,7 @@ body {
 
 					<div
 						style="padding: 10px; border: 1px solid #e7dbb1; width: 330px; margin: 15px 0 10px 0;; background-color: #fffee6;">
-						<div style="margin: 5px 0 10px 0;">白色</div>
+						<div style="margin: 5px 0 10px 0;">${product.pdesc }</div>
 
 						<div
 							style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
@@ -90,7 +90,7 @@ body {
 
 				<div>
 					<img
-						src="image/r___________renleipic_01/bigPic139f030b-d68b-41dd-be6d-b94cc568d3c5.jpg">
+						src="${pageContext.request.contextPath }/${product.pimage }">
 				</div>
 
 				<div
@@ -152,6 +152,15 @@ body {
 
 	<!-- 引入footer.jsp -->
 	<jsp:include page="/footer.jsp"></jsp:include>
+
+<script type="text/javascript">
+	$.ajax({
+		"async": true,
+		"data": {"pid": ${product.pid }, "method": "historyProductList"},
+		"type": "POST",
+		"url": "ProductServlet"
+	});
+</script>
 
 </body>
 

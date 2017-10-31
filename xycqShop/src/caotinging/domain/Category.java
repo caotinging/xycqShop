@@ -1,6 +1,9 @@
 package caotinging.domain;
 
-public class Category {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Category implements Serializable {
 	private String cid;
 	private String cname;
 	public String getCid() {

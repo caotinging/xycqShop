@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import caotinging.domain.Category;
 import caotinging.domain.Product;
@@ -46,4 +48,43 @@ public class ProductDao {
 		return qr.query(sql, new BeanListHandler<Category>(Category.class));
 	}
 
+	/**
+	 * 查询指定商品分类下指定分页商品的信息
+	 * @param cid 
+	 * @param countProPage 
+	 * @param currentPage 
+	 * @return
+	 * @throws SQLException 
+	 */
+	public List<Product> getProductListByCid(String cid, int currentPage, int countProPage) throws SQLException {
+		String sql = "select * from product where cid=? limit ?,?";
+		
+		int index = (currentPage-1)*countProPage;
+		List<Product> productList = qr.query(sql, new BeanListHandler<Product>(Product.class), cid, index, countProPage);
+		return productList;
+	}
+
+	/**
+	 * 获取指定商品类别下的所有商品个数
+	 * @param cid
+	 * @return
+	 * @throws SQLException 
+	 */
+	public int getTotalProductOfCid(String cid) throws SQLException {
+		String sql = "select count(*) from product where cid=?";
+		Long totalProduct = (Long) qr.query(sql, new ScalarHandler(), cid);
+		return totalProduct.intValue();
+	}
+
+	/**
+	 * 通过商品id获取指定商品信息
+	 * @param pid
+	 * @return
+	 * @throws SQLException
+	 */
+	public Product getProductById(String pid) throws SQLException {
+		String sql = "select * from product where pid=?";
+		Product product = qr.query(sql, new BeanHandler<Product>(Product.class), pid);
+		return product;
+	}
 }

@@ -73,7 +73,7 @@ public class UserServlet extends BaseServlet {
 		if(isSuccess) {
 			String userCode = user.getCode();
 			
-			String emailMsg = "恭喜您，注册成功！点击链接激活账户<a href='http://localhost:8080/xycqShop/servlet/UserServlet?method=login&code="+userCode+"'>" + "http://localhost:8080/xycqShop/UserServlet?method=login&code=" +userCode+ "</a>";
+			String emailMsg = "恭喜您，注册成功！点击链接激活账户<a href='http://localhost:8080/xycqShop/UserServlet?method=login&code="+userCode+"'>" + "http://localhost:8080/xycqShop/UserServlet?method=login&code=" +userCode+ "</a>";
 			//发送激活邮件
 			try {
 				MailUtils.sendMail(user.getEmail(), emailMsg );

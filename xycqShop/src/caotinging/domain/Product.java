@@ -1,8 +1,10 @@
 package caotinging.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Product {
+@SuppressWarnings("serial")
+public class Product implements Serializable {
 	private String pid;
 	private String pname;
 	private double market_price;

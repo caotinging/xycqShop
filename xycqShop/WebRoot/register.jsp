@@ -49,7 +49,7 @@ font {
 					"data": {"username": value, "method": "checkUserName"},
 					"dataType": "json",
 					"type": "POST",
-					"url": "servlet/UserServlet",
+					"url": "UserServlet",
 					"success": function(data) {
 						isNotExist = data.isExist;
 					}
@@ -66,7 +66,7 @@ font {
 				"data": {"checkcode_res": checkcode_res, "method": "checkCode"},
 				"dataType": "json",
 				"type": "POST",
-				"url": "servlet/UserServlet",
+				"url": "UserServlet",
 				"success": function(data) {
 					var flag = !data.res;
 					if(flag) {
@@ -149,7 +149,7 @@ font {
 			<div class="col-md-8"
 				style="background: #fff; padding: 40px 80px; margin: 30px; border: 7px solid #ccc;">
 				会员注册 USER REGISTER
-				<form id="userInfo" class="form-horizontal" style="margin-top: 5px;" action="servlet/UserServlet" method="post">
+				<form id="userInfo" class="form-horizontal" style="margin-top: 5px;" action="UserServlet" method="post">
 					<input type="hidden" name="method" value="register">
 					<div class="form-group">
 						<label for="username" class="col-sm-2 control-label">用户名</label>
@@ -207,7 +207,7 @@ font {
 							<span id="checkCode_span" class="error" style="display: none;">验证码错误</span>
 						</div>
 						<div class="col-sm-2">
-							<img src="servlet/CheckImgServlet " alt="验证码" id="check_code_img" />
+							<img src="CheckImgServlet " alt="验证码" id="check_code_img" />
 							<a href="javascript: reload();">换一张</a>
 						</div>
 
@@ -231,7 +231,7 @@ font {
 	<script type="text/javascript">
 		function reload() {
 			var time = new Date().getTime();
-			$("#check_code_img").prop("src", "servlet/CheckImgServlet?time="+time);
+			$("#check_code_img").prop("src", "CheckImgServlet?time="+time);
 			$("#checkCode").val("");
 		}
 		

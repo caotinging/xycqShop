@@ -47,13 +47,13 @@
 				var content = "";
 				$.ajax({
 					"async": true,
-					"url": "servlet/ProductServlet",
+					"url": "ProductServlet",
 					"data": {"method": "categoryList"},
 					"dataType": "json",
 					"type": "GET",
 					"success": function(data){
 						for(var i=0; i<data.length; i++) {
-							content += "<li><a href='servlet/ProductServlet?method=pageItems&cid="+data[i].cid+"'>"+data[i].cname+"</a></li>";
+							content += "<li><a href='ProductServlet?method=pageItems&cid="+data[i].cid+"'>"+data[i].cname+"</a></li>";
 						}
 						$("#category_id").html(content);
 					}
