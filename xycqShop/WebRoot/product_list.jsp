@@ -47,11 +47,11 @@ body {
 		
 		<c:forEach items="${pageItem.productList }" var="product">
 			<div class="col-md-2" style="height: 250px;">
-				<a href="ProductServlet?method=productById&pid=${product.pid }"> 
+				<a href="ProductServlet?method=productById&pid=${product.pid }&currentPage=${pageItem.currentPage }"> 
 					<img src="${pageContext.request.contextPath }/${product.pimage }" width="170" height="170" style="display: inline-block;">
 				</a>
 				<p>
-					<a href="product_info.html" style='color: green'>${product.pname }</a>
+					<a href="ProductServlet?method=productById&pid=${product.pid }&currentPage=${pageItem.currentPage }" style='color: green'>${product.pname }</a>
 				</p>
 				<p>
 					<span style="color: #FF0000;">商城价：&yen;${product.shop_price }</span>
@@ -116,7 +116,7 @@ body {
 		<div style="overflow: hidden;">
 
 			<ul style="list-style: none;">
-				<c:forEach items="${historyProductList }" var="historyProduct">
+				<c:forEach begin="0" end="6" items="${historyProductList }" var="historyProduct">
 					<li style="width: 150px; height: 216; float: left; margin: 0 8px 0 0; padding: 0 18px 15px; text-align: center;">
 						<img src="${pageContext.request.contextPath }/${historyProduct.pimage }" width="130px" height="130px" />
 					</li>

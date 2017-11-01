@@ -66,18 +66,16 @@ body {
 						style="padding: 10px; border: 1px solid #e7dbb1; width: 330px; margin: 15px 0 10px 0;; background-color: #fffee6;">
 						<div style="margin: 5px 0 10px 0;">${product.pdesc }</div>
 
-						<div
-							style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
-							购买数量: <input id="quantity" name="quantity" value="1"
-								maxlength="4" size="10" type="text">
+						<div style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
+							购买数量: <input id="quantity" name="quantity" value="1" maxlength="4" size="10" type="text">
 						</div>
 
 						<div style="margin: 20px 0 10px 0;; text-align: center;">
-							<a href="cart.htm"> <input
-								style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;"
-								value="加入购物车" type="button">
+							<a href="javascript:void(0);" onclick="addToCart('${product.pid}','${product.shop_price }')"> 
+								<input style="background: url('./images/product.gif') no-repeat scroll 0 -600px rgba(0, 0, 0, 0); height: 36px; width: 127px;" value="加入购物车" type="button">
 							</a> &nbsp;收藏商品
 						</div>
+						<a href="${pageContext.request.contextPath }/ProductServlet?method=pageItems&cid=${product.cid }&currentPage=${param.currentPage }"><span>返回分类列表</span></a>
 					</div>
 				</div>
 			</div>
@@ -160,6 +158,11 @@ body {
 		"type": "POST",
 		"url": "ProductServlet"
 	});
+	
+	function addToCart(pid, shop_price) {
+		var quantity = document.getElementById("quantity").value;
+		location.href="CartServlet?method=addToCart&pid="+pid+"&shop_price="+shop_price+"&quantity="+quantity;
+	}
 </script>
 
 </body>

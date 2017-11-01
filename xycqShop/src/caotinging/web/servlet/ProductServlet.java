@@ -34,7 +34,7 @@ public class ProductServlet extends BaseServlet {
 			LinkedList<Product> historyProductList = (LinkedList<Product>) session.getAttribute("historyProductList");
 			
 			if(historyProductList != null) {
-				for(int i=0; i<historyProductList.size()&&i<7; i++) {
+				for(int i=0; i<historyProductList.size(); i++) {
 					String hisPid = historyProductList.get(i).getPid();
 					if(hisPid.equals(pid))
 						historyProductList.remove(i);
@@ -60,10 +60,12 @@ public class ProductServlet extends BaseServlet {
 		
 		ProductService service = new ProductService();
 		String pid = request.getParameter("pid");
+		String currentPage = request.getParameter("currentPage");
 		if(pid!=null) {
 			Product product = service.getProductById(pid);
 			request.setAttribute("product", product);
-			request.getRequestDispatcher("/product_info.jsp").forward(request, response);
+			String url = "/product_info.jsp?currentPage="+currentPage;
+			request.getRequestDispatcher(url).forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath()+"/error.jsp");
 		}
