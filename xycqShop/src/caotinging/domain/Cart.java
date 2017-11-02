@@ -1,9 +1,11 @@
 package caotinging.domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cart {
+@SuppressWarnings("serial")
+public class Cart implements Serializable {
 	private Map<String, CartItem> cartItemMap = new HashMap<String, CartItem>();
 	private double amount;
 	public Map<String, CartItem> getCartItemMap() {

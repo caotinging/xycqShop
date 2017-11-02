@@ -22,13 +22,22 @@ public class DataSourceUtils {
 	public static DataSource getDataSource() {
 		return dataSource;
 	}
+	
+	/**
+	 * 获得一个新的连接对象
+	 * @return
+	 * @throws SQLException
+	 */
+	public static Connection getConnection() throws SQLException {
+		return dataSource.getConnection();
+	}
 
 	/**
 	 * 获取连接对象
 	 * @return 数据库连接对象
 	 * @throws SQLException
 	 */
-	public static Connection getConnection() throws SQLException {
+	public static Connection getCurrentConnection() throws SQLException {
 
 		Connection con = tl.get();
 		if (con == null) {
@@ -43,7 +52,7 @@ public class DataSourceUtils {
 	 * @throws SQLException
 	 */
 	public static void startTransaction() throws SQLException {
-		Connection con = getConnection();
+		Connection con = getCurrentConnection();
 		if (con != null) {
 			con.setAutoCommit(false);
 		}
@@ -54,7 +63,7 @@ public class DataSourceUtils {
 	 * @throws SQLException
 	 */
 	public static void rollback() throws SQLException {
-		Connection con = getConnection();
+		Connection con = getCurrentConnection();
 		if (con != null) {
 			con.rollback();
 		}
@@ -65,7 +74,7 @@ public class DataSourceUtils {
 	 * @throws SQLException
 	 */
 	public static void commitAndRelease() throws SQLException {
-		Connection con = getConnection();
+		Connection con = getCurrentConnection();
 		if (con != null) {
 			con.commit(); // 事务提交
 			con.close();// 关闭资源
@@ -78,7 +87,7 @@ public class DataSourceUtils {
 	 * @throws SQLException
 	 */
 	public static void closeConnection() throws SQLException {
-		Connection con = getConnection();
+		Connection con = getCurrentConnection();
 		if (con != null) {
 			con.close();
 		}

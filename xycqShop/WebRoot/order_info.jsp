@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,91 +44,93 @@ body {
 							<th>数量</th>
 							<th>小计</th>
 						</tr>
-						<tr class="active">
-							<td style="width: 40%; width: 60px; "><input type="hidden" name="id" value="22"> 
-							<img src="./image/dadonggua.jpg" width="70" height="60"></td>
-							<td style="width: 30%; "><a target="_blank"> 有机蔬菜 大冬瓜...</a></td>
-							<td style="width: 20%; ">￥298.00</td>
-							<td style="width: 10%; ">5</td>
-							<td style="width: 15%; "><span class="subtotal">￥596.00</span></td>
-						</tr>
+						
+						<c:forEach items="${order.orderItemList }" var="orderItem">
+							<tr class="active">
+								<td style="width: 40%; width: 60px; "><input type="hidden" name="id" value="22"> 
+								<img src="${pageContext.request.contextPath }/${orderItem.product.pimage }" width="70" height="60"></td>
+								<td style="width: 30%; "><a target="_blank">${orderItem.product.pname }</a></td>
+								<td style="width: 20%; ">￥${orderItem.product.shop_price }</td>
+								<td style="width: 10%; ">${orderItem.count }</td>
+								<td style="width: 15%; "><span class="subtotal">￥${orderItem.subtotal }</span></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 
 			<div style="text-align: right; margin-right: 120px;">
-				商品金额: <strong style="color: #ff6600;">￥596.00元</strong>
+				商品金额: <strong style="color: #ff6600;">￥${order.total }元</strong>
 			</div>
 
 		</div>
 
 		<div>
 			<hr />
-			<form class="form-horizontal"
-				style="margin-top: 5px; margin-left: 150px;">
+			<form id="confirmOrderForm" class="form-horizontal" action="OrderServlet" method="post" style="margin-top: 5px; margin-left: 150px;">
+				<input type="hidden" name="method" value="confirmOrder">
 				<div class="form-group">
 					<label for="username" class="col-sm-1 control-label">地址</label>
 					<div class="col-sm-5">
-						<input type="text" class="form-control" id="username"
-							placeholder="请输入收货地址">
+						<input type="text" class="form-control" id="address" name="address" placeholder="请输入收货地址">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
 					<div class="col-sm-5">
-						<input type="password" class="form-control" id="inputPassword3"
-							placeholder="请输收货人">
+						<input type="text" class="form-control" id="inputPassword3" name="name" placeholder="请输收货人" value="${user.username }">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="confirmpwd" class="col-sm-1 control-label">电话</label>
 					<div class="col-sm-5">
-						<input type="password" class="form-control" id="confirmpwd"
-							placeholder="请输入联系方式">
+						<input type="text" class="form-control" id="confirmpwd" name="telephone" placeholder="请输入联系方式">
 					</div>
 				</div>
+				<hr />
+				<div style="margin-top: 5px; margin-left: 150px;">
+					<strong>选择银行：</strong>
+					<p>
+						<br/>
+						<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked" />工商银行
+						<img src="./bank_img/icbc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pd_FrpId" value="BOC-NET-B2C" />中国银行 
+						<img src="./bank_img/bc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pd_FrpId" value="ABC-NET-B2C" />农业银行 
+						<img src="./bank_img/abc.bmp" style="margin: auto;" /> <br /> <br /> 
+						<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C" />交通银行 
+						<img src="./bank_img/bcc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pd_FrpId" value="PINGANBANK-NET" />平安银行
+						<img src="./bank_img/pingan.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pd_FrpId" value="CCB-NET-B2C" />建设银行 
+						<img src="./bank_img/ccb.bmp" style="margin: auto;" /> <br /> <br /> 
+						<input type="radio" name="pd_FrpId" value="CEB-NET-B2C" />光大银行 
+						<img src="./bank_img/guangda.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C" />招商银行
+						<img src="./bank_img/cmb.bmp" style="margin: auto;" />
+	
+					</p>
+					<hr />
+					<p style="text-align: right; margin-right: 100px;">
+						<a href="javascript:void(0);" onclick="confirmOrder()">
+							<img src="./images/finalbutton.gif" style="width: 204px; height: 51px; border: 0px;" />
+						</a>
+					</p>
+					<hr />
+	
+				</div>
 			</form>
-
-			<hr />
-
-			<div style="margin-top: 5px; margin-left: 150px;">
-				<strong>选择银行：</strong>
-				<p>
-					<br/>
-					<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked" />工商银行
-					<img src="./bank_img/icbc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="BOC-NET-B2C" />中国银行 
-					<img src="./bank_img/bc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="ABC-NET-B2C" />农业银行 
-					<img src="./bank_img/abc.bmp" style="margin: auto;" /> <br /> <br /> 
-					<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C" />交通银行 
-					<img src="./bank_img/bcc.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="PINGANBANK-NET" />平安银行
-					<img src="./bank_img/pingan.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="CCB-NET-B2C" />建设银行 
-					<img src="./bank_img/ccb.bmp" style="margin: auto;" /> <br /> <br /> 
-					<input type="radio" name="pd_FrpId" value="CEB-NET-B2C" />光大银行 
-					<img src="./bank_img/guangda.bmp" style="margin: auto;" />&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C" />招商银行
-					<img src="./bank_img/cmb.bmp" style="margin: auto;" />
-
-				</p>
-				<hr />
-				<p style="text-align: right; margin-right: 100px;">
-					<a href="javascript:document.getElementById('orderForm').submit();">
-						<img src="./images/finalbutton.gif" style="width: 204px; height: 51px; border: 0px;" />
-					</a>
-				</p>
-				<hr />
-
-			</div>
 		</div>
 
 	</div>
 
 	<!-- 引入footer.jsp -->
 	<jsp:include page="/footer.jsp"></jsp:include>
-
+<script type="text/javascript">
+	function confirmOrder() {
+		$("#confirmOrderForm").submit();
+	}
+</script>
 </body>
 
 </html>

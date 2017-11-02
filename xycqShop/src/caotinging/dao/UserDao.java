@@ -3,6 +3,7 @@ package caotinging.dao;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import caotinging.domain.User;
@@ -47,6 +48,19 @@ public class UserDao {
 		String sql = "select count(*) from user where username=?";
 		Long query = (Long) qr.query(sql, new ScalarHandler(), username);
 		return query;
+	}
+
+	/**
+	 * 通过用户名和密码查找相关用户
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws SQLException 
+	 */
+	public User checkUserLogin(String username, String password) throws SQLException {
+		String sql = "select * from user where username=? and password=?;";
+		User user = qr.query(sql, new BeanHandler<User>(User.class), username, password);
+		return user;
 	}
 
 }

@@ -37,6 +37,20 @@
     <description>购物车功能模块</description>
     <servlet-class>caotinging.web.servlet.CartServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <display-name>OrderServlet</display-name>
+    <description>订单功能模块</description>
+    <servlet-class>caotinging.web.servlet.OrderServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CallbackServlet</servlet-name>
+    <display-name>CallbackServlet</display-name>
+    <description>支付成功的回调操作</description>
+    <servlet-class>caotinging.web.servlet.CallbackServlet</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -70,6 +84,14 @@
   <servlet-mapping>
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/CartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CallbackServlet</servlet-name>
+    <url-pattern>/CallbackServlet</url-pattern>
   </servlet-mapping>
     <welcome-file-list>
         <welcome-file>default.jsp</welcome-file>

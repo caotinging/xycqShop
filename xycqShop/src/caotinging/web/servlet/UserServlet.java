@@ -25,6 +25,29 @@ import caotinging.utils.RandomID;
 public class UserServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 用户登录
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		UserService service = new UserService();
+		User user = service.checkUserLogin(username, password);
+		
+		if(user != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			response.sendRedirect(request.getContextPath());
+		} else {
+			response.sendRedirect(request.getContextPath()+"/login.jsp?noUser=noUser");
+		}
+	}
 
 	/**
 	 * 用户注册信息的录入

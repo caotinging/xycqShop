@@ -56,4 +56,21 @@ public class UserService {
 		return res>0? true:false;
 	}
 
+	/**
+	 * 根据用户名和密码验证用户是否存在
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public User checkUserLogin(String username, String password) {
+		UserDao dao = new UserDao();
+		User user = null;
+		try {
+			user = dao.checkUserLogin(username, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
 }
