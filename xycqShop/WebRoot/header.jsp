@@ -19,11 +19,11 @@
 			</c:if>
 			<c:if test="${!empty user }">
 			<span style="color: #FF2C4C;">欢迎您，${user.username }</span>
-				<li><a href="javascript:void(0);">退出</a></li>
+				<li><a href="javascript:void(0);" onclick="exitLogin()">退出</a></li>
 			</c:if>
 			
 			<li><a href="cart.jsp">购物车</a></li>
-			<li><a href="order_list.jsp">我的订单</a></li>
+			<li><a href="OrderServlet?method=myOrder">我的订单</a></li>
 		</ol>
 	</div>
 </div>
@@ -68,6 +68,19 @@
 					}
 				});
 				
+				function exitLogin() {
+					if(confirm("是否退出登录？")) {
+						$.ajax({
+							"async": true,
+							"url": "UserServlet",
+							"type": "POST",
+							"data": {"method": "exitLogin"},
+							"success": function() {
+								location.reload();
+							}
+						});
+					}
+				}
 			</script>
 		</div>
 	</nav>

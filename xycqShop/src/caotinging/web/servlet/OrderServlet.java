@@ -2,6 +2,7 @@ package caotinging.web.servlet;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
@@ -24,6 +25,41 @@ public class OrderServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 我的订单
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void myOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		if(user == null) {
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
+		} else {
+			OrderService service = new OrderService();
+			List<Order> orders = service.getOrders(user);
+			
+			for(Order order: orders) {
+				List<OrderItem> orderItems = service.getOrderItems(order);
+				order.setOrderItemList(orderItems);
+				order.setUser(user);
+			}
+			
+			request.setAttribute("orderList", orders);
+			request.getRequestDispatcher("/order_list.jsp").forward(request, response);
+		}
+	}
+	
+	/**
+	 * 确认订单
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void confirmOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Order order = (Order) session.getAttribute("order");

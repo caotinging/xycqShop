@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -22,6 +23,15 @@ body {
 	width: 100%;
 	height: 300px;
 }
+
+.cart_empty {
+	height: 273px;
+	padding-left: 558px;
+	margin: 65px 0 130px;
+	color: #b0b0b0;
+	overflow: hidden;
+	font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
 </style>
 </head>
 
@@ -32,134 +42,69 @@ body {
 	<jsp:include page="/header.jsp"></jsp:include>
 
 	<div class="container">
-		<div class="row">
-			<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
-				<strong>我的订单</strong>
-				<table class="table table-bordered">
-					<tbody>
-						<tr class="success">
-							<th colspan="5">订单编号:9005</th>
-						</tr>
-						<tr class="warning">
-							<th>图片</th>
-							<th>商品</th>
-							<th>价格</th>
-							<th>数量</th>
-							<th>小计</th>
-						</tr>
-						<tr class="active">
-							<td style="width: 60px; width: 40%; ">
-								<input type="hidden" name="id" value="22"> 
-								<img src="./image/dadonggua.jpg" width="70" height="60">
-							</td>
-							<td style="width: 30%; ">
-								<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-							</td>
-							<td style="width: 20%; ">￥298.00</td>
-							<td style="width: 10%; ">5</td>
-							<td style="width: 15%; ">
-								<span class="subtotal">￥596.00</span>
-							</td>
-						</tr>
-					</tbody>
-					<tbody>
-						<tr class="success">
-							<th colspan="5">订单编号:9004</th>
-						</tr>
-						<tr class="warning">
-							<th>图片</th>
-							<th>商品</th>
-							<th>价格</th>
-							<th>数量</th>
-							<th>小计</th>
-						</tr>
-						<tr class="active">
-							<td style="width: 60px; width: 40%; ">
-								<input type="hidden" name="id" value="22"> 
-								<img src="./image/dadonggua.jpg" width="70" height="60">
-							</td>
-							<td style="width: 30%; ">
-								<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-							</td>
-							<td style="width: 20%; ">￥298.00</td>
-							<td style="width: 10%; ">5</td>
-							<td style="width: 15%; ">
-								<span class="subtotal">￥596.00</span>
-							</td>
-						</tr>
-					</tbody>
-					<tbody>
-						<tr class="success">
-							<th colspan="5">订单编号:9003</th>
-						</tr>
-						<tr class="warning">
-							<th>图片</th>
-							<th>商品</th>
-							<th>价格</th>
-							<th>数量</th>
-							<th>小计</th>
-						</tr>
-						<tr class="active">
-							<td style="width: 60px; width: 40%; ">
-								<input type="hidden" name="id" value="22"> 
-								<img src="./image/dadonggua.jpg" width="70" height="60">
-							</td>
-							<td style="width: 30%; ">
-								<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-							</td>
-							<td style="width: 20%; ">￥298.00</td>
-							<td style="width: 10%; ">5</td>
-							<td style="width: 15%; ">
-								<span class="subtotal">￥596.00</span>
-							</td>
-						</tr>
-					</tbody>
-					<tbody>
-						<tr class="success">
-							<th colspan="5">订单编号:9002</th>
-						</tr>
-						<tr class="warning">
-							<th>图片</th>
-							<th>商品</th>
-							<th>价格</th>
-							<th>数量</th>
-							<th>小计</th>
-						</tr>
-						<tr class="active">
-							<td style="width: 60px; width: 40%; ">
-								<input type="hidden" name="id" value="22"> 
-								<img src="./image/dadonggua.jpg" width="70" height="60">
-							</td>
-							<td style="width: 30%; ">
-								<a target="_blank"> 有机蔬菜 大冬瓜...</a>
-							</td>
-							<td style="width: 20%; ">￥298.00</td>
-							<td style="width: 10%; ">5</td>
-							<td style="width: 15%; ">
-								<span class="subtotal">￥596.00</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+		<c:if test="${!empty orderList }">
+			<div class="row">
+				<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
+					<strong>我的订单</strong>
+					<table class="table table-bordered">
+						<c:forEach items="${orderList }" var="order">
+							<tbody>
+								<tr class="success">
+									<th colspan="5">订单编号:</th>
+								</tr>
+								<tr class="warning">
+									<th>图片</th>
+									<th>商品</th>
+									<th>价格</th>
+									<th>数量</th>
+									<th>小计</th>
+								</tr>
+								<c:forEach items="${order.orderItemList }" var="orderItem">
+									<tr class="active">
+										<td style="width: 60px; width: 40%; ">
+											<input type="hidden" name="id" value="22"> 
+											<img src="${pageContext.request.contextPath }/${orderItem.product.pimage }" width="70" height="60">
+										</td>
+										<td style="width: 30%; ">
+											<a target="_blank">${orderItem.product.pname }</a>
+										</td>
+										<td style="width: 20%; ">￥${orderItem.product.shop_price }</td>
+										<td style="width: 10%; ">${orderItem.count }</td>
+										<td style="width: 15%; ">
+											<span class="subtotal">￥${orderItem.subtotal}</span>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</c:forEach>
+					</table>
+				</div>
 			</div>
-		</div>
-		<div style="text-align: center;">
-			<ul class="pagination">
-				<li class="disabled"><a href="#" aria-label="Previous"><span
-						aria-hidden="true">&laquo;</span></a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-		</div>
+			<div style="text-align: center;">
+				<ul class="pagination">
+					<li class="disabled"><a href="#" aria-label="Previous"><span
+							aria-hidden="true">&laquo;</span></a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">8</a></li>
+					<li><a href="#">9</a></li>
+					<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a></li>
+				</ul>
+			</div>
+		</c:if>
+		<c:if test="${empty orderList }">
+			<div class="container">
+  			<div class="cart_empty">
+				<h1>订单还是空的哦，快去购买吧！</h1>
+			</div>
+  		</div>
+		</c:if>
 	</div>
 
 	<!-- 引入footer.jsp -->

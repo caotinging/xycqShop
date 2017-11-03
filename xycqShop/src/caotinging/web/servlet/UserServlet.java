@@ -27,6 +27,18 @@ public class UserServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * 用户注销登录
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void exitLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("user");
+	}
+	
+	/**
 	 * 用户登录
 	 * @param request
 	 * @param response
@@ -168,5 +180,11 @@ public class UserServlet extends BaseServlet {
 		boolean isExist = service.checkUserName(username);
 
 		response.getWriter().write("{\"isExist\": " + isExist + "}");
+	}
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.service(req, resp);
 	}
 }

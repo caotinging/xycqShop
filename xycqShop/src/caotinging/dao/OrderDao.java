@@ -2,11 +2,16 @@ package caotinging.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import caotinging.domain.Order;
 import caotinging.domain.OrderItem;
+import caotinging.domain.User;
 import caotinging.utils.DataSourceUtils;
 
 public class OrderDao {
@@ -62,5 +67,31 @@ public class OrderDao {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "update orders set state=? where oid=?;";
 		qr.update(sql, i, oid);
+	}
+
+	/**
+	 * 从数据库获取指定用户的所有订单信息
+	 * @param user
+	 * @return
+	 * @throws SQLException 
+	 */
+	public List<Order> getOrders(User user) throws SQLException {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from orders where uid=?;";
+		List<Order> orders = qr.query(sql, new BeanListHandler<Order>(Order.class), user.getUid());
+		return orders;
+	}
+
+	/**
+	 * 获得我的订单展示信息
+	 * @param order
+	 * @return 
+	 * @throws SQLException 
+	 */
+	public List<Map<String, Object>> getOrderItems(Order order) throws SQLException {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select p.pimage, p.pname, p.shop_price, item.count, item.subtotal from orderitem item, product p where item.oid=? and item.pid=p.pid;";
+		List<Map<String, Object>> mapList = qr.query(sql, new MapListHandler(), order.getOid());
+		return mapList;
 	}
 }
