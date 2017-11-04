@@ -25,6 +25,5 @@ public class BaseServlet extends HttpServlet {
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="adminService" class="caotinging.service.impl.AdminServiceImpl"></bean>
+	<bean id="adminDao" class="caotinging.dao.impl.AdminDaoImpl"></bean></beans>

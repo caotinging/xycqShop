@@ -15,6 +15,7 @@ public class Product implements Serializable {
 	private String pdesc;
 	private int pflag;
 	private String cid;
+	private Category category;
 	
 	public String getPid() {
 		return pid;
@@ -75,5 +76,11 @@ public class Product implements Serializable {
 	}
 	public void setCid(String cid) {
 		this.cid = cid;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

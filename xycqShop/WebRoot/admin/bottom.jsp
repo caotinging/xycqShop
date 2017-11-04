@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" isELIgnored="false"%>
 <html>
 	<head>
 		<meta http-equiv="Content-Language" content="zh-cn">

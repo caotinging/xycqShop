@@ -49,6 +49,20 @@
     <description>支付成功的回调操作</description>
     <servlet-class>caotinging.web.servlet.CallbackServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <display-name>AdminServlet</display-name>
+    <description>后台操作</description>
+    <servlet-class>caotinging.web.servlet.AdminServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AdminFileUploadServlet</servlet-name>
+    <display-name>AdminFileUploadServlet</display-name>
+    <description>文件上传操作</description>
+    <servlet-class>caotinging.web.servlet.AdminFileUploadServlet</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -92,6 +106,14 @@
   <servlet-mapping>
     <servlet-name>CallbackServlet</servlet-name>
     <url-pattern>/CallbackServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/AdminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminFileUploadServlet</servlet-name>
+    <url-pattern>/AdminFileUploadServlet</url-pattern>
   </servlet-mapping>
     <welcome-file-list>
         <welcome-file>default.jsp</welcome-file>
