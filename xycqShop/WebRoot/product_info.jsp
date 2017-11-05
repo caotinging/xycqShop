@@ -154,7 +154,7 @@ body {
 <script type="text/javascript">
 	$.ajax({
 		"async": true,
-		"data": {"pid": ${product.pid }, "method": "historyProductList"},
+		"data": {"pid": '${product.pid }', "method": "historyProductList"},
 		"type": "POST",
 		"url": "ProductServlet"
 	});

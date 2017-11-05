@@ -17,7 +17,70 @@ import caotinging.service.AdminService;
 import caotinging.utils.BeanFactory;
 
 public class AdminServlet extends BaseServlet {
-
+	
+	/**
+	 * 删除商品分类
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void delCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AdminService service = (AdminService) BeanFactory.getBean("adminService");
+		String cid = request.getParameter("cid");
+		if(cid != null) {
+			boolean isSuccess = service.delCategory(cid);
+			if(isSuccess) {
+				response.sendRedirect(request.getContextPath()+"/admin/category/list.jsp");
+			}else {
+				response.sendRedirect(request.getContextPath()+"/error.jsp");
+			}
+		}
+	}
+	
+	/**
+	 * 修改商品分类的信息
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void exitCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AdminService service = (AdminService) BeanFactory.getBean("adminService");
+		String cid = request.getParameter("cid");
+		String cname = request.getParameter("cname");
+		
+		if(cid != null && cname != null) {
+			boolean isSuccess = service.exitCategory(cid, cname);
+			if(isSuccess) {
+				response.sendRedirect(request.getContextPath()+"/admin/category/list.jsp");
+			}else {
+				response.sendRedirect(request.getContextPath()+"/error.jsp");
+			}
+		}
+	}
+	
+	/**
+	 * 存储一个新的商品分类
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void storeCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AdminService service = (AdminService) BeanFactory.getBean("adminService");
+		
+		String cname = request.getParameter("cname");
+		if(cname != null) {
+			boolean isSuccess = service.storeCategory(cname);
+			if(isSuccess) {
+				response.sendRedirect(request.getContextPath()+"/admin/category/list.jsp");
+			}else {
+				response.sendRedirect(request.getContextPath()+"/error.jsp");
+			}
+		}
+	}
+	
 	/**
 	 * 根据订单id获取该订单中订单项信息
 	 * @param request

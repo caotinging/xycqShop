@@ -41,4 +41,33 @@ public interface AdminService {
 	 */
 	List<Map<String, Object>> findOrderInfoByOid(String oid);
 
+	/**
+	 * 新的商品分类入库
+	 * @param cname
+	 * @return
+	 */
+	boolean storeCategory(String cname);
+
+	/**
+	 * 修改指定商品分类的信息
+	 * @param cid
+	 * @param cname
+	 * @return
+	 */
+	boolean exitCategory(String cid, String cname);
+
+	/**
+	 * 删除指定商品类别信息
+	 * @param cid
+	 * @return
+	 */
+	boolean delCategory(String cid);
+
+	/**
+	 * 修改商品信息
+	 * @param product
+	 * @return
+	 */
+	boolean exitProductInfo(Product product);
+
 }

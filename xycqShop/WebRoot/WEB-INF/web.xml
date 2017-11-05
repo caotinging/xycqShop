@@ -61,6 +61,13 @@
     <description>文件上传操作</description>
     <servlet-class>caotinging.web.servlet.AdminFileUploadServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AdminFileUploadExitServlet</servlet-name>
+    <display-name>AdminFileUploadExitServlet</display-name>
+    <description>文件上传修改操作</description>
+    <servlet-class>caotinging.web.servlet.AdminFileUploadExitServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -114,6 +121,10 @@
   <servlet-mapping>
     <servlet-name>AdminFileUploadServlet</servlet-name>
     <url-pattern>/AdminFileUploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminFileUploadExitServlet</servlet-name>
+    <url-pattern>/AdminFileUploadExitServlet</url-pattern>
   </servlet-mapping>
     <welcome-file-list>
         <welcome-file>default.jsp</welcome-file>

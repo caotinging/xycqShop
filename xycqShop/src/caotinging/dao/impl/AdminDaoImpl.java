@@ -54,4 +54,30 @@ public class AdminDaoImpl implements AdminDao {
 		return query;
 	}
 
+	@Override
+	public int storeCategory(Category category) throws SQLException {
+		String sql = "insert into category values(?,?);";
+		int res = qr.update(sql, category.getCid(), category.getCname());
+		return res;
+	}
+
+	@Override
+	public int exitCategory(String cid, String cname) throws SQLException {
+		String sql = "update category set cname=? where cid=?;";
+		int res = qr.update(sql, cname, cid);
+		return res;
+	}
+
+	@Override
+	public int delCategory(String cid) throws SQLException {
+		String sql = "delete from category where cid=?;";
+		int res = qr.update(sql, cid);
+		return res;
+	}
+
+	@Override
+	public int exitProductInfo(Product product) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

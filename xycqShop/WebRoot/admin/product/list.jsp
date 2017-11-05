@@ -15,6 +15,14 @@
 	function over(obj) {
 		obj.style.backgroundColor = 'white';
 	}
+	function delProduct(pid) {
+		if(confirm("确认删除？")) {
+			$.post(
+				"${pageContext.request.contextPath}/AdminServlet",
+				{"method": "delProduct", "pid": pid}
+			);
+		}
+	}
 
 	$.ajax({
 		"asycn" : true,
@@ -42,10 +50,10 @@
 					"<td style='CURSOR: hand; HEIGHT: 22px' align='center' width='17%'>"+productList[i].pname+"</td>"+
 					"<td style='CURSOR: hand; HEIGHT: 22px' align='center' width='17%'>"+productList[i].shop_price+"</td>"+
 					"<td style='CURSOR: hand; HEIGHT: 22px' align='center' width='17%'>"+(productList[i].is_hot==0?"否":"是")+"</td>"+
-					"<td align='center' style='HEIGHT: 22px'><a href='${ pageContext.request.contextPath }/admin/product/edit.jsp'>"+
+					"<td align='center' style='HEIGHT: 22px'><a href='${ pageContext.request.contextPath }/admin/product/edit.jsp?pid="+productList[i].pid+"'>"+
 						"<img src='${pageContext.request.contextPath}/images/i_edit.gif' border='0' style='CURSOR: hand'>"+
 					"</a></td>"+
-					"<td align='center' style='HEIGHT: 22px'><a href='#'>"+
+					"<td align='center' style='HEIGHT: 22px'><a href='javascript:void(0);' onclick='delProduct('"+productList[i].pid+"')'>"+
 						"<img src='${pageContext.request.contextPath}/images/i_del.gif' width='16' height='16' border='0' style='CURSOR: hand'>"+
 					"</a></td>"+
 				"</tr>";

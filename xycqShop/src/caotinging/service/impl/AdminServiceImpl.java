@@ -10,6 +10,7 @@ import caotinging.domain.Order;
 import caotinging.domain.Product;
 import caotinging.service.AdminService;
 import caotinging.utils.BeanFactory;
+import caotinging.utils.RandomID;
 
 public class AdminServiceImpl implements AdminService {
 
@@ -68,6 +69,54 @@ public class AdminServiceImpl implements AdminService {
 			e.printStackTrace();
 		}
 		return orderItemMaps;
+	}
+
+	@Override
+	public boolean storeCategory(String cname) {
+		Category category = new Category();
+		category.setCname(cname);
+		category.setCid(RandomID.getRandomID());
+		
+		int res = 0;
+		try {
+			res = dao.storeCategory(category);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res>0?true:false;
+	}
+
+	@Override
+	public boolean exitCategory(String cid, String cname) {
+		int res = 0;
+		try {
+			res = dao.exitCategory(cid, cname);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res>0;
+	}
+
+	@Override
+	public boolean delCategory(String cid) {
+		int res = 0;
+		try {
+			res = dao.delCategory(cid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res>0;
+	}
+
+	@Override
+	public boolean exitProductInfo(Product product) {
+		int res = 0;
+		try {
+			res = dao.exitProductInfo(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res>0;
 	}
 
 }
