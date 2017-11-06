@@ -77,7 +77,9 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public int exitProductInfo(Product product) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "update product set pname=?, shop_price=?, pimage=?, cid=?, pdesc=?, is_hot=?, market_price=? where pid=?;";
+		int res = qr.update(sql, product.getPname(), product.getShop_price(), product.getPimage(), product.getCategory().getCid(),
+				product.getPdesc(), product.getIs_hot(), product.getMarket_price(), product.getPid());
+		return res;
 	}
 }

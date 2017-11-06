@@ -68,6 +68,12 @@ public class AdminFileUploadExitServlet extends HttpServlet {
 				AdminService service = (AdminService) BeanFactory.getBean("adminService");
 				boolean isSuccess = service.exitProductInfo(product);
 				
+				if(isSuccess) {
+					response.sendRedirect(request.getContextPath()+"/admin/product/list.jsp");
+				}else {
+					response.sendRedirect(request.getContextPath()+"/error.jsp");
+				}
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
