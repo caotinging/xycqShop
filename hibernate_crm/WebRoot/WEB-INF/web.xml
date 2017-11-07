@@ -21,6 +21,13 @@
     <description>客户业务操作</description>
     <servlet-class>caotinging.web.servlet.AddCustomerServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ListCustomerServlet</servlet-name>
+    <display-name>ListCustomerServlet</display-name>
+    <description>获取客户列表</description>
+    <servlet-class>caotinging.web.servlet.ListCustomerServlet</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
@@ -30,6 +37,10 @@
   <servlet-mapping>
     <servlet-name>CustomerServlet</servlet-name>
     <url-pattern>/AddCustomerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListCustomerServlet</servlet-name>
+    <url-pattern>/ListCustomerServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

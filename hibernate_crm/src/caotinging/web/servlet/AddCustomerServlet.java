@@ -26,7 +26,7 @@ public class AddCustomerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		this.service.addCustomer(customer);
-		response.sendRedirect(request.getContextPath() + "/ListCustomerServlet");
+		response.sendRedirect(request.getContextPath()+"/ListCustomerServlet");
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
