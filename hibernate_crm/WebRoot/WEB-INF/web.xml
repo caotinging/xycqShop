@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <filter>
+        <filter-name>GenericEncodingFilter</filter-name>
+        <filter-class>caotinging.web.filter.GenericEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>GenericEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  <servlet>
+    <servlet-name>BaseServlet</servlet-name>
+    <display-name>BaseServlet</display-name>
+    <description>底层实现</description>
+    <servlet-class>caotinging.web.servlet.BaseServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CustomerServlet</servlet-name>
+    <display-name>CustomerServlet</display-name>
+    <description>客户业务操作</description>
+    <servlet-class>caotinging.web.servlet.AddCustomerServlet</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>BaseServlet</servlet-name>
+    <url-pattern>/BaseServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>/AddCustomerServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>
