@@ -15,9 +15,9 @@
 </HEAD>
 <BODY>
 	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/AddCustomerServlet"
+		action="${pageContext.request.contextPath }/CustomerServlet"
 		method=post>
-		
+		<input type="hidden" name="method" value="addCustomer">
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>

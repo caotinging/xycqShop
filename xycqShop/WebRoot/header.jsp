@@ -5,7 +5,7 @@
 <!-- 登录 注册 购物车... -->
 <div class="container-fluid">
 	<div class="col-md-4">
-		<img src="img/logo2.png" />
+		<img src="img/logo2.png" style="width: 250px; height: 60px;" />
 	</div>
 	<div class="col-md-5">
 		<img src="img/header.png" />
@@ -30,7 +30,7 @@
 
 <!-- 导航条 -->
 <div class="container-fluid">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse" style="background: #FFB6C1;">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -40,7 +40,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">首页</a>
+				<a class="navbar-brand" href="#" style="background: #FFC0CB;">首页</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

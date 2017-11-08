@@ -6,12 +6,22 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>黑马商城首页</title>
+		<title>欣语长情首页</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 		<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		<style type="text/css">
+			.navbar{
+			    margin-bottom: 0px;
+			    border-radius: 5px;
+			    background: #FFB6C1;    
+			}
+			.navbar-brand {
+				background: #FFC0CB;
+			}
+		</style>
 	</head>
-
+	
 	<body>
 		<div class="container-fluid">
 
