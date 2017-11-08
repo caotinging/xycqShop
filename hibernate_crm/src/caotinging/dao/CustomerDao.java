@@ -17,4 +17,11 @@ public abstract interface CustomerDao {
 	 * @return
 	 */
 	public abstract List<Customer> findAllCustomer();
+
+	/**
+	 * 通过客户id获取客户对象
+	 * @param cust_id
+	 * @return
+	 */
+	public abstract Customer getCustomerById(Long cust_id);
 }

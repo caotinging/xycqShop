@@ -30,4 +30,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 		return list;
 	}
+
+	@Override
+	public Customer getCustomerById(Long cust_id) {
+		Session session = HibernateUtils.getCurrentSession();
+		Customer customer = session.get(Customer.class, cust_id);
+		
+		return customer;
+	}
 }

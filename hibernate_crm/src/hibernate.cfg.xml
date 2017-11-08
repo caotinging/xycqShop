@@ -14,7 +14,7 @@
 		#hibernate.connection.password
 		 -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql:///shop</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///hibernate_crm</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">980515</property>
 		<!-- 数据库方言
@@ -53,6 +53,6 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		 
 		<mapping resource="caotinging/domain/Customer.hbm.xml"/>
-		
+		<mapping resource="caotinging/domain/LinkMan.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

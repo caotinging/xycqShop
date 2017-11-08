@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC 
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="caotinging.domain">
-	<class name="Customer" table="cst_customer">
-		<id name="cust_id" column="cust_id">
-			<generator class="native"></generator>
-		</id>
-		<property name="cust_name"></property>
-		<property name="cust_source"></property>
-		<property name="cust_industry"></property>
-		<property name="cust_level"></property>
-		<property name="cust_linkman"></property>
-		<property name="cust_phone"></property>
-		<property name="cust_mobile"></property>
-	</class>
+ <class name="Customer" table="cst_customer">
+  <id column="cust_id" name="cust_id">
+   <generator class="native"/>
+  </id>
+  <property generated="never" lazy="false" name="cust_name"/>
+  <property generated="never" lazy="false" name="cust_source"/>
+  <property generated="never" lazy="false" name="cust_industry"/>
+  <property generated="never" lazy="false" name="cust_level"/>
+  <property generated="never" lazy="false" name="cust_phone"/>
+  <property generated="never" lazy="false" name="cust_mobile"/>
+  <set name="linkManSet" table="cst_linkman">
+   <key column="lkm_cust_id"/>
+   <one-to-many class="caotinging.domain.LinkMan"/>
+  </set>
+ </class>
 </hibernate-mapping>

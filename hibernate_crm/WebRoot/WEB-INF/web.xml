@@ -21,6 +21,13 @@
     <description>客户业务操作</description>
     <servlet-class>caotinging.web.servlet.CustomerServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LinkManServlet</servlet-name>
+    <display-name>LinkManServlet</display-name>
+    <description>联系人相关操作</description>
+    <servlet-class>caotinging.web.servlet.LinkManServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -31,6 +38,10 @@
   <servlet-mapping>
     <servlet-name>CustomerServlet</servlet-name>
     <url-pattern>/CustomerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LinkManServlet</servlet-name>
+    <url-pattern>/LinkManServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
