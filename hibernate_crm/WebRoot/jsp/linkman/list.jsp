@@ -24,7 +24,7 @@
 </HEAD>
 <BODY>
 	<FORM id="customerForm" name="customerForm"
-		action="${pageContext.request.contextPath }/linkmanServlet?method=list"
+		action="${pageContext.request.contextPath }/LinkManServlet?method=findLinkManByName"
 		method=post>
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
@@ -62,7 +62,7 @@
 											<TBODY>
 												<TR>
 													<TD>联系人名称：</TD>
-													<TD><INPUT class=textbox id=sChannel2
+													<TD><INPUT class=textbox id=sChannel2 value="${param.lkmName }"
 														style="WIDTH: 80px" maxLength=50 name="lkmName"></TD>
 													
 													<TD><INPUT class=button id=sButton2 type=submit
@@ -90,15 +90,15 @@
 												<c:forEach items="${list }" var="linkman">
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-													<TD>${linkman.lkmName }</TD>
-													<TD>${linkman.lkmGender }</TD>
-													<TD>${linkman.lkmPhone }</TD>
-													<TD>${linkman.lkmMobile }</TD>
+													<TD>${linkman.lkm_name }</TD>
+													<TD>${linkman.lkm_gender==0?"男":"女" }</TD>
+													<TD>${linkman.lkm_phone }</TD>
+													<TD>${linkman.lkm_mobile }</TD>
 													
 													<TD>
-													<a href="${pageContext.request.contextPath }/linkmanServlet?method=edit&lkmId=${linkman.lkmId}">修改</a>
+													<a href="${pageContext.request.contextPath }/linkmanServlet?method=edit&lkmId=${linkman.lkm_id}">修改</a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/linkmanServlet?method=delete&lkmId=${linkman.lkmId}">删除</a>
+													<a href="${pageContext.request.contextPath }/linkmanServlet?method=delete&lkmId=${linkman.lkm_id}">删除</a>
 													</TD>
 												</TR>
 												
@@ -153,5 +153,6 @@
 			</TBODY>
 		</TABLE>
 	</FORM>
+	
 </BODY>
 </HTML>

@@ -58,8 +58,8 @@
 								</td>
 								<td>联系人性别：</td>
 								<td>
-								<input type="radio" value="1" name="lkm_gender">男
-								<input type="radio" value="2" name="lkm_gender">女
+								<input type="radio" value="0" name="lkm_gender">男
+								<input type="radio" value="1" name="lkm_gender">女
 								</td>
 							</TR>
 							<TR>

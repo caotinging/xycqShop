@@ -6,14 +6,14 @@
   <id name="lkm_id">
    <generator class="native"/>
   </id>
-  <property generated="never" lazy="false" name="lkm_gender"/>
-  <property generated="never" lazy="false" name="lkm_name"/>
-  <property generated="never" lazy="false" name="lkm_phone"/>
-  <property generated="never" lazy="false" name="lkm_mobile"/>
-  <property generated="never" lazy="false" name="lkm_email"/>
-  <property generated="never" lazy="false" name="lkm_qq"/>
-  <property generated="never" lazy="false" name="lkm_position"/>
-  <property generated="never" lazy="false" name="lkm_memo"/>
+  <property generated="never" name="lkm_gender"/>
+  <property generated="never" name="lkm_name"/>
+  <property generated="never" name="lkm_phone"/>
+  <property generated="never" name="lkm_mobile"/>
+  <property generated="never" name="lkm_email"/>
+  <property generated="never" name="lkm_qq"/>
+  <property generated="never" name="lkm_position"/>
+  <property generated="never" name="lkm_memo"/>
   <many-to-one class="caotinging.domain.Customer" column="lkm_cust_id" name="customer"/>
  </class>
 </hibernate-mapping>

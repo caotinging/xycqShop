@@ -15,9 +15,11 @@ public class GenericEncodingFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
+		
 		HttpServletRequest request = (HttpServletRequest) req;
 		MyRequest myrequest = new MyRequest(request);
 		chain.doFilter(myrequest, resp);
+		
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

@@ -24,4 +24,11 @@ public abstract interface CustomerDao {
 	 * @return
 	 */
 	public abstract Customer getCustomerById(Long cust_id);
+
+	/**
+	 * 根据名字对数据库中客户进行模糊查询
+	 * @param custName
+	 * @return
+	 */
+	public abstract List<Customer> findCustomerByName(String custName);
 }

@@ -17,4 +17,11 @@ public abstract interface CustomerService {
 	 * @return
 	 */
 	public abstract List<Customer> findAllCustomer();
+
+	/**
+	 * 根据名字对客户进行模糊查询
+	 * @param custName
+	 * @return
+	 */
+	public abstract List<Customer> findCustomerByName(String custName);
 }
