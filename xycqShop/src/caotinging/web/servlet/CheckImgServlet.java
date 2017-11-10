@@ -19,9 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 此代码来源网络 非原创 
- * 侵权删
- * 
+ *
  * 随机生成验证码
  * @author caoting
  *
