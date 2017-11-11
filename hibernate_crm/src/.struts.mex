@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="customer" location="10,10" size="212,141">
+    <action name="testAction" location="58,24" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="actSuccess.jsp" />
+      </result>
+    </action>
+    <action name="customerAction_*" location="59,66" size="150,40">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="list.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="actSuccess.jsp" path="/actSuccess.jsp" location="350,50" size="150,55" />
+  <webResource name="list.jsp" path="/jsp/customer/list.jsp" location="0,0" size="150,55" />
+</Struts2Diagram>
+

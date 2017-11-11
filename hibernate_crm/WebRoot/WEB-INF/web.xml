@@ -2,19 +2,11 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
     <filter>
-        <filter-name>GenericEncodingFilter</filter-name>
-        <filter-class>caotinging.web.filter.GenericEncodingFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>OpenSessionFilter</filter-name>
-        <filter-class>caotinging.web.filter.OpenSessionFilter</filter-class>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>GenericEncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>OpenSessionFilter</filter-name>
+        <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
   <servlet>
