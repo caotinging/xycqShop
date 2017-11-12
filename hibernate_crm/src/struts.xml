@@ -3,7 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.devMode" value="true"></constant>
 	<package name="customer" namespace="/customer" extends="struts-default">
 		<action name="testAction" class="caotinging.test.TestAction">
 			<result name="success" type="dispatcher">
@@ -12,8 +12,16 @@
 		</action>
 		<action name="customerAction_*" class="caotinging.web.action.CustomerAction"
 			method="{1}">
-		<result name="success" type="dispatcher">
-			/jsp/customer/list.jsp
-		</result></action>
+			<result name="list" type="dispatcher">
+				/jsp/customer/list.jsp
+			</result>
+			<result name="toList" type="redirectAction">
+				<param name="actionName">customerAction_list</param>
+				<param name="namespace">/customer</param>
+			</result>
+			<result name="success" type="dispatcher">
+				/actSuccess.jsp
+			</result>
+		</action>
 	</package>
 </struts>

@@ -15,7 +15,7 @@
 </HEAD>
 <BODY>
 	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/CustomerServlet"
+		action="${pageContext.request.contextPath }/customer/customerAction_add"
 		method=post>
 		<input type="hidden" name="method" value="addCustomer">
 
