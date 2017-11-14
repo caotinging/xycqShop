@@ -54,5 +54,6 @@
 		 
 		<mapping resource="caotinging/domain/Customer.hbm.xml"/>
 		<mapping resource="caotinging/domain/LinkMan.hbm.xml"/>
+		<mapping resource="caotinging/domain/User.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

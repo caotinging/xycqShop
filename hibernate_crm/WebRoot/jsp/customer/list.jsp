@@ -27,7 +27,7 @@
 </HEAD>
 <BODY>
 	<FORM id="customerForm" name="customerForm"
-		action="${pageContext.request.contextPath }/customer/customerAction_list"
+		action="${pageContext.request.contextPath }/customerAction_list"
 		method=post>
 		<input type="hidden" name="method" value="findCustomerByName">
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>

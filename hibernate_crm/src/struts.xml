@@ -4,7 +4,36 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="true"></constant>
-	<package name="customer" namespace="/customer" extends="struts-default">
+	<package name="customer" namespace="/" extends="struts-default">
+		<interceptors>
+			<!-- 注册拦截器 -->
+			<interceptor name="MyInterceptor" class="caotinging.web.interceptor.MyInterceptor"></interceptor>
+			<!-- 注册拦截器栈 -->
+			<interceptor-stack name="MyStack">
+				<interceptor-ref name="MyInterceptor">
+					<!-- 定制拦截方法 -->
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+				<!-- 引用默认的20个拦截器栈 -->
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 设置默认拦截器栈 -->
+		<default-interceptor-ref name="MyStack"></default-interceptor-ref>
+		
+		<!-- 设置全局结果集 -->
+		<global-results>
+			<result name="toLogin" type="redirect">
+				/login.jsp
+			</result>
+			<result name="login-error" type="redirect">
+				/login.jsp
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="login-error" exception="java.lang.RuntimeException"></exception-mapping>
+		</global-exception-mappings>
+		
 		<action name="testAction" class="caotinging.test.TestAction">
 			<result name="success" type="dispatcher">
 				/actSuccess.jsp
@@ -17,10 +46,15 @@
 			</result>
 			<result name="toList" type="redirectAction">
 				<param name="actionName">customerAction_list</param>
-				<param name="namespace">/customer</param>
+				<param name="namespace">/</param>
 			</result>
 			<result name="success" type="dispatcher">
 				/actSuccess.jsp
+			</result>
+		</action>
+		<action name="userAction_*" class="caotinging.web.action.UserAction" method="{1}">
+			<result name="toIndex" type="redirect">
+				/index.htm
 			</result>
 		</action>
 	</package>
