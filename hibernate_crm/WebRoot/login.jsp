@@ -89,7 +89,7 @@ TD {
 														</TR>
 														<TR>
 															<TD style="HEIGHT: 18px" colspan="2">
-																<span style="color: red;"><s:actionerror value="exception.message"/></span>
+																<span style="color: red;"><s:property value="exception.message"/></span>
 															</TD>
 														</TR>
 														<TR>

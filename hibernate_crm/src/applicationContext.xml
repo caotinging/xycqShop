@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+	
+	<bean name="customerDao" class="caotinging.dao.impl.CustomerDaoImpl"></bean>
+	<bean name="linkManDao" class="caotinging.dao.impl.LinkManDaoImpl"></bean>
+	<bean name="userDao" class="caotinging.dao.impl.UserDaoImpl"></bean>
+	
+	<bean name="customerService" class="caotinging.service.impl.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"></property>
+	</bean>
+	<bean name="linkManService" class="caotinging.service.impl.LinkManServiceImpl">
+		<property name="lmd" ref="linkManDao"></property>
+		<property name="cdao" ref="customerDao"></property>
+	</bean>
+	<bean name="userService" class="caotinging.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+</beans>

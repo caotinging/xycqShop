@@ -10,12 +10,12 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import caotinging.domain.Customer;
 import caotinging.service.CustomerService;
-import caotinging.service.impl.CustomerServiceImpl;
+import caotinging.utils.ApplicationContextUtils;
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 	
 	private static final long serialVersionUID = 1L;
-	private CustomerService service = new CustomerServiceImpl();
+	private CustomerService service = (CustomerService) ApplicationContextUtils.getApplicationContext().getBean("customerService");
 	private Customer customer = new Customer();
 	private String custName;
 

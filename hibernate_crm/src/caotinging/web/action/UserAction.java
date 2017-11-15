@@ -6,11 +6,11 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import caotinging.domain.User;
 import caotinging.service.UserService;
-import caotinging.service.impl.UserServiceImpl;
+import caotinging.utils.ApplicationContextUtils;
 
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
-	private UserService service= new UserServiceImpl();
+	private UserService service = (UserService) ApplicationContextUtils.getApplicationContext().getBean("userService");
 	
 	public String login() throws Exception {
 		User u = service.login(user);

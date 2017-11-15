@@ -5,17 +5,16 @@ import java.util.List;
 import org.hibernate.Transaction;
 
 import caotinging.dao.CustomerDao;
-import caotinging.dao.impl.CustomerDaoImpl;
 import caotinging.domain.Customer;
 import caotinging.service.CustomerService;
 import caotinging.utils.HibernateUtils;
 
 public class CustomerServiceImpl implements CustomerService {
-	private CustomerDao dao = new CustomerDaoImpl();
+	private CustomerDao customerDao;
 
 	public void addCustomer(Customer customer) {
 		Transaction transaction = HibernateUtils.getCurrentSession().beginTransaction();
-		this.dao.addCustomer(customer);
+		this.customerDao.addCustomer(customer);
 		transaction.commit();
 	}
 
@@ -24,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Transaction transaction = HibernateUtils.getCurrentSession().beginTransaction();
 		List<Customer> list = null;
 
-		list = dao.findAllCustomer();
+		list = customerDao.findAllCustomer();
 		transaction.commit();
 		return list;
 		
@@ -33,8 +32,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Customer> findCustomerByName(String custName) {
 		Transaction transaction = HibernateUtils.getCurrentSession().beginTransaction();
-		List<Customer> list = dao.findCustomerByName(custName);
+		List<Customer> list = customerDao.findCustomerByName(custName);
 		transaction.commit();
 		return list;
+	}
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
 	}
 }
