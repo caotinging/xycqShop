@@ -10,9 +10,29 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import caotinging.domain.Customer;
 import caotinging.domain.LinkMan;
+import caotinging.test.proxy.CglibProxyFactory;
+import caotinging.test.proxy.MyAdvice;
+import caotinging.test.proxy.MyAdviceImpl;
+import caotinging.test.proxy.MyProxyFactory;
 import caotinging.utils.HibernateUtils;
 
 public class TestDemo {
+	
+	@Test
+	public void test5() {
+		
+		MyAdvice myAdvice = CglibProxyFactory.getMyAdvice();
+		
+		myAdvice.add();
+	}
+	
+	@Test
+	public void test4() {
+		MyAdvice advice = new MyAdviceImpl();
+		MyAdvice adviceProxy = new MyProxyFactory().getMyAdvice(advice);
+		
+		adviceProxy.add();
+	}
 	
 	@SuppressWarnings("resource")
 	@Test
