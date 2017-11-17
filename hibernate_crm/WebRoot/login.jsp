@@ -1,10 +1,11 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -27,9 +28,9 @@ TD {
 </STYLE>
 
 <script type="text/javascript">
-	window.onload=function() {
-		if(window.parent != window) {
-			window.parent.location.href="${pageContext.request.contextPath}/login.jsp"
+	window.onload = function() {
+		if (window.parent != window) {
+			window.parent.location.href = "${pageContext.request.contextPath}/login.jsp"
 		}
 	};
 </script>
@@ -43,8 +44,6 @@ TD {
 				style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV>
 			<DIV id=div2
 				style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV>
-
-
 			<DIV>&nbsp;&nbsp;</DIV>
 			<DIV>
 				<TABLE cellSpacing=0 cellPadding=0 width=900 align=center border=0>
@@ -76,7 +75,8 @@ TD {
 														<TR>
 															<TD style="HEIGHT: 28px">登录密码：</TD>
 															<TD style="HEIGHT: 28px"><INPUT id=txtPwd
-																style="WIDTH: 130px" type="password" name="user_password"></TD>
+																style="WIDTH: 130px" type="password"
+																name="user_password"></TD>
 															<TD style="HEIGHT: 28px"><SPAN
 																id=RequiredFieldValidator4
 																style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入密码</SPAN></TD>
@@ -88,9 +88,9 @@ TD {
 															<TD style="HEIGHT: 28px">&nbsp;</TD>
 														</TR>
 														<TR>
-															<TD style="HEIGHT: 18px" colspan="2">
-																<span style="color: red;"><s:property value="exception.message"/></span>
-															</TD>
+															<TD style="HEIGHT: 18px" colspan="2"><span
+																style="color: red;"><s:property
+																		value="exception.message" /></span></TD>
 														</TR>
 														<TR>
 															<TD></TD>
