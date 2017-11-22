@@ -14,12 +14,10 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
 <SCRIPT language=javascript>
-	function to_page(page){
-		if(page){
-			$("#page").val(page);
-		}
-		document.customerForm.submit();
-		
+	function changePage(page) {
+		$.ajax({
+			
+		});
 	}
 </SCRIPT>
 
@@ -98,7 +96,7 @@
 													<TD>操作</TD>
 												</TR>
 												
-												<s:iterator value="#list" var="customer">
+												<s:iterator value="#pageBean.beanList" var="customer">
 													<TR
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD>
@@ -115,41 +113,6 @@
 														</TD>
 													</TR>
 												</s:iterator>
-												
-												<%-- <s:iterator value="#list">
-													<TR
-														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-														<TD>
-														<s:property value="cust_name"/>
-														</TD>
-														<TD><s:property value="cust_level"/></TD>
-														<TD><s:property value="cust_source"/></TD>
-														<TD><s:property value="cust_phone"/></TD>
-														<TD><s:property value="cust_mobile"/></TD>
-														<TD><a
-															href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
-															&nbsp;&nbsp; <a
-															href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
-														</TD>
-													</TR>
-												</s:iterator> --%>
-												
-												<%-- <c:forEach items="${list }" var="customer">
-													<TR
-														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-														<TD>${customer.cust_name }</TD>
-														<TD>${customer.cust_level }</TD>
-														<TD>${customer.cust_source }</TD>
-														<TD>${customer.cust_phone }</TD>
-														<TD>${customer.cust_mobile }</TD>
-														<TD><a
-															href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
-															&nbsp;&nbsp; <a
-															href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
-														</TD>
-													</TR>
-
-												</c:forEach> --%>
 											</TBODY>
 										</TABLE>
 									</TD>
@@ -159,17 +122,18 @@
 									<TD><SPAN id=pagelink>
 											<DIV
 												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页 ,每页显示 <select
-													name="pageSize">
-
-													<option value="15"
-														selected="<c:if test="${pageSize==1 }">selected</c:if>">1</option>
-													<option value="30"
-														selected="<c:if test="${pageSize==30 }">selected</c:if>">30</option>
-												</select> 条 [<A href="javascript:to_page(${page-1})">前一页</A>] <B>${page}</B>
-												[<A href="javascript:to_page(${page+1})">后一页</A>] 到 <input
-													type="text" size="3" id="page" name="page" /> 页 <input
-													type="button" value="Go" onclick="to_page()" />
+												共[<B><s:property value="#pageBean.totalCount"/></B>]条记录,[<B><s:property value="#pageBean.totalPage"/></B>]页 ,每页显示 
+												<select name="pageSize">
+													<option value="3" <s:property value="#pageBean.pageCount==3?'selected':''" /> >3</option>
+													<option value="5" <s:property value="#pageBean.pageCount==5?'selected':''" />>5</option>
+												</select>
+												条 [<A href="javascript:void(0);" onclick="changePage(<s:property value="#pageBean.currentPage-1"/>)">前一页</A>] 
+												<B>
+													<s:property value="#pageBean.currentPage"/>
+												</B>
+												[<A href="javascript:void(0);" onclick="changePage(<s:property value="#pageBean.currentPage+1"/>)">后一页</A>] 到 
+												<input type="text" size="3" id="goToPage" name="page" /> 页 
+												<input type="button" value="Go" onclick="changePage($('#goToPage').val())"/>
 											</DIV>
 									</SPAN></TD>
 								</TR>

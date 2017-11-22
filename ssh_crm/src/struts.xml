@@ -11,6 +11,9 @@
 	<constant name="struts.objectFactory" value="spring"></constant>
 	
 	<package name="crm" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
 		<global-exception-mappings>
 			<exception-mapping result="error" exception="java.lang.RuntimeException"></exception-mapping>
 		</global-exception-mappings>
@@ -18,6 +21,9 @@
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="toIndex">/index.jsp</result>
 			<result name="error">/login.jsp</result>
+		</action>
+		<action name="customerAction_*" class="customerAction" method="{1}">
+			<result name="toCustList">/jsp/customer/list.jsp</result>
 		</action>
 	</package>
 </struts>

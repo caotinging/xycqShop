@@ -4,6 +4,16 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
 	
+	<!-- 配置注解扫描 
+		全局配置  按包扫描
+	-->
+	<!-- <context:component-scan base-package="caotinging.*"></context:component-scan> -->
+	
+	<!-- 配置注解有效类型
+		只给在xml中配置了的bean注入属性，对于xml中没有注册的bean不进行操作
+	 -->
+	<context:annotation-config></context:annotation-config>
+	
 	<!-- 配置c3p0连接池 -->
 	<context:property-placeholder location="classpath:c3p0Conf.properties"/>
 	
@@ -75,14 +85,20 @@
 	<bean name="userAction" class="caotinging.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
+	<bean name="customerAction" class="caotinging.web.action.CustomerAction" scope="prototype"></bean>
 	
 	<!-- 配置service以及其依赖 -->
 	<bean name="userService" class="caotinging.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	<bean name="customerService" class="caotinging.service.impl.CustomerServiceImpl"></bean>
 	
 	<!-- 配置dao以及其依赖 -->
 	<bean name="userDao" class="caotinging.dao.impl.UserDaoImpl">
+		<!-- 这一步千万不要忘记，往dao继承的hibernateDaoSupport注入sessionFactory属性 -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="customerDao" class="caotinging.dao.impl.CustomerDaoImpl">
 		<!-- 这一步千万不要忘记，往dao继承的hibernateDaoSupport注入sessionFactory属性 -->
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

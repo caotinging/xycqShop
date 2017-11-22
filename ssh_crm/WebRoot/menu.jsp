@@ -136,7 +136,7 @@ A.active {
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath}/customerAction_list"
+														href="${pageContext.request.contextPath}/customerAction_custList"
 														target=main>－ 客户列表</A></TD>
 												</TR>
 
