@@ -45,7 +45,7 @@ public class PageBean<T> {
 	 * @return
 	 */
 	public Integer getStart() {
-		return (this.currentPage-1)/this.pageCount;
+		return (this.currentPage-1)*this.pageCount;
 	}
 	
 	public Integer getTotalCount() {
