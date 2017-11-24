@@ -6,7 +6,7 @@ import org.hibernate.criterion.DetachedCriteria;
 
 import caotinging.domain.Customer;
 
-public interface CustomerDao {
+public interface CustomerDao extends BaseDao<Customer> {
 
 	/**
 	 * 获取给定查询条件下的总条数

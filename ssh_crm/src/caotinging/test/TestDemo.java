@@ -1,5 +1,7 @@
 package caotinging.test;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
@@ -9,7 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 
+import caotinging.dao.CustomerDao;
 import caotinging.dao.UserDao;
+import caotinging.domain.Customer;
 import caotinging.domain.User;
 import caotinging.utils.HibernateUtils;
 import caotinging.web.action.UserAction;
@@ -23,6 +27,14 @@ public class TestDemo {
 	private SessionFactory factory;
 	@Resource(name="userDao")
 	private UserDao userDao;
+	@Resource(name="customerDao")
+	private CustomerDao customerDao;
+	
+	@Test
+	public void fun6() {
+		List<Customer> list = customerDao.findAll();
+		System.out.println(list);
+	}
 	
 	@Test
 	public void fun5() {

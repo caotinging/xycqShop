@@ -7,29 +7,24 @@ import java.util.List;
 //import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-//import org.springframework.orm.hibernate5.HibernateCallback;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import caotinging.dao.UserDao;
 import caotinging.domain.User;
 
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	
 	@Override
 	public User getUserByCode(final String user_code) {
 		//使用
-		HibernateTemplate ht = super.getHibernateTemplate();
 		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
 		
 		criteria.add(Restrictions.eq("user_code", user_code));
 		
-		@SuppressWarnings("unchecked")
-		List<User> userList = (List<User>) ht.findByCriteria(criteria);
+		List<User> userList = super.findByCriteria(criteria);
 		
-		if(userList != null && userList.size()>0) {
+		if(userList != null && userList.size() >0) {
 			return userList.get(0);
-		}else {
+		} else {
 			return null;
 		}
 		
