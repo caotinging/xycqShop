@@ -11,8 +11,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 
+import caotinging.dao.BaseDictDao;
 import caotinging.dao.CustomerDao;
 import caotinging.dao.UserDao;
+import caotinging.domain.BaseDict;
 import caotinging.domain.Customer;
 import caotinging.domain.User;
 import caotinging.utils.HibernateUtils;
@@ -29,6 +31,14 @@ public class TestDemo {
 	private UserDao userDao;
 	@Resource(name="customerDao")
 	private CustomerDao customerDao;
+	@Resource(name="baseDictDao")
+	private BaseDictDao baseDictDao;
+	
+	@Test
+	public void fun7() {
+		List<BaseDict> list = baseDictDao.loadFromBaseDict("001");
+		System.out.println(list);
+	}
 	
 	@Test
 	public void fun6() {

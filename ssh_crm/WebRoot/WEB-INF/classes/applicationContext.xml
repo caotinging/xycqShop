@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">
 	
 	<!-- 配置注解扫描 
 		全局配置  按包扫描
@@ -70,6 +67,7 @@
 			<tx:method name="remove*" read-only="false" propagation="REQUIRED"/>
 			<tx:method name="add*" read-only="false" propagation="REQUIRED"/>
 			<tx:method name="modify*" read-only="false" propagation="REQUIRED"/>
+			<tx:method name="load*" read-only="false" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	
@@ -82,20 +80,24 @@
 	<!-- 配置Action以及其service依赖
 		Action的scope属性必须为prototype（多例）
 	 -->
+	<bean name="baseDictAction" class="caotinging.web.action.BaseDictAction" scope="prototype"></bean>
 	<bean name="userAction" class="caotinging.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
 	<bean name="customerAction" class="caotinging.web.action.CustomerAction" scope="prototype"></bean>
 	
 	<!-- 配置service以及其依赖 -->
+	<bean name="baseDictService" class="caotinging.service.impl.BaseDictServiceImpl"></bean>
 	<bean name="userService" class="caotinging.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	<bean name="customerService" class="caotinging.service.impl.CustomerServiceImpl"></bean>
 	
 	<!-- 配置dao以及其依赖 -->
+	<bean name="baseDictDao" class="caotinging.dao.impl.BaseDictDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<bean name="userDao" class="caotinging.dao.impl.UserDaoImpl">
-		<!-- 这一步千万不要忘记，往dao继承的hibernateDaoSupport注入sessionFactory属性 -->
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean name="customerDao" class="caotinging.dao.impl.CustomerDaoImpl">

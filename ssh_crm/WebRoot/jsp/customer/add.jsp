@@ -9,7 +9,15 @@
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/LoadSelect.js"></script>
+<script type="text/javascript">
+	$(function(){
+		loadFromBaseDict("levelSelectedId", "006");
+		loadFromBaseDict("industrySelectedId", "001");
+		loadFromBaseDict("sourceSelectedId", "002");
+	});
+</script>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
@@ -47,8 +55,6 @@
 						</TABLE>
 						
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
-						  
-						    
 							<TR>
 								<td>客户名称：</td>
 								<td>
@@ -57,28 +63,34 @@
 								</td>
 								<td>客户级别 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_level">
+									<select id="levelSelectedId" name="cust_level.dict_id">
+										<option value="" >---请选择---</option>
+									</select>
+								</td>
+							</TR>
+							<TR>
+								<td>客户行业 ：</td>
+								<td>
+									<select id="industrySelectedId" name="cust_level.dict_id">
+										<option value="" >---请选择---</option>
+									</select>
+								</td>
+								<td>客户来源 ：</td>
+								<td>
+									<select id="sourceSelectedId" name="cust_level.dict_id">
+										<option value="" >---请选择---</option>
+									</select>
 								</td>
 							</TR>
 							
 							<TR>
-								
-								<td>信息来源 ：</td>
-								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_source">
-								</td>
 								<td>联系人：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_linkman">
+								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_linkman">
 								</td>
 							</TR>
 							
 							<TR>
-								
-								
 								<td>固定电话 ：</td>
 								<td>
 								<INPUT class=textbox id=sChannel2
