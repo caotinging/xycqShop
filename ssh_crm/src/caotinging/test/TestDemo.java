@@ -1,5 +1,6 @@
 package caotinging.test;
 
+import java.net.URL;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -33,6 +34,14 @@ public class TestDemo {
 	private CustomerDao customerDao;
 	@Resource(name="baseDictDao")
 	private BaseDictDao baseDictDao;
+	
+	@Test
+	public void fun8() {
+		URL url = this.getClass().getClassLoader().getResource("");
+		URL url2 = this.getClass().getResource("");
+		System.out.println(url);
+		System.out.println(url2);
+	}
 	
 	@Test
 	public void fun7() {

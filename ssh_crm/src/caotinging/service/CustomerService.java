@@ -16,4 +16,11 @@ public interface CustomerService {
 	 */
 	PageBean<Customer> getPageBean(DetachedCriteria criteria, Integer currentPage, Integer pageCount);
 
+	/**
+	 * 保存或修改客户的信息
+	 * @param customer
+	 * @return
+	 */
+	boolean saveOrUpdateCustomer(Customer customer);
+
 }

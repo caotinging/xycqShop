@@ -70,6 +70,6 @@ public class BaseDict {
 	}
 	@Override
 	public String toString() {
-		return "BaseDict [dict_type_name=" + dict_type_name + "]";
+		return dict_type_name;
 	}
 }

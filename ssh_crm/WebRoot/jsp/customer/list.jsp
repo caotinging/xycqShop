@@ -109,8 +109,8 @@
 													<TR
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD><s:property value="#customer.cust_name" /></TD>
-														<TD><s:property value="#customer.cust_level" /></TD>
-														<TD><s:property value="#customer.cust_source" /></TD>
+														<TD><s:property value="#customer.cust_level.dict_item_name" /></TD>
+														<TD><s:property value="#customer.cust_source.dict_item_name" /></TD>
 														<TD><s:property value="#customer.cust_phone" /></TD>
 														<TD><s:property value="#customer.cust_mobile" /></TD>
 														<TD><a

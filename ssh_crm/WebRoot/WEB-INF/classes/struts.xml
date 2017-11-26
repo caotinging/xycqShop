@@ -15,7 +15,7 @@
 			<result name="error">/error.jsp</result>
 		</global-results>
 		<global-exception-mappings>
-			<exception-mapping result="error" exception="java.lang.RuntimeException"></exception-mapping>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 	
 		<action name="userAction_*" class="userAction" method="{1}">
@@ -24,6 +24,10 @@
 		</action>
 		<action name="customerAction_*" class="customerAction" method="{1}">
 			<result name="toCustList">/jsp/customer/list.jsp</result>
+			<result name="toCustListAction" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">customerAction_custList</param>
+			</result>
 		</action>
 		<action name="baseDictAction" class="baseDictAction" method="execute"></action>
 	</package>

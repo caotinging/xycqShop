@@ -33,4 +33,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return bean;
 	}
 
+	@Override
+	public boolean saveOrUpdateCustomer(Customer customer) {
+		Boolean res = customerDao.saveOrUpdate(customer);
+		return res;
+	}
+
 }

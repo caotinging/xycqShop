@@ -1,8 +1,11 @@
 package caotinging.web.action;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+//import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -21,12 +24,34 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private Integer currentPage;
 	private Integer pageCount;
 	private CustomerService customerService;
+	private File customerFile;
+	private String customerFileFileName;
 
 	@Resource(name="customerService")
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
 	}
 
+	/**
+	 * 保存或修改客户的操作
+	 * @return
+	 */
+	public String addCustomer() {
+//		String path = ServletActionContext.getServletContext().getRealPath("/upload");
+		String path = "E:/Git/ssh_crm/WebRoot/upload";
+		customerFile.renameTo(new File(path+"/"+customerFileFileName));
+		
+		if(customer != null) {
+			boolean isSuccess = customerService.saveOrUpdateCustomer(customer);
+			if(!isSuccess) {
+				return "error";
+			}
+		}else {
+			return "error";
+		}
+		return "toCustListAction";
+	}
+	
 	/**
 	 * 获取分页显示customer数据
 	 * @return 
@@ -65,6 +90,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	@Override
 	public Customer getModel() {
 		return customer;
+	}
+
+	public File getCustomerFile() {
+		return customerFile;
+	}
+
+	public void setCustomerFile(File customerFile) {
+		this.customerFile = customerFile;
+	}
+
+	public String getCustomerFileFileName() {
+		return customerFileFileName;
+	}
+
+	public void setCustomerFileFileName(String customerFileFileName) {
+		this.customerFileFileName = customerFileFileName;
 	}
 
 }

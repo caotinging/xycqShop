@@ -4,7 +4,7 @@
  */
 function loadFromBaseDict(selectId, typeId) {
 	$.post(
-		"/${pageContext.request.contextPath }/baseDictAction",
+		"${pageContext.request.contextPath}/baseDictAction",
 		{"dict_type_code":typeId},
 		function(baseDictList) {
 			if(baseDictList != null) {

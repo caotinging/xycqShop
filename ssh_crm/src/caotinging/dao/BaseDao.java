@@ -12,6 +12,13 @@ import org.hibernate.criterion.DetachedCriteria;
 public interface BaseDao<T> {
 	
 	/**
+	 * 保存或者修改一条数据
+	 * @param t
+	 * @return
+	 */
+	public Boolean saveOrUpdate(T t);
+	
+	/**
 	 * 增加一条数据
 	 * @param t
 	 * @return 执行结果

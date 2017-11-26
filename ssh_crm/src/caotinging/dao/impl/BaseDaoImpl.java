@@ -135,4 +135,15 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		return res;
 	}
 
+	@Override
+	public Boolean saveOrUpdate(T t) {
+		try{
+			this.getHibernateTemplate().saveOrUpdate(t);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 }
