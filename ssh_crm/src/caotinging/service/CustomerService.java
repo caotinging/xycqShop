@@ -23,4 +23,11 @@ public interface CustomerService {
 	 */
 	boolean saveOrUpdateCustomer(Customer customer);
 
+	/**
+	 * 根据id查询customer
+	 * @param cust_id
+	 * @return
+	 */
+	Customer findCustomer(Long cust_id);
+
 }

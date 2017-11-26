@@ -32,14 +32,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.customerService = customerService;
 	}
 
+	public String modifyCust() {
+		Customer c = customerService.findCustomer(customer.getCust_id());
+		ActionContext.getContext().put("customer", c);
+		return "toModify";
+	}
+	
 	/**
 	 * 保存或修改客户的操作
 	 * @return
 	 */
-	public String addCustomer() {
+	public String addOrUpadeCustomer() {
 //		String path = ServletActionContext.getServletContext().getRealPath("/upload");
-		String path = "E:/Git/ssh_crm/WebRoot/upload";
-		customerFile.renameTo(new File(path+"/"+customerFileFileName));
+		if(customerFile != null){
+			String path = "E:/Git/ssh_crm/WebRoot/upload";
+			customerFile.renameTo(new File(path+"/"+customerFileFileName));
+		}
 		
 		if(customer != null) {
 			boolean isSuccess = customerService.saveOrUpdateCustomer(customer);

@@ -1,10 +1,11 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<TITLE>添加客户</TITLE> 
+<TITLE><s:property value="#customer==null?'添加客户':'修改客户'"/></TITLE> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
@@ -13,9 +14,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/LoadSelect.js"></script>
 <script type="text/javascript">
 	$(function(){
-		loadFromBaseDict("levelSelectedId", "006");
-		loadFromBaseDict("industrySelectedId", "001");
-		loadFromBaseDict("sourceSelectedId", "002");
+		loadFromBaseDict("levelSelectedId", "006"<c:if test="${customer!=null }">,${customer.cust_level.dict_id }</c:if>);
+		loadFromBaseDict("industrySelectedId", "001"<c:if test="${customer!=null }">,${customer.cust_industry.dict_id }</c:if>);
+		loadFromBaseDict("sourceSelectedId", "002"<c:if test="${customer!=null }">,${customer.cust_source.dict_id }</c:if>);
 	});
 </script>
 
@@ -23,9 +24,11 @@
 </HEAD>
 <BODY>
 	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/customerAction_addCustomer"
+		action="${pageContext.request.contextPath }/customerAction_addOrUpadeCustomer"
 		method=post enctype="multipart/form-data">
-
+		
+		<input type="hidden" name="cust_id" value="${customer.cust_id }" />
+		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -46,7 +49,7 @@
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 							<TR>
-								<TD class=manageHead>当前位置：客户管理 &gt; 添加客户</TD>
+								<TD class=manageHead>当前位置：客户管理 &gt; ${customer==null?'添加客户':'修改客户' }</TD>
 							</TR>
 							<TR>
 								<TD height=2></TD>
@@ -57,7 +60,7 @@
 							<TR>
 								<td>客户名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
+								<INPUT value="${customer.cust_name }" class=textbox id=sChannel2
 														style="WIDTH: 180px" maxLength=50 name="cust_name">
 								</td>
 								<td>客户级别 ：</td>
@@ -85,7 +88,7 @@
 							<TR>
 								<td>联系人：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_linkman">
+								<INPUT value="${customer.cust_linkman }" class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_linkman">
 								</td>
 								<td>文件上传：</td>
 								<td>
@@ -96,12 +99,12 @@
 							<TR>
 								<td>固定电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
+								<INPUT value="${customer.cust_phone }" class=textbox id=sChannel2
 														style="WIDTH: 180px" maxLength=50 name="cust_phone">
 								</td>
 								<td>移动电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
+								<INPUT value="${customer.cust_mobile }" class=textbox id=sChannel2
 														style="WIDTH: 180px" maxLength=50 name="cust_mobile">
 								</td>
 							</TR>
@@ -134,5 +137,6 @@
 			</TBODY>
 		</TABLE>
 	</FORM>
+	<s:debug></s:debug>
 </BODY>
 </HTML>

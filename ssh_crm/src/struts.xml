@@ -28,6 +28,7 @@
 				<param name="namespace">/</param>
 				<param name="actionName">customerAction_custList</param>
 			</result>
+			<result name="toModify">/jsp/customer/add.jsp</result>
 		</action>
 		<action name="baseDictAction" class="baseDictAction" method="execute"></action>
 	</package>

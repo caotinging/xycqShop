@@ -39,4 +39,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return res;
 	}
 
+	@Override
+	public Customer findCustomer(Long cust_id) {
+		Customer customer = customerDao.findById(cust_id);
+		return customer;
+	}
+
 }
