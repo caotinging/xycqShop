@@ -23,6 +23,18 @@
 		$("#pageCount").val(count);
 		$("#customerForm").submit();
 	}
+	
+	function selectCustomer(cust_id, cust_name) {
+		//获取打开此窗口的父窗口
+		var win = window.opener;
+		//获取父窗口的document对象
+		var document = win.document;
+		
+		document.getElementById("cust_id_Hbtn").value=cust_id;
+		document.getElementById("cust_name_Btn").value=cust_name;
+		
+		window.close();
+	}
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -67,6 +79,8 @@
 						<!-- 隐藏域用于提交每页显示条数 -->
 						<input name="pageCount" type="hidden" id="pageCount"
 							value="<s:property value="#pageBean.pageCount" />" />
+						<input name="select" type="hidden" id="select_id"
+							value="<s:property value="#parameters.select" />" />
 						<TABLE borderColor=#cccccc cellSpacing=0 cellPadding=0
 							width="100%" align=center border=0>
 							<TBODY>
@@ -113,10 +127,15 @@
 														<TD><s:property value="#customer.cust_source.dict_item_name" /></TD>
 														<TD><s:property value="#customer.cust_phone" /></TD>
 														<TD><s:property value="#customer.cust_mobile" /></TD>
-														<TD><a
-															href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
-															&nbsp;&nbsp; <a
-															href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+														<TD>
+														<s:if test="#parameters.select==null">
+															<a href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
+															&nbsp;&nbsp; 
+															<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+														</s:if>
+														<s:else>
+															<input type="button" onclick="selectCustomer(${customer.cust_id},'${customer.cust_name }')" value="选择">
+														</s:else>
 														</TD>
 													</TR>
 												</s:iterator>

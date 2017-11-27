@@ -23,12 +23,12 @@
 			<result name="error">/login.jsp</result>
 		</action>
 		<action name="customerAction_*" class="customerAction" method="{1}">
-			<result name="toCustList">/jsp/customer/list.jsp</result>
-			<result name="toCustListAction" type="redirectAction">
+			<result name="custList">/jsp/customer/list.jsp</result>
+			<result name="custListAction" type="redirectAction">
 				<param name="namespace">/</param>
 				<param name="actionName">customerAction_custList</param>
 			</result>
-			<result name="toModify">/jsp/customer/add.jsp</result>
+			<result name="modify">/jsp/customer/add.jsp</result>
 		</action>
 		<action name="baseDictAction" class="baseDictAction" method="execute"></action>
 	</package>

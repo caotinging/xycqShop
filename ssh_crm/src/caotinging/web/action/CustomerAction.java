@@ -35,7 +35,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String modifyCust() {
 		Customer c = customerService.findCustomer(customer.getCust_id());
 		ActionContext.getContext().put("customer", c);
-		return "toModify";
+		return "modify";
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}else {
 			return "error";
 		}
-		return "toCustListAction";
+		return "custListAction";
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		
 		ActionContext.getContext().put("pageBean", pageBean);
 		
-		return "toCustList";
+		return "custList";
 	}
 
 	public Integer getCurrentPage() {

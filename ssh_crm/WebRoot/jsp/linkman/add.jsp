@@ -9,7 +9,11 @@
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
-
+<script type="text/javascript">
+	function selectCustomer(){
+		window.open('${pageContext.request.contextPath}/customerAction_custList?select=true','','width=600,height=300')
+	}
+</script>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
@@ -48,7 +52,11 @@
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<tr>
 								<td>所属客户：</td>
-								<td colspan="3"><input type="text" name="cust_id" style="WIDTH: 180px"/></td>
+								<td>
+									<input type="text" id="cust_name_Btn" name="cust_name" style="WIDTH: 180px"/>
+									<input type="hidden" id="cust_id_Hbtn" name="cust_id"/>
+								</td>
+								<td><input type="button" value="选择客户" onclick="selectCustomer()"/></td>
 							</tr>
 							<TR>
 								<td>联系人名称：</td>
