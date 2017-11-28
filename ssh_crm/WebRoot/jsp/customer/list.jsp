@@ -126,7 +126,7 @@
 															<s:if test="#parameters.select==null">
 																<a href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
 																&nbsp;&nbsp; 
-																<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+																<a href="${pageContext.request.contextPath }/customerServlet?method=delete&cust_id=${customer.cust_id}">删除</a>
 															</s:if>
 														<s:else>
 															<input type="button" onclick="selectCustomer(${customer.cust_id},'${customer.cust_name }')" value="选择">

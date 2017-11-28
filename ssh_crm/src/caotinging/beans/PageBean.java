@@ -4,11 +4,11 @@ import java.util.List;
 
 public class PageBean<T> {
 
-	private Integer totalCount;
-	private Integer totalPage;
-	private Integer currentPage;
-	private Integer pageCount;
-	private List<T> beanList;
+	private Integer totalCount;//总条数
+	private Integer totalPage;//总页数
+	private Integer currentPage;//当前页
+	private Integer pageCount;//每页条数
+	private List<T> beanList;//每页显示参数
 	
 	public PageBean(Integer currentPage, Integer pageCount, Integer totalCount) {
 		Integer totalPage = null;

@@ -163,7 +163,7 @@ A.active {
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/LinkManServlet?method=findAllLinkMan"
+														href="${pageContext.request.contextPath }/linkManAction_lkmList"
 														target=main>－联系人列表</A></TD>
 												</TR>
 
