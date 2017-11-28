@@ -46,12 +46,13 @@
 						</TR>
 					</TABLE>
 					<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/linkManAction_saveOrUpdeteLinkMan" method=post>
+						<input type="hidden" name="lkm_id" value="${linkman.lkm_id }" />
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<tr>
 								<td>所属客户：</td>
 								<td>
 									<input value="${linkman.customer.cust_name }" type="text" id="cust_name_Btn" name="cust_name" style="WIDTH: 180px"/>
-									<input type="hidden" id="cust_id_Hbtn" name="customer.cust_id"/>
+									<input type="hidden" id="cust_id_Hbtn" name="customer.cust_id" value="${linkman.customer.cust_id }"/>
 								</td>
 								<td><input type="button" value="选择客户" onclick="selectCustomer()"/></td>
 							</tr>

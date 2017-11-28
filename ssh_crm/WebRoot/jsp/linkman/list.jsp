@@ -97,7 +97,7 @@
 												<s:iterator value="#pageBean.beanList" var="linkman" >
 													<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD><s:property value="#linkman.lkm_name"/></TD>
-														<TD><s:property value="#linkman.lkm_gender==0?'男':'女'"/></TD>
+														<TD><s:property value="#linkman.lkm_gender=='0'?'男':'女'"/></TD>
 														<TD><s:property value="#linkman.lkm_phone"/></TD>
 														<TD><s:property value="#linkman.lkm_mobile"/></TD>
 														<TD>

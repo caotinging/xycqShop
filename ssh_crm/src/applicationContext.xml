@@ -68,6 +68,7 @@
 			<tx:method name="add*" read-only="false" propagation="REQUIRED"/>
 			<tx:method name="modify*" read-only="false" propagation="REQUIRED"/>
 			<tx:method name="load*" read-only="false" propagation="REQUIRED"/>
+			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
 	
