@@ -59,10 +59,9 @@
 	<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 		<TBODY>
 			<TR>
-				<TD width=15
-					background="${pageContext.request.contextPath }/images/new_022.jpg"><IMG
-					src="${pageContext.request.contextPath }/images/new_022.jpg"
-					border=0></TD>
+				<TD width=15 background="${pageContext.request.contextPath }/images/new_022.jpg">
+					<IMG src="${pageContext.request.contextPath }/images/new_022.jpg" border=0>
+				</TD>
 				<TD vAlign=top width="100%" bgColor=#ffffff>
 					<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 						<TR>
@@ -81,8 +80,7 @@
 							value="<s:property value="#pageBean.pageCount" />" />
 						<input name="select" type="hidden" id="select_id"
 							value="<s:property value="#parameters.select" />" />
-						<TABLE borderColor=#cccccc cellSpacing=0 cellPadding=0
-							width="100%" align=center border=0>
+						<TABLE borderColor=#cccccc cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
 							<TBODY>
 								<TR>
 									<TD height=25>
@@ -90,19 +88,17 @@
 											<TBODY>
 												<TR>
 													<TD>客户名称：</TD>
-													<TD><INPUT value="${param.cust_name }" class=textbox
-														id=sChannel2 style="WIDTH: 80px" maxLength=50
-														name="cust_name"></TD>
-
-													<TD><INPUT class=button id=sButton2 type=submit
-														value=" 筛选 " name=sButton2></TD>
+													<TD>
+														<INPUT value="${param.cust_name }" class=textbox id=sChannel2 style="WIDTH: 80px" maxLength=50 name="cust_name">
+													</TD>
+													<TD>
+														<INPUT class=button id=sButton2 type=submit value=" 筛选 " name=sButton2>
+													</TD>
 												</TR>
 											</TBODY>
 										</TABLE>
-										</FORM>
 									</TD>
 								</TR>
-
 								<TR>
 									<TD>
 										<TABLE id=grid
@@ -118,7 +114,6 @@
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
-
 												<s:iterator value="#pageBean.beanList" var="customer">
 													<TR
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
@@ -128,11 +123,11 @@
 														<TD><s:property value="#customer.cust_phone" /></TD>
 														<TD><s:property value="#customer.cust_mobile" /></TD>
 														<TD>
-														<s:if test="#parameters.select==null">
-															<a href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
-															&nbsp;&nbsp; 
-															<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
-														</s:if>
+															<s:if test="#parameters.select==null">
+																<a href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
+																&nbsp;&nbsp; 
+																<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+															</s:if>
 														<s:else>
 															<input type="button" onclick="selectCustomer(${customer.cust_id},'${customer.cust_name }')" value="选择">
 														</s:else>
@@ -141,35 +136,38 @@
 												</s:iterator>
 											</TBODY>
 										</TABLE>
-									</TD>
-								</TR>
-								<TR>
-									<TD><SPAN id=pagelink>
-											<DIV
-												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B><s:property value="#pageBean.totalCount" /></B>]条记录,[<B><s:property
-														value="#pageBean.totalPage" /></B>]页 ,每页显示
-												<!-- 这里changeCount($('#pageCountSelect option:selected').val())里面的val()千万不能忘记否则就是取到这个节点而不是值 -->
-												<select name="pageSize" id="pageCountSelect"
-													onchange="changeCount($('#pageCountSelect option:selected').val())">
-													<option value="3"
-														<s:property value="#pageBean.pageCount==3?'selected':''" />>3</option>
-													<option value="5"
-														<s:property value="#pageBean.pageCount==5?'selected':''" />>5</option>
-												</select> 条 [<A href="javascript:void(0);"
-													onclick="changePage(<s:property value="#pageBean.currentPage-1"/>)">前一页</A>]
-												<B> <s:property value="#pageBean.currentPage" />
-												</B> [<A href="javascript:void(0);"
-													onclick="changePage(<s:property value="#pageBean.currentPage+1"/>)">后一页</A>]
-												到 <input type="text" size="3" id="goToPage" name="page"
-													value="<s:property value="#pageBean.currentPage"/>" /> 页 <input
-													type="button" value="Go"
-													onclick="changePage($('#goToPage').val())" />
-											</DIV>
-									</SPAN></TD>
-								</TR>
-							</TBODY>
-						</TABLE></TD>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<SPAN id=pagelink>
+										<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+											共[<B><s:property value="#pageBean.totalCount" /></B>]条记录,[<B><s:property
+													value="#pageBean.totalPage" /></B>]页 ,每页显示
+											<!-- 这里changeCount($('#pageCountSelect option:selected').val())里面的val()千万不能忘记否则就是取到这个节点而不是值 -->
+											<select name="pageSize" id="pageCountSelect"
+												onchange="changeCount($('#pageCountSelect option:selected').val())">
+												<option value="3"
+													<s:property value="#pageBean.pageCount==3?'selected':''" />>3</option>
+												<option value="5"
+													<s:property value="#pageBean.pageCount==5?'selected':''" />>5</option>
+											</select> 条 [<A href="javascript:void(0);"
+												onclick="changePage(<s:property value="#pageBean.currentPage-1"/>)">前一页</A>]
+											<B> <s:property value="#pageBean.currentPage" />
+											</B> [<A href="javascript:void(0);"
+												onclick="changePage(<s:property value="#pageBean.currentPage+1"/>)">后一页</A>]
+											到 <input type="text" size="3" id="goToPage" name="page"
+												value="<s:property value="#pageBean.currentPage"/>" /> 页 <input
+												type="button" value="Go"
+												onclick="changePage($('#goToPage').val())" />
+										</DIV>
+									</SPAN>
+								</TD>
+							</TR>
+						</TBODY>
+					</TABLE>
+				</FORM>
+				</TD>
 				<TD width=15
 					background="${pageContext.request.contextPath }/images/new_023.jpg"><IMG
 					src="${pageContext.request.contextPath }/images/new_023.jpg"
