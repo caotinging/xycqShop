@@ -51,6 +51,16 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 	public void setLinkManService(LinkManService linkManService) {
 		this.linkManService = linkManService;
 	}
+	
+	public String modifyLkm() {
+		if(linkMan != null && linkMan.getLkm_id()!=null) {
+			LinkMan lkm = linkManService.getLinkManById(linkMan.getLkm_id());
+			ActionContext.getContext().put("linkman", lkm);
+		} else{
+			return "error";
+		}
+		return "modifyLkm";
+	}
 
 	public String lkmList() {
 		DetachedCriteria criteria = DetachedCriteria.forClass(LinkMan.class);

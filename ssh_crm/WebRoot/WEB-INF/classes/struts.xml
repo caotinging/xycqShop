@@ -37,6 +37,7 @@
 				<param name="actionName">linkManAction_lkmList</param>
 			</result>
 			<result name="lkmList">/jsp/linkman/list.jsp</result>
+			<result name="modifyLkm">/jsp/linkman/add.jsp</result>
 		</action>
 	</package>
 </struts>

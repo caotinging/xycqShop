@@ -16,6 +16,10 @@
 		$("#currPage_Hbtn").val(page);
 		$("#linkManForm").submit();
 	}
+	function changeCount(count) {
+		$("#pageCount_Hbtn").val(count);
+		$("#linkManForm").submit();
+	}
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -25,7 +29,9 @@
 		action="${pageContext.request.contextPath }/linkManAction_lkmList"
 		method=post>
 		<!-- 用于提交当前页的隐藏域 -->
-		<input type="hidden" name="currentPage" id="currPage_Hbtn"/>
+		<input type="hidden" name="currentPage" id="currPage_Hbtn" value="${param.currentPage }"/>
+		<!-- 用于提交每页条数的隐藏域 -->
+		<input type="hidden" name="pageCount" id="pageCount_Hbtn" value="${param.pageCount }"/>
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -95,9 +101,9 @@
 														<TD><s:property value="#linkman.lkm_phone"/></TD>
 														<TD><s:property value="#linkman.lkm_mobile"/></TD>
 														<TD>
-														<a href="${pageContext.request.contextPath }/linkManAction_toEdit?lkm_id='${linkman.lkm_id }'">修改</a>
+														<a href="${pageContext.request.contextPath }/linkManAction_modifyLkm?lkm_id=${linkman.lkm_id }">修改</a>
 														&nbsp;&nbsp;
-														<a href="${pageContext.request.contextPath }/linkManAction_toDelete?lkm_id='${linkman.lkm_id }'">删除</a>
+														<a href="${pageContext.request.contextPath }/linkManAction_deleteLkm?lkm_id=${linkman.lkm_id }">删除</a>
 														</TD>
 													</TR>													
 												</s:iterator>
@@ -126,7 +132,7 @@
 											<DIV tyle="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
 												共[<B>${pageBean.totalCount }</B>]条记录,[<B>${pageBean.totalPage }</B>]页
 												,每页显示
-												<select name="pageCount">
+												<select onchange="changeCount($(this).val())">
 													<option value="3" <s:property value="#pageBean.pageCount==3?'selected':''" /> >3</option>
 													<option value="5" <s:property value="#pageBean.pageCount==5?'selected':''"/> >5</option>
 												</select>

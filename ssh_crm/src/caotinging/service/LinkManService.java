@@ -23,4 +23,11 @@ public interface LinkManService {
 	 */
 	PageBean<LinkMan> getLkmList(DetachedCriteria criteria, Integer currentPage, Integer pageCount);
 
+	/**
+	 * 通过linkman的id获取LinMan对象
+	 * @param lkm_id
+	 * @return
+	 */
+	LinkMan getLinkManById(Long lkm_id);
+
 }

@@ -80,7 +80,7 @@
 	<!-- 配置Action以及其service依赖
 		Action的scope属性必须为prototype（多例）
 	 -->
-	 <bean name="linkManAction" class="caotinging.web.action.LinkManAction" scope="prototype"></bean>
+	<bean name="linkManAction" class="caotinging.web.action.LinkManAction" scope="prototype"></bean>
 	<bean name="baseDictAction" class="caotinging.web.action.BaseDictAction" scope="prototype"></bean>
 	<bean name="userAction" class="caotinging.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
