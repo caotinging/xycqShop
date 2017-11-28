@@ -80,6 +80,7 @@
 	<!-- 配置Action以及其service依赖
 		Action的scope属性必须为prototype（多例）
 	 -->
+	 <bean name="linkManAction" class="caotinging.web.action.LinkManAction" scope="prototype"></bean>
 	<bean name="baseDictAction" class="caotinging.web.action.BaseDictAction" scope="prototype"></bean>
 	<bean name="userAction" class="caotinging.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
@@ -87,6 +88,7 @@
 	<bean name="customerAction" class="caotinging.web.action.CustomerAction" scope="prototype"></bean>
 	
 	<!-- 配置service以及其依赖 -->
+	<bean name="linkManService" class="caotinging.service.impl.LinkManServiceImpl"></bean>
 	<bean name="baseDictService" class="caotinging.service.impl.BaseDictServiceImpl"></bean>
 	<bean name="userService" class="caotinging.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
@@ -94,6 +96,9 @@
 	<bean name="customerService" class="caotinging.service.impl.CustomerServiceImpl"></bean>
 	
 	<!-- 配置dao以及其依赖 -->
+	<bean name="linkManDao" class="caotinging.dao.impl.LinkManDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<bean name="baseDictDao" class="caotinging.dao.impl.BaseDictDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

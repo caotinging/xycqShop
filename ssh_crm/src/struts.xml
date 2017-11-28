@@ -31,5 +31,12 @@
 			<result name="modify">/jsp/customer/add.jsp</result>
 		</action>
 		<action name="baseDictAction" class="baseDictAction" method="execute"></action>
+		<action name="linkManAction_*" class="linkManAction" method="{1}">
+			<result name="toLkmList" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">linkManAction_lkmList</param>
+			</result>
+			<result name="lkmList">/jsp/linkman/list.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -44,7 +44,7 @@
 							<TD height=2></TD>
 						</TR>
 					</TABLE>
-					<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/linkManAction_addLinkMan" method=post>
+					<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/linkManAction_saveOrUpdeteLinkMan" method=post>
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<tr>
 								<td>所属客户：</td>
