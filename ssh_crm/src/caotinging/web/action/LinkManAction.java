@@ -67,6 +67,10 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 		if(StringUtils.isNotBlank(linkManName)) {
 			criteria.add(Restrictions.like("lkm_name", "%"+linkManName+"%"));
 		}
+		//根据选择的客户id获取联系人列表
+		if(linkMan.getCustomer() != null && linkMan.getCustomer().getCust_id() != null) {
+			criteria.add(Restrictions.eq("customer.cust_id", linkMan.getCustomer().getCust_id()));
+		}
 		
 		PageBean<LinkMan> pageBean = linkManService.getLkmList(criteria, currentPage, pageCount);
 		ActionContext.getContext().put("pageBean", pageBean);

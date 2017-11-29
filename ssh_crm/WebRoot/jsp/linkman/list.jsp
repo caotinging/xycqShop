@@ -71,8 +71,14 @@
 													<TD>
 														<INPUT class=textbox id=sChannel2 value="${param.linkManName }" style="WIDTH: 80px" maxLength=50 name="linkManName">
 													</TD>
+													<TD>客户名称：</TD>
 													<TD>
-														<INPUT class=button id=sButton2 type=submit value=" 筛选 " name=sButton2>
+														<input type="hidden" name="customer.cust_id" id="cust_id_Hbtn"/>
+														<INPUT class=textbox type="text" id="cust_name_Btn" style="WIDTH: 80px" maxLength=50 name="customer.cust_name" readonly="readonly" value="${param['customer.cust_name'] }">
+														<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/customerAction_custList?select=true','','width=600,height=300')">
+													</TD>
+													<TD>
+														<INPUT class=button id=sButton2 type=submit value=" 筛选 " >
 													</TD>
 												</TR>
 											</TBODY>
@@ -88,6 +94,7 @@
 												<TR
 													style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
 													<TD>联系人名称</TD>
+													<TD>所属客户名称</TD>
 													<TD>性别</TD>
 													<TD>办公电话</TD>
 													<TD>手机</TD>
@@ -97,6 +104,7 @@
 												<s:iterator value="#pageBean.beanList" var="linkman" >
 													<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD><s:property value="#linkman.lkm_name"/></TD>
+														<TD><s:property value="#linkman.customer.cust_name"/></TD>
 														<TD><s:property value="#linkman.lkm_gender=='0'?'男':'女'"/></TD>
 														<TD><s:property value="#linkman.lkm_phone"/></TD>
 														<TD><s:property value="#linkman.lkm_mobile"/></TD>
