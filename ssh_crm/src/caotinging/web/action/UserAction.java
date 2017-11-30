@@ -14,6 +14,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private UserService userService;
 
 	/**
+	 * 用户注册功能
+	 * @return
+	 */
+	public String regist() {
+		if(user != null) {
+			userService.saveUser(user);
+		}else {
+			return "error";
+		}
+		return "toLogin";
+	}
+	
+	/**
 	 * 用户登录校验
 	 * @return
 	 */
