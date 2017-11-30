@@ -84,7 +84,7 @@ TD {
 														</TR>
 														<TR>
 															<TD style="HEIGHT: 18px" colspan="2">
-																<font color="red"></font>
+																<font color="red"><s:property value="#error"/></font>
 															</TD>
 															<TD style="HEIGHT: 18px"></TD>
 														</TR>

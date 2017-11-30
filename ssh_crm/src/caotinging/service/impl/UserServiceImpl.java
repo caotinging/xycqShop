@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
+		User existU = userDao.getUserByCode(user.getUser_code());
+		
+		if(existU != null) {
+			throw new RuntimeException("用户名已存在！");
+		}
 		userDao.save(user);
 	}
 

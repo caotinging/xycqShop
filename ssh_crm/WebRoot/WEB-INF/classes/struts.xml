@@ -11,8 +11,24 @@
 	<constant name="struts.objectFactory" value="spring"></constant>
 	
 	<package name="crm" extends="struts-default" namespace="/">
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<!-- 注册配置器 -->
+			<interceptor name="userLoginInterceptor" class="caotinging.web.interceptor.UserLoginInterceptor"></interceptor>
+			<!-- 注册拦截器栈 -->
+			<interceptor-stack name="privilegeStack">
+				<interceptor-ref name="userLoginInterceptor">
+					<param name="excludeMethods">userLogin,regist</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 配置默认拦截器栈 -->
+		<default-interceptor-ref name="privilegeStack"></default-interceptor-ref>
+		
 		<global-results>
 			<result name="error">/error.jsp</result>
+			<result name="toLogin" type="redirect">/login.jsp</result>
 		</global-results>
 		<global-exception-mappings>
 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
@@ -20,8 +36,8 @@
 	
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="toIndex" type="redirect">/index.jsp</result>
-			<result name="toLogin" type="redirect">/login.jsp</result>
 			<result name="error">/login.jsp</result>
+			<result name="regist">/regist.jsp</result>
 		</action>
 		<action name="customerAction_*" class="customerAction" method="{1}">
 			<result name="custList">/jsp/customer/list.jsp</result>

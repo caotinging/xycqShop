@@ -19,7 +19,12 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	public String regist() {
 		if(user != null) {
-			userService.saveUser(user);
+			try {
+				userService.saveUser(user);
+			} catch (Exception e) {
+				ActionContext.getContext().put("error", e.getMessage());
+				return "regist";
+			}
 		}else {
 			return "error";
 		}
