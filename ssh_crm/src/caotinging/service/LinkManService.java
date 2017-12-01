@@ -1,5 +1,7 @@
 package caotinging.service;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 
 import caotinging.beans.PageBean;
@@ -29,5 +31,7 @@ public interface LinkManService {
 	 * @return
 	 */
 	LinkMan getLinkManById(Long lkm_id);
+
+	List<LinkMan> getLkmListByCustId(DetachedCriteria criteria);
 
 }

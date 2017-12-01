@@ -10,7 +10,36 @@
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/my.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/LoadSelect.js"></script>
+<!-- 导入日历控件 -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/js/datepicker/jquery.datepick.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/datepicker/jquery.datepick.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/datepicker/jquery.datepick-zh-CN.js"></script>
+<!-- 绑定日历事件 -->
+<script type="text/javascript">
+	$(function() {
+		$("#visit_time").datepick({
+			dateFormat : 'yy-mm-dd'
+		});
+		$("#visit_nexttime").datepick({
+			dateFormat : 'yy-mm-dd'
+		});
+	});
+	function custChange(cust_id) {
+		alert(cust_id);
+		$.post(
+			"${pageContext.request.contextPath}/linkManAction_getLkmListByCustId",
+			{
+				"cust_id" : cust_id
+			},
+			function(custList) {
+				$("#lkmSelect_id").append($("<option value="+custList[0]+"></option>"))
+			},
+			"json"
+		);
+	}
+</script>
 
 </HEAD>
 <BODY>
@@ -45,22 +74,27 @@
 						</TABLE>
 						
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
-						  
-						    
 							<TR>
 								<td>所属客户：</td>
-								<td >
-								<input type="text" name="cust_id" style="WIDTH: 180px" id="cust_id"  />
-								<td>拜访时间 ：</td>
-								<td >
-									<INPUT class=textbox id="visit_time" type="text" style="WIDTH: 180px" maxLength=50 name="visit_time" readonly="readonly"  />
+								<td><input type="hidden" id="cust_id_Hbtn"
+									name="customer.cust_id"> <input type="text"
+									name="customer.cust_name" style="WIDTH: 180px"
+									id="cust_name_Btn" /> <input type="button"
+									style="cursor: pointer;" value="选择客户"
+									onclick="window.open('${pageContext.request.contextPath}/customerAction_custList?select=true&loadlkm=true','','width=600,height=300')">
 								</td>
+								<td>拜访时间 ：</td>
+								<td><INPUT class=textbox id="visit_time" type="text"
+									style="WIDTH: 180px" maxLength=50 name="visit_time"
+									readonly="readonly" /></td>
+
 							</TR>
 							<TR>
 								<td>被拜访人 ：</td>
 								<td >
-								<INPUT class=textbox id=sChannel2 type="text"
-														style="WIDTH: 180px" maxLength=50 name="visit_interviewee" value="<s:property value="#saleVisit.visit_interviewee" />" >
+								<select id="lkmSelect_id" style="WIDTH: 180px" maxLength="50" name="visit_interviewee" onfocus="custChange($('#cust_id_Hbtn').val())" >
+									<option value=''>---请选择客户---</option>
+								</select>
 								</td>
 								<td>拜访地址：</td>
 								<td>
@@ -70,8 +104,6 @@
 							</TR>
 							
 							<TR>
-								
-								
 								<td>拜访详情 ：</td>
 								<td>
 								<INPUT class=textbox id="cust_phone"
@@ -91,8 +123,6 @@
 							</tr>
 							
 						</TABLE>
-						
-						
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg">
 					<IMG src="${pageContext.request.contextPath }/images/new_023.jpg" border=0></TD>
@@ -112,5 +142,6 @@
 			</TBODY>
 		</TABLE>
 	</FORM>
+	<s:debug/>
 </BODY>
 </HTML>

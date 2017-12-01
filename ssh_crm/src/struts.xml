@@ -18,7 +18,7 @@
 			<!-- 注册拦截器栈 -->
 			<interceptor-stack name="privilegeStack">
 				<interceptor-ref name="userLoginInterceptor">
-					<param name="excludeMethods">userLogin,regist</param>
+					<param name="excludeMethods">userLogin,regist,getLkmListByCustId</param>
 				</interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>

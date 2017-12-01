@@ -19,5 +19,16 @@ function loadFromBaseDict(selectId, typeId, custDictId) {
 		},
 		"json"
 	);
+}
+
+function selectCustomer(cust_id, cust_name,loadlkm) {
+	//获取打开此窗口的父窗口
+	var win = window.opener;
+	//获取父窗口的document对象
+	var document = win.document;
 	
+	document.getElementById("cust_id_Hbtn").value=cust_id;
+	document.getElementById("cust_name_Btn").value=cust_name;
+	
+	window.close();
 }

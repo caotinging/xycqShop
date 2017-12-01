@@ -46,4 +46,11 @@ public class LinkManServiceImpl implements LinkManService {
 		return linkMan;
 	}
 
+	@Override
+	public List<LinkMan> getLkmListByCustId(DetachedCriteria criteria) {
+		
+		List<LinkMan> list = linkManDao.findByCriteria(criteria);
+		return list;
+	}
+
 }
