@@ -13,8 +13,6 @@
 	type=text/css rel=stylesheet>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/LoadSelect.js"></script>
 <SCRIPT language=javascript>
 	function changePage(page) {
 		$("#currentPageId").val(page);
@@ -25,6 +23,18 @@
 		$("#pageCount").val(count);
 		$("#customerForm").submit();
 	}
+	function selectCustomer(cust_id, cust_name) {
+	//获取打开此窗口的父窗口
+	var win = window.opener;
+	//获取父窗口的document对象
+	var document = win.document;
+	
+	document.getElementById("cust_id_Hbtn").value=cust_id;
+	document.getElementById("cust_name_Btn").value=cust_name;
+	
+	window.close();
+}
+	
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -114,13 +124,14 @@
 														<TD><s:property value="#customer.cust_mobile" /></TD>
 														<TD>
 															<s:if test="#parameters.select==null">
-																<a href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
+																<a
+																	href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
 																&nbsp;&nbsp; 
-																<a href="${pageContext.request.contextPath }/customerServlet?method=delete&cust_id=${customer.cust_id}">删除</a>
-															</s:if>
-														<s:else>
-															<input type="button" onclick="selectCustomer(${customer.cust_id},'${customer.cust_name }','${param.loadlkm }')" value="选择">
-														</s:else>
+																<a
+																	href="${pageContext.request.contextPath }/customerServlet?method=delete&cust_id=${customer.cust_id}">删除</a>
+															</s:if> <s:else>
+																<input type="button" onclick="selectCustomer(${customer.cust_id},'${customer.cust_name }')" value="选择">
+															</s:else>
 														</TD>
 													</TR>
 												</s:iterator>

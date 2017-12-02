@@ -1,26 +1,18 @@
 package caotinging.web.action;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import caotinging.beans.PageBean;
-import caotinging.domain.Customer;
 import caotinging.domain.LinkMan;
 import caotinging.service.LinkManService;
-import caotinging.utils.HibernateProxyTypeAdapter;
-import caotinging.utils.TargetStrategy;
 
 public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan> {
 
@@ -61,25 +53,32 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
 		this.linkManService = linkManService;
 	}
 	
-	@ResponseBody
-	public String getLkmListByCustId() {
-		if(cust_id != null) {
+/*	public String getLkmListByCustId() {
+		if (cust_id != null) {
 			DetachedCriteria criteria = DetachedCriteria.forClass(LinkMan.class);
 			criteria.add(Restrictions.eq("customer.cust_id", cust_id));
-			
-			List<LinkMan> list = linkManService.getLkmListByCustId(criteria);
-			TargetStrategy ts = new TargetStrategy(Customer.class);
-			//这里表示仅转换Student中的id和name属性
-			ts.setFields(new String[] {"id", "name"});
-			ts.setReverse(true);
 
-			Gson gson = new GsonBuilder().setExcludeStrategy(ts)
-					.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY)
-					.create();
-					gson.toJson(list);
+			List<LinkMan> list = linkManService.getLkmListByCustId(criteria);
+			
+			 * TargetStrategy ts = new TargetStrategy(Customer.class);
+			 * //这里表示仅转换Student中的id和name属性 ts.setFields(new String[] {"cust_id",
+			 * "cust_name"}); ts.setReverse(true);
+			 
+
+			// 实例化hibernate的代理类
+			Gson gson = new GsonBuilder().registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY).create();
+			String json = gson.toJson(list);
+			HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+					.getResponse();
+			try {
+				response.getWriter().write(json);
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new RuntimeException("response.getWrite().write error！");
+			}
 		}
 		return null;
-	}
+	}*/
 	
 	/**
 	 * 修改联系人信息

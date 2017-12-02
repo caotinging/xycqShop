@@ -18,7 +18,7 @@
 			<!-- 注册拦截器栈 -->
 			<interceptor-stack name="privilegeStack">
 				<interceptor-ref name="userLoginInterceptor">
-					<param name="excludeMethods">userLogin,regist,getLkmListByCustId</param>
+					<param name="excludeMethods">userLogin,regist</param>
 				</interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
@@ -34,6 +34,12 @@
 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 	
+		<action name="saleVisitAction_*" class="saleVisitAction" method="{1}">
+			<result name="tosvList" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">saleVisitAction_svList</param>
+			</result>
+		</action>
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="toIndex" type="redirect">/index.jsp</result>
 			<result name="error">/login.jsp</result>

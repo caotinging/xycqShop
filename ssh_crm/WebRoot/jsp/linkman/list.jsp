@@ -20,6 +20,15 @@
 		$("#pageCount_Hbtn").val(count);
 		$("#linkManForm").submit();
 	}
+	function selectLinkMan(lkm_id, lkm_name){
+		var win = window.opener;
+		var document = win.document;
+		
+		document.getElementById("lkm_id_Hbtn").value=lkm_id;
+		document.getElementById("lkm_name_Btn").value=lkm_name;
+		
+		window.close();
+	}
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -32,6 +41,8 @@
 		<input type="hidden" name="currentPage" id="currPage_Hbtn" value="${param.currentPage }"/>
 		<!-- 用于提交每页条数的隐藏域 -->
 		<input type="hidden" name="pageCount" id="pageCount_Hbtn" value="${param.pageCount }"/>
+		<!-- 用于保存select状态 -->
+		<input type="hidden" name="select" value="${param.select }">
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -71,12 +82,17 @@
 													<TD>
 														<INPUT class=textbox id=sChannel2 value="${param.linkManName }" style="WIDTH: 80px" maxLength=50 name="linkManName">
 													</TD>
-													<TD>客户名称：</TD>
-													<TD>
-														<input type="hidden" name="customer.cust_id" id="cust_id_Hbtn"/>
-														<INPUT class=textbox type="text" id="cust_name_Btn" style="WIDTH: 80px" maxLength=50 name="customer.cust_name" readonly="readonly" value="${param['customer.cust_name'] }">
-														<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/customerAction_custList?select=true','','width=600,height=300')">
-													</TD>
+													<s:if test="#parameters.select==null">
+														<TD>客户名称：</TD>
+														<TD>
+															<input type="hidden" name="customer.cust_id" id="cust_id_Hbtn" value="${param['customer.cust_id'] }"/>
+															<INPUT class=textbox type="text" id="cust_name_Btn" style="WIDTH: 80px" maxLength=50 name="customer.cust_name" readonly="readonly" value="${param['customer.cust_name'] }">
+															<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/customerAction_custList?select=true','','width=600,height=300')">
+														</TD>
+													</s:if>
+													<s:else>
+														<input type="hidden" name="customer.cust_id" id="cust_id_Hbtn" value="${param['customer.cust_id'] }"/>
+													</s:else>
 													<TD>
 														<INPUT class=button id=sButton2 type=submit value=" 筛选 " >
 													</TD>
@@ -109,9 +125,14 @@
 														<TD><s:property value="#linkman.lkm_phone"/></TD>
 														<TD><s:property value="#linkman.lkm_mobile"/></TD>
 														<TD>
-														<a href="${pageContext.request.contextPath }/linkManAction_modifyLkm?lkm_id=${linkman.lkm_id }">修改</a>
-														&nbsp;&nbsp;
-														<a href="${pageContext.request.contextPath }/linkManAction_deleteLkm?lkm_id=${linkman.lkm_id }">删除</a>
+															<s:if test="#parameters.select==null">
+																<a href="${pageContext.request.contextPath }/linkManAction_modifyLkm?lkm_id=${linkman.lkm_id }">修改</a>
+																&nbsp;&nbsp;
+																<a href="${pageContext.request.contextPath }/linkManAction_deleteLkm?lkm_id=${linkman.lkm_id }">删除</a>
+															</s:if>
+															<s:else>
+																<input type="button" onclick="selectLinkMan(${linkman.lkm_id },'${linkman.lkm_name }')" value="选择">
+															</s:else>
 														</TD>
 													</TR>													
 												</s:iterator>

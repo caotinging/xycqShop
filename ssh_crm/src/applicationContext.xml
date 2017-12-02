@@ -81,6 +81,7 @@
 	<!-- 配置Action以及其service依赖
 		Action的scope属性必须为prototype（多例）
 	 -->
+	<bean name="saleVisitAction" class="caotinging.web.action.SaleVisitAction" scope="prototype"></bean>
 	<bean name="linkManAction" class="caotinging.web.action.LinkManAction" scope="prototype"></bean>
 	<bean name="baseDictAction" class="caotinging.web.action.BaseDictAction" scope="prototype"></bean>
 	<bean name="userAction" class="caotinging.web.action.UserAction" scope="prototype">
@@ -89,6 +90,7 @@
 	<bean name="customerAction" class="caotinging.web.action.CustomerAction" scope="prototype"></bean>
 	
 	<!-- 配置service以及其依赖 -->
+	<bean name="saleVisitService" class="caotinging.service.impl.SaleVisitServiceImpl"></bean>
 	<bean name="linkManService" class="caotinging.service.impl.LinkManServiceImpl"></bean>
 	<bean name="baseDictService" class="caotinging.service.impl.BaseDictServiceImpl"></bean>
 	<bean name="userService" class="caotinging.service.impl.UserServiceImpl">
@@ -97,6 +99,9 @@
 	<bean name="customerService" class="caotinging.service.impl.CustomerServiceImpl"></bean>
 	
 	<!-- 配置dao以及其依赖 -->
+	<bean name="saleVisitDao" class="caotinging.dao.impl.SaleVisitDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	<bean name="linkManDao" class="caotinging.dao.impl.LinkManDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -110,5 +115,4 @@
 		<!-- 这一步千万不要忘记，往dao继承的hibernateDaoSupport注入sessionFactory属性 -->
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
 </beans>
