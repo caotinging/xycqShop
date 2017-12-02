@@ -1,5 +1,6 @@
 package caotinging.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SaleVisit {
@@ -23,6 +24,15 @@ public class SaleVisit {
 	private Customer customer;
 	private LinkMan linkMan;
 	private User user;
+	
+	public String getVisit_time_s() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(visit_time);
+	}
+	public String getVisit_nexttime_s() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(visit_nexttime);
+	}
 	
 	public String getVisit_id() {
 		return visit_id;

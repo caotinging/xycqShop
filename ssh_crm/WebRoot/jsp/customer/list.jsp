@@ -78,8 +78,9 @@
 						<!-- 隐藏域用于提交每页显示条数 -->
 						<input name="pageCount" type="hidden" id="pageCount"
 							value="<s:property value="#pageBean.pageCount" />" />
-						<input name="select" type="hidden" id="select_id"
-							value="<s:property value="#parameters.select" />" />
+						<s:if test="#parameters.select!=null">
+							<input name="select" type="hidden" id="select_id" value="<s:property value="#parameters.select" />" />
+						</s:if>
 						<TABLE borderColor=#cccccc cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
 							<TBODY>
 								<TR>
@@ -123,13 +124,14 @@
 														<TD><s:property value="#customer.cust_phone" /></TD>
 														<TD><s:property value="#customer.cust_mobile" /></TD>
 														<TD>
-															<s:if test="#parameters.select==null">
+															<s:if test="#parameters.select==null||#parameters.select==''">
 																<a
 																	href="${pageContext.request.contextPath }/customerAction_modifyCust?cust_id=${customer.cust_id}">修改</a>
 																&nbsp;&nbsp; 
 																<a
 																	href="${pageContext.request.contextPath }/customerServlet?method=delete&cust_id=${customer.cust_id}">删除</a>
-															</s:if> <s:else>
+															</s:if> 
+															<s:else>
 																<input type="button" onclick="selectCustomer(${customer.cust_id},'${customer.cust_name }')" value="选择">
 															</s:else>
 														</TD>

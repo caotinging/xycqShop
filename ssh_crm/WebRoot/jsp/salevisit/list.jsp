@@ -1,8 +1,6 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +10,17 @@
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/my.js"></script>
+
+<script type="text/javascript">
+	function changePage(page) {
+		$("#currentPage_Hbtn").val(page);
+		$("#pageForm").submit();
+	}
+	function changeCount(count) {
+		$("#pageCount_Hbtn").val(count);
+		$("#pageForm").submit();
+	}
+</script>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
@@ -32,7 +40,7 @@
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15 background=${pageContext.request.contextPath }/images/new_022.jpg><IMG
+					<TD width=15 background="${pageContext.request.contextPath }/images/new_022.jpg"><IMG
 						src="${pageContext.request.contextPath }/images/new_022.jpg" border=0></TD>
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
@@ -48,26 +56,29 @@
 							<TBODY>
 								<TR>
 									<TD height=25>	
-										<FORM id="pageForm" name="customerForm"
-										action="${pageContext.request.contextPath }/SaleVisitAction_list"
-										method=post>
-										
-										<TABLE cellSpacing=0 cellPadding=2 border=0>
-											<TBODY>
-												<TR>
-													<TD>客户名称：</TD>
-													<TD>
-														<INPUT class=textbox style="WIDTH: 80px" maxLength=50 name="cust_name"  id="cust_name" >
-													</TD>
-													<TD><INPUT class=button id=sButton2 type=submit
-														value=" 筛选 " name=sButton2></TD>
-												</TR>
-											</TBODY>
-										</TABLE>
-									</FORM>
+										<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/saleVisitAction_svList" method=post>
+											<!-- 用于提交当前页的隐藏域 -->
+											<input type="hidden" id="currentPage_Hbtn" name="currentPage" value="${param.currentPage }">
+											<!-- 用户提交每页条数的隐藏域 -->
+											<input type="hidden" id="pageCount_Hbtn" name="pageCount" value="${param.pageCount }">
+											<TABLE cellSpacing=0 cellPadding=2 border=0>
+												<TBODY>
+													<TR>
+														<TD>客户名称：</TD>
+														<TD>
+															<input type="hidden" id="cust_id_Hbtn" name="customer.cust_id" value="${param['customer.cust_id'] }">
+															<INPUT class=textbox style="WIDTH: 80px" maxLength=50 name="customer.cust_name" id="cust_name_Btn" value="${param['customer.cust_name'] }" >
+															<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/customerAction_custList?select=true','','width=600,height=300')">
+														</TD>
+														<TD>
+															<INPUT class=button id=sButton2 type=submit value=" 筛选 " >
+														</TD>
+													</TR>
+												</TBODY>
+											</TABLE>
+										</FORM>
 									</TD>
 								</TR>
-							    
 								<TR>
 									<TD>
 										<TABLE id=grid
@@ -85,49 +96,45 @@
 													<TD>下次访问时间</TD>
 													<TD>操作</TD>
 												</TR>
-												<s:iterator value="#pageBean.list" >
-												<TR
-													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-													<TD><s:property value="user.user_name" /></TD>
-													<TD><s:property value="customer.cust_name" /></TD>
-													<TD><s:property value="visit_time_s" /></TD>
-													<TD><s:property value="visit_interviewee" /></TD>
-													<TD><s:property value="visit_addr" /></TD>
-													<TD><s:property value="visit_detail" /></TD>
-													<TD><s:property value="visit_nexttime_s" /></TD>
+												<s:iterator value="#pageBean.beanList" var="saleVisit" >
+												<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+													<TD><s:property value="#saleVisit.user.user_name" /></TD>
+													<TD><s:property value="#saleVisit.customer.cust_name" /></TD>
+													<TD><s:property value="#saleVisit.visit_time_s" /></TD>
+													<TD><s:property value="#saleVisit.linkMan.lkm_name" /></TD>
+													<TD><s:property value="#saleVisit.visit_addr" /></TD>
+													<TD><s:property value="#saleVisit.visit_detail" /></TD>
+													<TD><s:property value="#saleVisit.visit_nexttime_s" /></TD>
 													<TD>
-															<!-- 没有传递参数,显示删除和修改操作 -->
-														<a href="${pageContext.request.contextPath }/SaleVisitAction_toEdit?visit_id=<s:property value="visit_id" />">修改</a>
+														<a href="${pageContext.request.contextPath }/saleVisitAction_toEdit?visit_id=<s:property value="#saleVisit.visit_id" />">修改</a>
 														&nbsp;&nbsp;
-														<a href="javascript:void(0)" onclick="deleteConfirm('<s:property value="cust_name" />','${pageContext.request.contextPath }/CustomerAction_delete?cust_id=<s:property value="cust_id" />');" >删除</a>
+														<a href="javascript:void(0)" onclick="deleteConfirm('<s:property value="#saleVisit.customer.cust_name" />','${pageContext.request.contextPath }/CustomerAction_delete?cust_id=<s:property value="#saleVisit.customer.cust_name" />');" >删除</a>
 													</TD>
 												</TR>
 												</s:iterator>
-
 											</TBODY>
 										</TABLE>
 									</TD>
 								</TR>
-								
 								<TR>
-									<TD><SPAN id=pagelink>
-											<DIV
-												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B> </B>]条记录,[<B></B>]页
-												,每页显示 
-												<select name="pageSize" onchange="changePageSize($('#pageSizeSelect option:selected').val())" id="pageSizeSelect" >
-													<option value="3" >3</option>
-													<option value="5"  >5</option>
-												</select>
-												条
-												[<A href="javaScript:void(0)"  >前一页</A>]
+									<TD>
+										<SPAN id=pagelink>
+											<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+												共[<B>${pageBean.totalCount }</B>]条记录,[<B>${pageBean.totalPage }</B>]页
+												,每页显示 <select name="pageCount"
+												onchange="changeCount($('#pageCount_sel option:selected').val())" id="pageCount_sel">
+												<option value="3"
+													<s:property value="#pageBean.currentPage==3?'selected':''" />>3</option>
+												<option value="5"
+													<s:property value="#pageBean.currentPage==5?'selected':''" />>5</option>
+											</select> 条
+												[<A href="javaScript:void(0)" onclick="changePage(${pageBean.currentPage-1})" >前一页</A>]
 												<B><s:property value="#pageBean.currentPage" /></B>
-												[<A href="javaScript:void(0)"  >后一页</A>] 
+												[<A href="javaScript:void(0)" onclick="changePage(${pageBean.currentPage+1})" >后一页</A>] 
 												到
-												<input type="text" size="3" id="page" name="page" />"  />
+												<input type="text" size="3" id="page_text" name="page" />
 												页
-												
-												<input type="button" value="Go" />
+												<input type="button" value="Go" onclick="changePage($('#page_text').val())" />
 											</DIV>
 									</SPAN></TD>
 								</TR>
@@ -151,5 +158,6 @@
 				</TR>
 			</TBODY>
 		</TABLE>
+	<s:debug></s:debug>
 </BODY>
 </HTML>

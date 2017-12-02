@@ -42,7 +42,9 @@
 		<!-- 用于提交每页条数的隐藏域 -->
 		<input type="hidden" name="pageCount" id="pageCount_Hbtn" value="${param.pageCount }"/>
 		<!-- 用于保存select状态 -->
-		<input type="hidden" name="select" value="${param.select }">
+		<s:if test="#parameters.select!=null">
+			<input type="hidden" name="select" value="${param.select }">
+		</s:if>
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
