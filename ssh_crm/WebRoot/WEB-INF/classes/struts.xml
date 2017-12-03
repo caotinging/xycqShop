@@ -40,6 +40,7 @@
 				<param name="actionName">saleVisitAction_svList</param>
 			</result>
 			<result name="svList">/jsp/salevisit/list.jsp</result>
+			<result name="modify">/jsp/salevisit/edit.jsp</result>
 		</action>
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="toIndex" type="redirect">/index.jsp</result>

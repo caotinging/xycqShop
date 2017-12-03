@@ -58,9 +58,9 @@
 									<TD height=25>	
 										<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/saleVisitAction_svList" method=post>
 											<!-- 用于提交当前页的隐藏域 -->
-											<input type="hidden" id="currentPage_Hbtn" name="currentPage" value="${param.currentPage }">
+											<input type="hidden" id="currentPage_Hbtn" name="curr_Page" value="${param.curr_Page }">
 											<!-- 用户提交每页条数的隐藏域 -->
-											<input type="hidden" id="pageCount_Hbtn" name="pageCount" value="${param.pageCount }">
+											<input type="hidden" id="pageCount_Hbtn" name="page_Count" value="${param.page_Count }">
 											<TABLE cellSpacing=0 cellPadding=2 border=0>
 												<TBODY>
 													<TR>
@@ -96,21 +96,21 @@
 													<TD>下次访问时间</TD>
 													<TD>操作</TD>
 												</TR>
-												<s:iterator value="#pageBean.beanList" var="saleVisit" >
-												<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-													<TD><s:property value="#saleVisit.user.user_name" /></TD>
-													<TD><s:property value="#saleVisit.customer.cust_name" /></TD>
-													<TD><s:property value="#saleVisit.visit_time_s" /></TD>
-													<TD><s:property value="#saleVisit.linkMan.lkm_name" /></TD>
-													<TD><s:property value="#saleVisit.visit_addr" /></TD>
-													<TD><s:property value="#saleVisit.visit_detail" /></TD>
-													<TD><s:property value="#saleVisit.visit_nexttime_s" /></TD>
-													<TD>
-														<a href="${pageContext.request.contextPath }/saleVisitAction_toEdit?visit_id=<s:property value="#saleVisit.visit_id" />">修改</a>
-														&nbsp;&nbsp;
-														<a href="javascript:void(0)" onclick="deleteConfirm('<s:property value="#saleVisit.customer.cust_name" />','${pageContext.request.contextPath }/CustomerAction_delete?cust_id=<s:property value="#saleVisit.customer.cust_name" />');" >删除</a>
-													</TD>
-												</TR>
+												<s:iterator value="#pageBean.beanList" >
+													<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+														<TD><s:property value="user.user_name" /></TD>
+														<TD><s:property value="customer.cust_name" /></TD>
+														<TD><s:property value="visit_time_s" /></TD>
+														<TD><s:property value="linkMan.lkm_name" /></TD>
+														<TD><s:property value="visit_addr" /></TD>
+														<TD><s:property value="visit_detail" /></TD>
+														<TD><s:property value="visit_nexttime_s" /></TD>
+														<TD>
+															<a href="${pageContext.request.contextPath }/saleVisitAction_modifySv?visit_id=${visit_id}">修改</a>
+															&nbsp;&nbsp;
+															<a href="javascript:void(0)" >删除</a>
+														</TD>
+													</TR>
 												</s:iterator>
 											</TBODY>
 										</TABLE>
@@ -128,9 +128,9 @@
 												<option value="5"
 													<s:property value="#pageBean.currentPage==5?'selected':''" />>5</option>
 											</select> 条
-												[<A href="javaScript:void(0)" onclick="changePage(${pageBean.currentPage-1})" >前一页</A>]
+												[<A href="javaScript:void(0)" onclick="changePage(<s:property value="#pageBean.currentPage-1" />)" >前一页</A>]
 												<B><s:property value="#pageBean.currentPage" /></B>
-												[<A href="javaScript:void(0)" onclick="changePage(${pageBean.currentPage+1})" >后一页</A>] 
+												[<A href="javaScript:void(0)" onclick="changePage(<s:property value="#pageBean.currentPage+1" />)" >后一页</A>] 
 												到
 												<input type="text" size="3" id="page_text" name="page" />
 												页

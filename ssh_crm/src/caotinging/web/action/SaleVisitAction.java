@@ -18,28 +18,51 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 	
 	private SaleVisit saleVisit = new SaleVisit();
 	private SaleVisitService saleVisitService;
-	private Integer pageCount;
-	private Integer currentPage;
+	private Integer page_Count;
+	private Integer curr_Page;
 	
-	public Integer getPageCount() {
-		return pageCount;
+	public Integer getPage_Count() {
+		return page_Count;
 	}
 
-	public void setPageCount(Integer pageCount) {
-		this.pageCount = pageCount;
+	public void setPage_Count(Integer page_Count) {
+		this.page_Count = page_Count;
 	}
 
-	public Integer getCurrentPage() {
-		return currentPage;
+	public Integer getCurr_Page() {
+		return curr_Page;
 	}
 
-	public void setCurrentPage(Integer currentPage) {
-		this.currentPage = currentPage;
+	public void setCurr_Page(Integer curr_Page) {
+		this.curr_Page = curr_Page;
 	}
 
 	@Resource(name="saleVisitService")
 	public void setSaleVisitService(SaleVisitService saleVisitService) {
 		this.saleVisitService = saleVisitService;
+	}
+	
+	public String updateSv() {
+		if(saleVisit == null) {
+			return "error";
+		}
+		
+		saleVisitService.updateSaleVisit(saleVisit);
+		
+		return "tosvList";
+	}
+	
+	/**
+	 * 修改saleVisit信息
+	 * @return
+	 */
+	public String modifySv() {
+		if(saleVisit == null && saleVisit.getVisit_id() == null) {
+			return null;
+		}
+		SaleVisit sv = saleVisitService.getSaleVisitById(saleVisit.getVisit_id());
+		ActionContext.getContext().put("saleVisit", sv);
+		return "modify";
 	}
 	
 	/**
@@ -53,7 +76,7 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 			criteria.add(Restrictions.eq("customer.cust_id", saleVisit.getCustomer().getCust_id()));
 		}
 		
-		PageBean<SaleVisit> pageBean = saleVisitService.getPageBeanOfSaleVisit(criteria, pageCount, currentPage);
+		PageBean<SaleVisit> pageBean = saleVisitService.getPageBeanOfSaleVisit(criteria, curr_Page, page_Count);
 		ActionContext.getContext().put("pageBean", pageBean);
 		
 		return "svList";

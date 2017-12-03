@@ -11,4 +11,8 @@ public interface SaleVisitService {
 
 	PageBean<SaleVisit> getPageBeanOfSaleVisit(DetachedCriteria criteria, Integer pageCount, Integer currentPage);
 
+	SaleVisit getSaleVisitById(String visit_id);
+
+	void updateSaleVisit(SaleVisit saleVisit);
+
 }

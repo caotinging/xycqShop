@@ -25,14 +25,22 @@ public class SaleVisit {
 	private LinkMan linkMan;
 	private User user;
 	
+	//-------------------------------------------------------------
+	//更改日期输出格式
 	public String getVisit_time_s() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		return format.format(visit_time);
+		return transferDate(visit_time,"yyyy-MM-dd");
 	}
 	public String getVisit_nexttime_s() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		return format.format(visit_nexttime);
+		return transferDate(visit_nexttime,"yyyy-MM-dd");
 	}
+	public static String  transferDate(Date date,String format){
+		if(date == null) {
+			return transferDate(new Date(), format);
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(date);
+	}
+	//--------------------------------------------------------------
 	
 	public String getVisit_id() {
 		return visit_id;

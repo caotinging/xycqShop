@@ -20,7 +20,11 @@ public class SaleVisitServiceImpl implements SaleVisitService {
 		this.saleVisitDao = saleVisitDao;
 	}
 	
-
+	@Override
+	public SaleVisit getSaleVisitById(String visit_id) {
+		return saleVisitDao.findById(visit_id);
+	}
+	
 	@Override
 	public PageBean<SaleVisit> getPageBeanOfSaleVisit(DetachedCriteria criteria, Integer currentPage, Integer pageCount) {
 		Integer count = saleVisitDao.getCount(criteria).intValue();
@@ -34,12 +38,17 @@ public class SaleVisitServiceImpl implements SaleVisitService {
 		}else
 			return null;
 	}
-
+	
 	@Override
 	public void saveSVByObj(SaleVisit saleVisit) {
 		Boolean res = saleVisitDao.save(saleVisit);
 		if(!res) {
 			throw new RuntimeException("客户拜访记录保存失败！");
 		}
+	}
+
+	@Override
+	public void updateSaleVisit(SaleVisit saleVisit) {
+		saleVisitDao.update(saleVisit);
 	}
 }
