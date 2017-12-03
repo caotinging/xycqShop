@@ -1,5 +1,8 @@
 package caotinging.service;
 
+import org.hibernate.criterion.DetachedCriteria;
+
+import caotinging.beans.PageBean;
 import caotinging.domain.User;
 
 public interface UserService {
@@ -16,4 +19,6 @@ public interface UserService {
 	 * @param user
 	 */
 	public void saveUser(User user);
+
+	public PageBean<User> getUserList(DetachedCriteria criteria, Integer curr_Page, Integer page_Count);
 }

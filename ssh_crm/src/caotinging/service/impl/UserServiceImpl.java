@@ -1,5 +1,10 @@
 package caotinging.service.impl;
 
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+
+import caotinging.beans.PageBean;
 import caotinging.dao.UserDao;
 import caotinging.domain.User;
 import caotinging.service.UserService;
@@ -12,6 +17,20 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
+	@Override
+	public PageBean<User> getUserList(DetachedCriteria criteria, Integer curr_Page, Integer page_Count) {
+		Long count = userDao.getCount(criteria);
+		if(count != 0) {
+			
+			PageBean<User> pageBean = new PageBean<User>(curr_Page, page_Count, count.intValue());
+			List<User> list = userDao.getList(criteria, pageBean.getStart(), pageBean.getPageCount());
+			pageBean.setBeanList(list);
+			return pageBean;
+		}
+		else
+			return null;
+	}
+	
 	@Override
 	public User getUserByCodePassword(User u) {
 		User user = userDao.getUserByCode(u.getUser_code());

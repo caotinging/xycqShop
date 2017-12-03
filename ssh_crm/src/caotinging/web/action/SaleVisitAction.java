@@ -75,6 +75,9 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVi
 		if(saleVisit != null && saleVisit.getCustomer() != null && saleVisit.getCustomer().getCust_id() != null) {
 			criteria.add(Restrictions.eq("customer.cust_id", saleVisit.getCustomer().getCust_id()));
 		}
+		if(saleVisit != null && saleVisit.getUser() != null && saleVisit.getUser().getUser_id() != null) {
+			criteria.add(Restrictions.eq("user.user_id", saleVisit.getUser().getUser_id()));
+		}
 		
 		PageBean<SaleVisit> pageBean = saleVisitService.getPageBeanOfSaleVisit(criteria, curr_Page, page_Count);
 		ActionContext.getContext().put("pageBean", pageBean);

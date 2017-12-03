@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<TITLE>访问记录列表</TITLE> 
+<TITLE>业务员列表</TITLE> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
@@ -19,6 +19,15 @@
 	function changeCount(count) {
 		$("#pageCount_Hbtn").val(count);
 		$("#pageForm").submit();
+	}
+	function selectUser(user_id, user_name){
+		var win = window.opener;
+		var document = win.document;
+		
+		document.getElementById("user_id_Hbtn").value=user_id;
+		document.getElementById("user_name_Btn").value=user_name;
+		
+		window.close();
 	}
 </script>
 
@@ -45,7 +54,7 @@
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 							<TR>
-								<TD class=manageHead>当前位置：访问记录管理 &gt; 记录列表</TD>
+								<TD class=manageHead>当前位置：访问记录管理 &gt; 业务员列表</TD>
 							</TR>
 							<TR>
 								<TD height=2></TD>
@@ -56,12 +65,12 @@
 							<TBODY>
 								<TR>
 									<TD height=25>	
-										<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/saleVisitAction_svList" method=post>
+										<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/userAction_userList" method=post>
 											<!-- 用于提交当前页的隐藏域 -->
 											<input type="hidden" id="currentPage_Hbtn" name="curr_Page" value="${param.curr_Page }">
 											<!-- 用户提交每页条数的隐藏域 -->
 											<input type="hidden" id="pageCount_Hbtn" name="page_Count" value="${param.page_Count }">
-											<TABLE cellSpacing=0 cellPadding=2 border=0>
+											<%-- <TABLE cellSpacing=0 cellPadding=2 border=0>
 												<TBODY>
 													<TR>
 														<TD>客户名称：</TD>
@@ -69,17 +78,13 @@
 															<input type="hidden" id="cust_id_Hbtn" name="customer.cust_id" value="${param['customer.cust_id'] }">
 															<INPUT class=textbox style="WIDTH: 80px" maxLength=50 name="customer.cust_name" id="cust_name_Btn" value="${param['customer.cust_name'] }" >
 															<input type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/customerAction_custList?select=true','','width=600,height=300')">
-															
-															<input type="hidden" id="user_id_Hbtn" name="user.user_id" value="${param['user.user_id'] }">
-															<INPUT class=textbox style="WIDTH: 80px" maxLength=50 name="user.user_name" id="user_name_Btn" value="${param['user.user_name'] }" >
-															<input type="button" value="选择业务员" onclick="window.open('${pageContext.request.contextPath}/userAction_userList?select=true','','width=600,height=300')">
 														</TD>
 														<TD>
 															<INPUT class=button id=sButton2 type=submit value=" 筛选 " >
 														</TD>
 													</TR>
 												</TBODY>
-											</TABLE>
+											</TABLE> --%>
 										</FORM>
 									</TD>
 								</TR>
@@ -92,27 +97,14 @@
 												<TR
 													style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
 													<TD>业务员名称</TD>
-													<TD>客户名称</TD>
-													<TD>访问时间</TD>
-													<TD>访问人</TD>
-													<TD>访问地址</TD>
-													<TD>访问详情</TD>
-													<TD>下次访问时间</TD>
-													<TD>操作</TD>
+													<TD>登录用户名</TD>
 												</TR>
-												<s:iterator value="#pageBean.beanList" >
+												<s:iterator value="#pageBean.beanList" var="user" >
 													<TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-														<TD><s:property value="user.user_name" /></TD>
-														<TD><s:property value="customer.cust_name" /></TD>
-														<TD><s:property value="visit_time_s" /></TD>
-														<TD><s:property value="linkMan.lkm_name" /></TD>
-														<TD><s:property value="visit_addr" /></TD>
-														<TD><s:property value="visit_detail" /></TD>
-														<TD><s:property value="visit_nexttime_s" /></TD>
+														<TD><s:property value="#user.user_name" /></TD>
+														<TD><s:property value="#user.user_code" /></TD>
 														<TD>
-															<a href="${pageContext.request.contextPath }/saleVisitAction_modifySv?visit_id=${visit_id}">修改</a>
-															&nbsp;&nbsp;
-															<a href="javascript:void(0)" >删除</a>
+															<input type="button" value="选择" onclick="selectUser('${user.user_id}','${user.user_name }')" >
 														</TD>
 													</TR>
 												</s:iterator>
