@@ -3,6 +3,7 @@ package caotinging.service.impl;
 import caotinging.dao.UserDao;
 import caotinging.domain.User;
 import caotinging.service.UserService;
+import cn.itcast.estore.utils.MD5Utils;
 
 public class UserServiceImpl implements UserService {
 	private UserDao userDao;
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
 		
 		if(user == null) {
 			throw new RuntimeException("用户名不存在！");
-		} else if(!user.getUser_password().equals(u.getUser_password())) {
+		} else if(!user.getUser_password().equals(MD5Utils.md5(u.getUser_password()))) {
 			throw new RuntimeException("密码输入错误！");
 		}
 		return user;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 		if(existU != null) {
 			throw new RuntimeException("用户名已存在！");
 		}
+		user.setUser_password(MD5Utils.md5(user.getUser_password()));
 		userDao.save(user);
 	}
 
