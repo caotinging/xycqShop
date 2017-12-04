@@ -49,6 +49,7 @@
 			<result name="userList">/jsp/user/list.jsp</result>
 		</action>
 		<action name="customerAction_*" class="customerAction" method="{1}">
+			<result name="statList">/jsp/statistics/list.jsp</result>
 			<result name="custList">/jsp/customer/list.jsp</result>
 			<result name="custListAction" type="redirectAction">
 				<param name="namespace">/</param>

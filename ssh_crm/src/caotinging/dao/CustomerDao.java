@@ -24,4 +24,15 @@ public interface CustomerDao extends BaseDao<Customer> {
 	 */
 	List<Customer> getCustomerList(DetachedCriteria criteria, Integer start, Integer pageCount);
 
+	/**
+	 * 获取客户行业和数量的统计信息
+	 * @return
+	 */
+	List<Object[]> getCustIndustryCount();
+
+	/**
+	 * 统计客户来源
+	 * @return
+	 */
+	List<Object[]> getCustSourceCount();
 }

@@ -36,6 +36,12 @@ public class TestDemo {
 	private BaseDictDao baseDictDao;
 	
 	@Test
+	public void fun9() {
+		List<Object[]> list = customerDao.getCustIndustryCount();
+		System.out.println(list);
+	}
+	
+	@Test
 	public void fun8() {
 		URL url = this.getClass().getClassLoader().getResource("");
 		URL url2 = this.getClass().getResource("");

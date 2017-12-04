@@ -113,6 +113,7 @@
 	</bean>
 	<bean name="customerDao" class="caotinging.dao.impl.CustomerDaoImpl">
 		<!-- 这一步千万不要忘记，往dao继承的hibernateDaoSupport注入sessionFactory属性 -->
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<!-- 演示注解中怎么配置sessionFactory -->
+		<!-- <property name="sessionFactory" ref="sessionFactory"></property> -->
 	</bean>
 </beans>

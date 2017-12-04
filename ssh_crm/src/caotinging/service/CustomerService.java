@@ -1,5 +1,7 @@
 package caotinging.service;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 
 import caotinging.beans.PageBean;
@@ -7,6 +9,12 @@ import caotinging.domain.Customer;
 
 public interface CustomerService {
 
+	/**
+	 * 获取客户行业的统计信息
+	 * @return
+	 */
+	public List<Object[]> getCustIndustryCount();
+	
 	/**
 	 * 获取客户分页数据
 	 * @param criteria 客户查询条件
@@ -29,5 +37,11 @@ public interface CustomerService {
 	 * @return
 	 */
 	Customer findCustomer(Long cust_id);
+
+	/**
+	 * 获取客户信息来源的统计信息
+	 * @return
+	 */
+	public List<Object[]> getCustSourceCount();
 
 }

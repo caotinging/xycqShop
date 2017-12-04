@@ -1,6 +1,7 @@
 package caotinging.web.action;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -26,12 +27,34 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private CustomerService customerService;
 	private File customerFile;
 	private String customerFileFileName;
+	private String method;
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
 
 	@Resource(name="customerService")
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
 	}
 
+	public String statList() {
+		List<Object[]> list = null;
+		if(method.equals("industry")){
+			list = customerService.getCustIndustryCount();
+		}
+		if(method.equals("source")){
+			list = customerService.getCustSourceCount();
+			ActionContext.getContext().put("source", true);
+		}
+		ActionContext.getContext().put("list", list);
+		return "statList";
+	}
+	
 	public String modifyCust() {
 		Customer c = customerService.findCustomer(customer.getCust_id());
 		ActionContext.getContext().put("customer", c);

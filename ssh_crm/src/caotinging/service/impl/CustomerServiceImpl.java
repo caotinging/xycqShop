@@ -18,6 +18,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
+	
+	@Override
+	public List<Object[]> getCustIndustryCount() {
+		return customerDao.getCustIndustryCount();
+	}
 
 	@Override
 	public PageBean<Customer> getPageBean(DetachedCriteria criteria, Integer currentPage, Integer pageCount) {
@@ -45,4 +50,8 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer;
 	}
 
+	@Override
+	public List<Object[]> getCustSourceCount() {
+		return customerDao.getCustSourceCount();
+	}
 }
