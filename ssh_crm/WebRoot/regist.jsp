@@ -31,22 +31,16 @@ TD {
 
 </HEAD>
 <BODY>
-	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath}/userAction_regist"
-		method=post>
-
+	<FORM id=form1 name=form1 action="${pageContext.request.contextPath}/userAction_regist" method=post>
 		<DIV id=UpdatePanel1>
-			<DIV id=div1
-				style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV>
-			<DIV id=div2
-				style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV>
+			<DIV id=div1 style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV>
+			<DIV id=div2 style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV>
 			<DIV>&nbsp;&nbsp;</DIV>
 			<DIV>
 				<TABLE cellSpacing=0 cellPadding=0 width=900 align=center border=0>
 					<TBODY>
 						<TR>
-							<TD style="HEIGHT: 105px"><IMG src="images/login_1.gif"
-								border=0></TD>
+							<TD style="HEIGHT: 105px"><IMG src="images/login_1.gif" border=0></TD>
 						</TR>
 						<TR>
 							<TD background="images/regist_title.png" height=300>
@@ -62,24 +56,25 @@ TD {
 													<TBODY>
 														<TR>
 															<TD style="HEIGHT: 28px" width=80>用户名：</TD>
-															<TD style="HEIGHT: 28px" width=150><INPUT type="text" id=txtName
-																style="WIDTH: 130px" name="user_code"></TD>
-															<TD style="HEIGHT: 28px" width=370><SPAN
-																id=RequiredFieldValidator3
-																style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN></TD>
+															<TD style="HEIGHT: 28px" width=150>
+																<INPUT type="text" id=txtName style="WIDTH: 130px" name="user_code">
+															</TD>
+															<TD style="HEIGHT: 28px" width=370>
+																<SPAN id=RequiredFieldValidator3 style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN>
+															</TD>
 														</TR>
 														<TR>
 															<TD style="HEIGHT: 28px">登录密码：</TD>
-															<TD style="HEIGHT: 28px"><INPUT id=txtPwd
-																style="WIDTH: 130px" type=password name="user_password"></TD>
-															<TD style="HEIGHT: 28px"><SPAN
-																id=RequiredFieldValidator4
-																style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入密码</SPAN></TD>
+															<TD style="HEIGHT: 28px">
+																<INPUT id=txtPwd style="WIDTH: 130px" type=password name="user_password">
+															</TD>
+															<TD style="HEIGHT: 28px">
+																<SPAN id=RequiredFieldValidator4 style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入密码</SPAN>
+															</TD>
 														</TR>
 														<TR>
 															<TD style="HEIGHT: 28px">用户昵称：</TD>
-															<TD style="HEIGHT: 28px"><INPUT id=txtcode type="text"
-																style="WIDTH: 130px" name="user_name"></TD>
+															<TD style="HEIGHT: 28px"><INPUT id=txtcode type="text" style="WIDTH: 130px" name="user_name"></TD>
 															<TD style="HEIGHT: 28px">&nbsp;</TD>
 														</TR>
 														<TR>
@@ -90,9 +85,9 @@ TD {
 														</TR>
 														<TR>
 															<TD></TD>
-															<TD><INPUT id=btn
-																style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px"
-																type=image src="images/regist_button.png" name=btn>
+															<TD>
+																<INPUT id=btn style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px"
+																	type=image src="images/regist_button.png" name=btn>
 															</TD>
 														</TR>
 													</TBODY>
