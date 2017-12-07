@@ -26,26 +26,26 @@
 	<FORM id=form1 name=form1
 		action="${pageContext.request.contextPath }/customerAction_addOrUpadeCustomer"
 		method=post enctype="multipart/form-data">
-		
 		<input type="hidden" name="cust_id" value="${customer.cust_id }" />
-		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15><IMG src="${pageContext.request.contextPath }/images/new_019.jpg"
-						border=0></TD>
-					<TD width="100%" background="${pageContext.request.contextPath }/images/new_020.jpg"
-						height=20></TD>
-					<TD width=15><IMG src="${pageContext.request.contextPath }/images/new_021.jpg"
-						border=0></TD>
+					<TD width=15>
+						<IMG src="${pageContext.request.contextPath }/images/new_019.jpg" border=0>
+					</TD>
+					<TD width="100%" background="${pageContext.request.contextPath }/images/new_020.jpg" height=20></TD>
+					<TD width=15>
+						<IMG src="${pageContext.request.contextPath }/images/new_021.jpg" border=0>
+					</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15 background="${pageContext.request.contextPath }/images/new_022.jpg"><IMG
-						src="${pageContext.request.contextPath }/images/new_022.jpg" border=0></TD>
+					<TD width=15 background="${pageContext.request.contextPath }/images/new_022.jpg">
+						<IMG src="${pageContext.request.contextPath }/images/new_022.jpg" border=0>
+					</TD>
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 							<TR>
@@ -55,13 +55,11 @@
 								<TD height=2></TD>
 							</TR>
 						</TABLE>
-						
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<TR>
 								<td>客户名称：</td>
 								<td>
-								<INPUT value="${customer.cust_name }" class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_name">
+									<INPUT value="${customer.cust_name }" class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_name">
 								</td>
 								<td>客户级别 ：</td>
 								<td>
@@ -84,55 +82,49 @@
 									</select>
 								</td>
 							</TR>
-							
 							<TR>
 								<td>联系人：</td>
 								<td>
-								<INPUT value="${customer.cust_linkman }" class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_linkman">
+									<INPUT value="${customer.cust_linkman }" class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_linkman">
 								</td>
 								<td>文件上传：</td>
 								<td>
-								<INPUT type="file" id=sChannel2 style="WIDTH: 180px" maxLength=50 name="customerFile">
+									<INPUT type="file" id=sChannel2 style="WIDTH: 180px" maxLength=50 name="customerFile">
 								</td>
 							</TR>
-							
 							<TR>
 								<td>固定电话 ：</td>
 								<td>
-								<INPUT value="${customer.cust_phone }" class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_phone">
+									<INPUT value="${customer.cust_phone }" class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_phone">
 								</td>
 								<td>移动电话 ：</td>
 								<td>
-								<INPUT value="${customer.cust_mobile }" class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_mobile">
+									<INPUT value="${customer.cust_mobile }" class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="cust_mobile">
 								</td>
 							</TR>
-							
 							<tr>
 								<td rowspan=2>
-								<INPUT class=button id=sButton2 type=submit
-														value=" 保存 " name=sButton2>
+									<INPUT class=button id=sButton2 type=submit value=" 保存 ">
 								</td>
 							</tr>
 						</TABLE>
-						
-						
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg">
-					<IMG src="${pageContext.request.contextPath }/images/new_023.jpg" border=0></TD>
+						<IMG src="${pageContext.request.contextPath }/images/new_023.jpg" border=0>
+					</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15><IMG src="${pageContext.request.contextPath }/images/new_024.jpg"
-						border=0></TD>
-					<TD align=middle width="100%"
-						background="${pageContext.request.contextPath }/images/new_025.jpg" height=15></TD>
-					<TD width=15><IMG src="${pageContext.request.contextPath }/images/new_026.jpg"
-						border=0></TD>
+					<TD width=15>
+						<IMG src="${pageContext.request.contextPath }/images/new_024.jpg" border=0>
+					</TD>
+					<TD align=middle width="100%" background="${pageContext.request.contextPath }/images/new_025.jpg" height=15></TD>
+					<TD width=15>
+						<IMG src="${pageContext.request.contextPath }/images/new_026.jpg" border=0>
+					</TD>
 				</TR>
 			</TBODY>
 		</TABLE>

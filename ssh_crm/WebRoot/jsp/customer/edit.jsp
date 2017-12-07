@@ -9,8 +9,6 @@
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
-
-
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
@@ -18,7 +16,6 @@
 		action="${pageContext.request.contextPath }/customerServlet?method=editsubmit"
 		method=post>
 		<input type="hidden" name="custId" value="${customer.custId }"/>
-
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -49,79 +46,65 @@
 							<TR>
 								<td>客户名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-											style="WIDTH: 180px" maxLength=50 name="custName" value="${customer.custName }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custName" value="${customer.custName }">
 								</td>
 								<td>客户级别 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custLevel" value="${customer.custLevel }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custLevel" value="${customer.custLevel }">
 								</td>
 							</TR>
 							
 							<TR>
 								<td>信息来源：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custSource" value="${customer.custSource }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custSource" value="${customer.custSource }">
 								</td>
 								<td>联系人：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custLinkman" value="${customer.custLinkman }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custLinkman" value="${customer.custLinkman }">
 								</td>
 							</TR>
 							<TR>
-								
-								
 								<td>固定电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custPhone" value="${customer.custPhone }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custPhone" value="${customer.custPhone }">
 								</td>
 								<td>移动电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custMobile" value="${customer.custMobile }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custMobile" value="${customer.custMobile }">
 								</td>
 							</TR>
 							
 							<TR>
 								<td>联系地址 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custAddress" value="${customerDetail.custAddress }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custAddress" value="${customerDetail.custAddress }">
 								</td>
 								<td>邮政编码 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custZip" value="${customerDetail.custZip }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custZip" value="${customerDetail.custZip }">
 								</td>
 							</TR>
 							<TR>
 								<td>客户传真 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custFax" value="${customerDetail.custFax }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custFax" value="${customerDetail.custFax }">
 								</td>
 								<td>客户网址 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custWebsite" value="${customerDetail.custWebsite }">
+									<INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="custWebsite" value="${customerDetail.custWebsite }">
 								</td>
 							</TR>
 							<tr>
 								<td rowspan=2>
-								<INPUT class=button id=sButton2 type=submit
-														value=" 保存 " name=sButton2>
+									<INPUT class=button id=sButton2 type=submit value=" 保存 ">
 								</td>
 							</tr>
 						</TABLE>
-						
-						
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg">
-					<IMG src="${pageContext.request.contextPath }/images/new_023.jpg" border=0></TD>
+						<IMG src="${pageContext.request.contextPath }/images/new_023.jpg" border=0>
+					</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
