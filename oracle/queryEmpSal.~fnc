@@ -1,0 +1,14 @@
+-- 查询指定员工的年收入
+
+create or replace function queryEmpSal(empid in number) 
+return  number
+is
+  psal emp.sal%type;
+  pcomm emp.comm%type;
+  
+begin
+  select sal,comm into psal,pcomm from emp where empno=empid;
+  -- 奖金可能为空
+  return psal*12+nvl(comm,0);
+end queryEmpSal;
+/
