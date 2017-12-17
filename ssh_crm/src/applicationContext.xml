@@ -23,22 +23,23 @@
 	
 	<!-- hibernate和spring整合方案一：仍然使用之前的配置文件
 	<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 	</bean>
 	-->
 	
 	<!-- hibernate和spring整合方案二：在spring中配置hibernate  -->
 	<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<!-- 注入c3p0属性 -->
+		<!-- 注入c3p0属性:注入了datasource那么hibernate不需要配置连接 -->
 		<property name="dataSource" ref="dataSource"></property>
 	
 		<!-- 配置hibernate基本信息 -->
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+				<!-- <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
 				<prop key="hibernate.connection.username">root</prop>
 				<prop key="hibernate.connection.password">980515</prop>
-				<prop key="hibernate.connection.url">jdbc:mysql:///ssh_crm</prop>
+				<prop key="hibernate.connection.url">jdbc:mysql:///ssh_crm</prop> -->
 				
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
