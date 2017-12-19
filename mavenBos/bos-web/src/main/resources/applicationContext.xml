@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 开启注解配置 -->
+	<context:component-scan base-package="caotinging.*"></context:component-scan>
+	<!-- 支持注解 -->
+	<context:annotation-config/>
+	<tx:annotation-driven/>
+	
+	<!-- 加载c3p0属性配置文件 -->
+	<context:property-placeholder location="classpath:c3p0Conf.properties"/>
+	
+	<!-- 配置连接池 -->
+	<!-- user是liunx的关键字，所以要加前缀jdbc. -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 配置LocalSessionFactoryBean，spring提供的用于整合hibernate的工厂bean -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 在这里直接进行hibernate的相关配置，不进行单独文件配置 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+		
+		<!-- 引入orm元数据：hibernateMapping数据 -->
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:caotinging/domain/*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>
