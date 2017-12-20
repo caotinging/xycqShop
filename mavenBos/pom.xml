@@ -212,12 +212,10 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
-				 <configuration>  
-                   <path>/bos</path>  
-                   <server>mytomcat7</server>  
-                   <!-- 这里是本地tomcat，如果是远程服务器可以改成对应的地址，实现自动部署-->  
-                   <url>http://localhost:8080/manager/text</url>  
-                </configuration>  
+				<configuration>
+					<path>/bos</path>
+					<port>8888</port>
+				</configuration>
 			</plugin>
 		</plugins>
 		<resources>
@@ -246,36 +244,4 @@
 		<module>bos-web</module>
 		<module>bos-domain</module>
 	</modules>
-
-	<!-- 插件配置 -->
-	<repositories>
-		<repository>
-			<id>people.apache.snapshots</id>
-			<url>http://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>artifacts</id>
-			<url>https://artifacts.alfresco.com/nexus/content/repositories/public/</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>apache.snapshots</id>
-			<name>Apache Snapshots</name>
-			<url>http://repository.apache.org/content/groups/snapshots-group/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-	
 </project>
