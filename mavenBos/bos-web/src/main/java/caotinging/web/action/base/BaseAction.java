@@ -2,14 +2,13 @@ package caotinging.web.action.base;
 
 import java.lang.reflect.ParameterizedType;
 
-import org.springframework.stereotype.Controller;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-@Controller
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	private static final long serialVersionUID = 1L;
+	protected static final String HOME = "home";
+	protected static final String LOGIN = "login";
 	
 	//需要实例化model：同样利用反射获取实例对象
 	private T model;

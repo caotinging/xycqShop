@@ -9,11 +9,9 @@ import javax.annotation.Resource;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
 
 import caotinging.dao.base.IBaseDao;
 
-@Repository
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
 	//运行时class对象
