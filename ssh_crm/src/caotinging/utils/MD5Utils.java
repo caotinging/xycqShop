@@ -1,4 +1,4 @@
-package cn.itcast.estore.utils;
+package caotinging.utils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

@@ -8,7 +8,7 @@ import caotinging.beans.PageBean;
 import caotinging.dao.UserDao;
 import caotinging.domain.User;
 import caotinging.service.UserService;
-import cn.itcast.estore.utils.MD5Utils;
+import caotinging.utils.MD5Utils;
 
 public class UserServiceImpl implements UserService {
 	private UserDao userDao;
