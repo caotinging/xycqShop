@@ -23,11 +23,21 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/ztree/jquery.ztree.all-3.5.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"></script>
 
 </head>
 <body class="easyui-layout">
 	<!-- 北部区域 -->
-    <div data-options="region:'north',title:'欣语长情管理系统',split:true" style="height:100px;"></div>   
+    <div data-options="region:'north',title:'欣语长情管理系统',split:true" style="height:100px;">
+    	<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon-edit'">系统设置</a>
+		<div id="mm" style="width:150px;">
+			<div onclick="javascript:$.messager.alert('标题','消息','info')">修改信息</div>
+			<div class="menu-sep"></div>
+			<div onclick="javascript:$.messager.confirm('退出系统','确认退出吗？',function(res){
+				alert(res);
+			})">退出系统</div>
+		</div>
+	</div>   
     
     <!-- 南部区域 -->
     <div data-options="region:'south',split:true" style="height:50px;">
@@ -92,11 +102,24 @@
 						};
 						$.post(
 							"${pageContext.request.contextPath}/json/menu.json",
-							function(zTreeNodes){
+							function(zTreeNodes) {
 								//初始化一颗ztree树
 								$.fn.zTree.init($("#ztree1"), setting, zTreeNodes);
-							},'json'
-						);	
+							}, 'json'
+						);
+				
+						// 消息将显示在顶部中间
+						$.messager.show({
+							title : '欢迎回来！',
+							msg : '欢迎您进入欣语长情管理系统',
+							showType : 'slide',
+							showSpeed : 5000,//单位毫秒
+							style : {
+								right : '',
+								top : document.body.scrollTop + document.documentElement.scrollTop,
+								bottom : ''
+							}
+						});
 					});
 				</script>
 			</div>
