@@ -37,12 +37,20 @@
 		
 		<!-- 配置全局结果值处理 -->
 		<global-results>
+			<result name="error" type="redirect">/error.jsp</result>
 			<result name="tologin" type="redirect">/login.jsp</result>
 		</global-results>
 		
 		<action name="userAction_*" class="caotinging.web.action.UserAction" method="{1}">
 			<result name="login" type="dispatcher">/login.jsp</result>
 			<result name="home" type="dispatcher">/index.jsp</result>
+		</action>
+		
+		<action name="staffAction_*" class="caotinging.web.action.StaffAction" method="{1}">
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">page_base_staff</param>
+				<param name="namespace">/</param>
+			</result>
 		</action>
 	
 		<action name="page_*_*">

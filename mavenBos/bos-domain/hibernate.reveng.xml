@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="bc_decidedzone" catalog="maven"
+		class="caotinging.domain.Decidedzone">
+	</table>
+	<table name="bc_region" catalog="maven"
+		class="caotinging.domain.Region">
+	</table>
+	<table name="bc_staff" catalog="maven"
+		class="caotinging.domain.Staff">
+	</table>
+	<table name="bc_subarea" catalog="maven" class="caotinging.domain.Subarea"></table>
+</hibernate-reverse-engineering>
