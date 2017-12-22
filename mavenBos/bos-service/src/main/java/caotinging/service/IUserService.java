@@ -11,5 +11,12 @@ public interface IUserService {
 	 */
 	User checkUser(User user);
 
+	/**
+	 * 用户修改密码的操作
+	 * @param loginUser
+	 * @param newPassword
+	 */
+	void modifyPassword(User loginUser, String newPassword);
+
 	
 }

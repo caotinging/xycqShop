@@ -11,6 +11,13 @@ import org.hibernate.criterion.DetachedCriteria;
  * @param <T>
  */
 public interface IBaseDao<T> {
+
+	/**
+	 * 通用的数据更新操作
+	 * @param queryName
+	 * @param objects
+	 */
+	public void executeUpdate(String queryName, Object...objects);
 	
 	/**
 	 * 保存对象

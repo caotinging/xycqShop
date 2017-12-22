@@ -14,12 +14,17 @@ import caotinging.utils.MD5Utils;
 public class UserService implements IUserService {
 
 	@Autowired
-	private IUserDao UserDao;
+	private IUserDao userDao;
 	
 	@Override
 	public User checkUser(User user) {
-		User existU = UserDao.getUserByNameAndPassword(user.getUsername(),MD5Utils.md5(user.getPassword()));
+		User existU = userDao.getUserByNameAndPassword(user.getUsername(),MD5Utils.md5(user.getPassword()));
 		return existU;
+	}
+
+	@Override
+	public void modifyPassword(User loginUser, String newPassword) {
+		userDao.executeUpdate("user.updatePassword", MD5Utils.md5(newPassword), loginUser.getId());
 	}
 
 }

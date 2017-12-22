@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -77,6 +78,19 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	@Override
 	public List<T> findByCriteria(DetachedCriteria criteria) {
 		return (List<T>) this.getHibernateTemplate().findByCriteria(criteria);
+	}
+
+	@Override
+	public void executeUpdate(String queryName, Object... objects) {
+		//---query:update user set password=? where id=?----类似这样的语句
+		Query query = this.getSessionFactory().getCurrentSession().getNamedQuery(queryName);
+		int i = 0;
+		
+		//为query中的？参数赋值
+		for (Object object : objects) {
+			query.setParameter(i++, object);
+		}
+		query.executeUpdate();
 	}
 
 }
