@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 
+import caotinging.utils.PageBean;
+
 /**
  * 基本的数据库操作---->mysql maven数据库
  * @author caoting
@@ -12,6 +14,19 @@ import org.hibernate.criterion.DetachedCriteria;
  */
 public interface IBaseDao<T> {
 
+	/**
+	 * 根据传递的pageBean对象查询符合要求的T实体列表
+	 * @param pageBean
+	 */
+	public void queryPageBeanList(PageBean<T> pageBean);
+	
+	/**
+	 * 获取符合条件的总记录数
+	 * @param criteria
+	 * @return
+	 */
+	public Long getTotalCount(DetachedCriteria criteria);
+	
 	/**
 	 * 通用的数据更新操作
 	 * @param queryName

@@ -9,6 +9,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	private static final long serialVersionUID = 1L;
 	protected static final String HOME = "home";
 	protected static final String LOGIN = "login";
+	protected static final String LIST = "list";
 	
 	//需要实例化model：同样利用反射获取实例对象
 	private T model;

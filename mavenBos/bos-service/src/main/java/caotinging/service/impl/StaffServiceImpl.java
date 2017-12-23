@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import caotinging.dao.IStaffDao;
 import caotinging.domain.Staff;
 import caotinging.service.IStaffService;
+import caotinging.utils.PageBean;
 
 @Service
 @Transactional
@@ -18,6 +19,11 @@ public class StaffServiceImpl implements IStaffService {
 	@Override
 	public void saveStaff(Staff staff) {
 		staffDao.save(staff);
+	}
+
+	@Override
+	public void getList(PageBean<Staff> pageBean) {
+		staffDao.queryPageBeanList(pageBean);
 	}
 
 }

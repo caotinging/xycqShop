@@ -9,9 +9,11 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import caotinging.dao.base.IBaseDao;
+import caotinging.utils.PageBean;
 
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
@@ -91,6 +93,29 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 			query.setParameter(i++, object);
 		}
 		query.executeUpdate();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void queryPageBeanList(PageBean<T> pageBean) {
+		int totalCount = getTotalCount(pageBean.getCriteria()).intValue();
+		int firstResult = (pageBean.getCurrentPage()-1)/pageBean.getPageCount();
+		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(pageBean.getCriteria(), firstResult, pageBean.getPageCount());
+		
+		pageBean.setRows(list);
+		pageBean.setTotal(totalCount);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Long getTotalCount(DetachedCriteria criteria) {
+		//设置count聚合函数
+		criteria.setProjection(Projections.rowCount());
+		
+		List<Long> count = (List<Long>) this.getHibernateTemplate().findByCriteria(criteria);
+		//结束之前，把聚合函数限制去掉
+		criteria.setProjection(null);
+		return count.get(0);
 	}
 
 }

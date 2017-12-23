@@ -1,6 +1,7 @@
 package caotinging.service;
 
 import caotinging.domain.Staff;
+import caotinging.utils.PageBean;
 
 public interface IStaffService {
 
@@ -9,5 +10,11 @@ public interface IStaffService {
 	 * @param staff
 	 */
 	void saveStaff(Staff staff);
+
+	/**
+	 * 获取staff的分页数据
+	 * @param pageBean
+	 */
+	void getList(PageBean<Staff> pageBean);
 
 }

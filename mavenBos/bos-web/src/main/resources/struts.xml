@@ -51,6 +51,7 @@
 				<param name="actionName">page_base_staff</param>
 				<param name="namespace">/</param>
 			</result>
+			<result name="list" type="dispatcher">/WEB-INF/pages/base/staff.jsp</result>
 		</action>
 	
 		<action name="page_*_*">
