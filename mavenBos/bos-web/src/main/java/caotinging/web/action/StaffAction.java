@@ -25,6 +25,23 @@ public class StaffAction extends BaseAction<Staff> {
 	private IStaffService staffService;
 	private Integer page;
 	private Integer rows;
+	private String ids;
+
+	/**
+	 * 对取派员进行逻辑删除操作
+	 * @return
+	 */
+	public String deleteStaff(){
+		if(ids != null ){
+			try{
+				staffService.deleteByIds(ids);
+			}catch(Exception ex) {
+				ex.printStackTrace();
+				return ERROR;
+			}
+		}
+		return LIST;
+	}
 	
 	/**
 	 * 获取取派员列表
@@ -101,6 +118,14 @@ public class StaffAction extends BaseAction<Staff> {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
 	}
 	
 }

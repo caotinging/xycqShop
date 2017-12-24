@@ -17,4 +17,10 @@ public interface IStaffService {
 	 */
 	void getList(PageBean<Staff> pageBean);
 
+	/**
+	 * 对staff进行批量逻辑删除操作
+	 * @param ids
+	 */
+	void deleteByIds(String ids);
+
 }

@@ -26,4 +26,12 @@ public class StaffServiceImpl implements IStaffService {
 		staffDao.queryPageBeanList(pageBean);
 	}
 
+	@Override
+	public void deleteByIds(String ids) {
+		String[] strArr = ids.split(",");
+		for(String id : strArr) {
+			staffDao.executeUpdate("staff.deleteStaff", id);
+		}
+	}
+
 }

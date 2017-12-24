@@ -35,4 +35,7 @@
             <one-to-many class="caotinging.domain.Decidedzone" />
         </set>
     </class>
+    <query name="staff.deleteStaff">
+    	update caotinging.domain.Staff set deltag='1' where id=?
+    </query>
 </hibernate-mapping>

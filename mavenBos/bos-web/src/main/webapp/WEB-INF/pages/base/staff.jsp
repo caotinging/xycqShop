@@ -36,8 +36,29 @@
 		alert("查看...");
 	}
 
+	//取派员批量删除绑定事件
 	function doDelete() {
-		alert("删除...");
+		//判断是否有选中的行
+		var sels = $("#grid").datagrid("getSelections");
+		if(sels.length == 0) {
+			//没有选择要删除的行
+			$.messager.alert("系统提示","没有选中删除的项！","warning");
+		}else {
+			$.messager.confirm("系统提示","您确定要删除指定的取派员信息吗？",function(res){
+				if(res){
+					//将选择的行的id拼串传递到后端进行删除操作
+					var array = new Array();
+					for(var i = 0; i<sels.length; i++) {
+						var selId = sels[i];//json对象
+						array.push(selId.id);
+					}
+					//拼接数组中的数据
+					var ids = array.join(",");
+					//将拼接好的id数据传递到后端进行删除操作
+					location.href = "${pageContext.request.contextPath}/staffAction_deleteStaff.action?ids="+ids;
+				}
+			});
+		}
 	}
 
 	function doRestore() {
@@ -128,7 +149,6 @@
 			border : false,
 			rownumbers : true,
 			striped : true,
-			pageList : [ 30, 50, 100 ],
 			pagination : true,
 			toolbar : toolbar,
 			url : "${pageContext.request.contextPath}/staffAction_getList.action",
