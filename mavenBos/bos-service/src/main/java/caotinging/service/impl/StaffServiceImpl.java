@@ -34,4 +34,19 @@ public class StaffServiceImpl implements IStaffService {
 		}
 	}
 
+	@Override
+	public void updateStaff(Staff staff) {
+		String id = staff.getId();
+		Staff oldStaff = staffDao.findById(id);
+		
+		oldStaff.setName(staff.getName());
+		oldStaff.setStandard(staff.getStandard());
+		oldStaff.setTelephone(staff.getTelephone());
+		oldStaff.setHaspda(staff.getHaspda());
+		oldStaff.setStation(staff.getStation());
+		
+		//更新staff
+		staffDao.update(oldStaff);
+	}
+
 }

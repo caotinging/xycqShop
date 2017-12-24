@@ -26,6 +26,23 @@ public class StaffAction extends BaseAction<Staff> {
 	private Integer page;
 	private Integer rows;
 	private String ids;
+	
+	/**
+	 * 更改staff对象的信息
+	 * @return
+	 */
+	public String updateStaff() {
+		//staff中保存更新的信息
+		if(staff != null && staff.getId() != null) {
+			try{
+				staffService.updateStaff(staff);
+			}catch(Exception ex) {
+				ex.printStackTrace();
+				return ERROR;
+			}
+		}
+		return LIST;
+	}
 
 	/**
 	 * 对取派员进行逻辑删除操作

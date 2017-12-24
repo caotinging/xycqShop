@@ -23,4 +23,10 @@ public interface IStaffService {
 	 */
 	void deleteByIds(String ids);
 
+	/**
+	 * 更新staff对象的信息，根据id先获得这个对象然后再更新相关信息
+	 * @param staff
+	 */
+	void updateStaff(Staff staff);
+
 }
