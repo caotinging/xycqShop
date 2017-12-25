@@ -9,11 +9,25 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+
 /**
  * 本BOS项目常用方法工具类
  * @author caoting
  */
 public class BosCommonUtils {
+	
+	public static <T> String pageBeanJson(PageBean<T> pageBean, String[] strArr) {
+		String json = "";
+		
+		//把查询的数据封装成json格式
+		JsonConfig config = new JsonConfig();
+		config.setExcludes(strArr);
+		
+		json = JSONObject.fromObject(pageBean ,config).toString();
+		return json;
+	}
 	
 	/**
 	 * 获取原生request对象
