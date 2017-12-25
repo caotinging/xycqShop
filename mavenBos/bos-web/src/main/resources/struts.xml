@@ -41,12 +41,20 @@
 			<result name="tologin" type="redirect">/login.jsp</result>
 		</global-results>
 		
-		<action name="userAction_*" class="caotinging.web.action.UserAction" method="{1}">
+		<!-- 配置全局异常处理 -->
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="login" type="dispatcher">/login.jsp</result>
 			<result name="home" type="dispatcher">/index.jsp</result>
 		</action>
 		
-		<action name="staffAction_*" class="caotinging.web.action.StaffAction" method="{1}">
+		<action name="regionAction_*" class="regionAction" method="{1}">
+		</action>
+		
+		<action name="staffAction_*" class="staffAction" method="{1}">
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">page_base_staff</param>
 				<param name="namespace">/</param>

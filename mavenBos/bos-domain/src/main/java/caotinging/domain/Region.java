@@ -10,7 +10,7 @@ import java.util.Set;
 public class Region implements java.io.Serializable {
 
 	// Fields
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String province;
 	private String city;
@@ -18,7 +18,7 @@ public class Region implements java.io.Serializable {
 	private String postcode;
 	private String shortcode;
 	private String citycode;
-	private Set subareas = new HashSet(0);
+	private Set<Subarea> subareas = new HashSet<Subarea>(0);
 
 	// Constructors
 
@@ -33,7 +33,7 @@ public class Region implements java.io.Serializable {
 
 	/** full constructor */
 	public Region(String id, String province, String city, String district, String postcode, String shortcode,
-			String citycode, Set subareas) {
+			String citycode, Set<Subarea> subareas) {
 		this.id = id;
 		this.province = province;
 		this.city = city;
@@ -102,11 +102,11 @@ public class Region implements java.io.Serializable {
 		this.citycode = citycode;
 	}
 
-	public Set getSubareas() {
+	public Set<Subarea> getSubareas() {
 		return this.subareas;
 	}
 
-	public void setSubareas(Set subareas) {
+	public void setSubareas(Set<Subarea> subareas) {
 		this.subareas = subareas;
 	}
 

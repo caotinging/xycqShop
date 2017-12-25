@@ -6,11 +6,11 @@ import java.util.Set;
 /**
  * Staff entity. @author MyEclipse Persistence Tools
  */
-
+@SuppressWarnings("rawtypes")
 public class Staff implements java.io.Serializable {
 
 	// Fields
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String name;
 	private String telephone;
@@ -18,6 +18,7 @@ public class Staff implements java.io.Serializable {
 	private String deltag = "0";
 	private String station;
 	private String standard;
+
 	private Set decidedzones = new HashSet(0);
 
 	// Constructors

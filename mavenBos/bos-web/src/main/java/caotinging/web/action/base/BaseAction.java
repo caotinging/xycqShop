@@ -25,6 +25,10 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 		pageBean.setCurrentPage(page);
 	}
 	
+	public void setCriteria(DetachedCriteria criteria) {
+		this.criteria = criteria;
+	}
+	
 	//需要实例化model：同样利用反射获取实例对象
 	private T model;
 	

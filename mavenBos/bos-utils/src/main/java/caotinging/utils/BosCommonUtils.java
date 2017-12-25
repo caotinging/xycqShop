@@ -18,6 +18,12 @@ import net.sf.json.JsonConfig;
  */
 public class BosCommonUtils {
 	
+	/**
+	 * 将分页数据转换为json数据
+	 * @param pageBean 分页数据
+	 * @param strArr 需要排除的属性
+	 * @return
+	 */
 	public static <T> String pageBeanJson(PageBean<T> pageBean, String[] strArr) {
 		String json = "";
 		

@@ -61,7 +61,7 @@ public class StaffAction extends BaseAction<Staff> {
 	public String getList() {
 		try {
 			staffService.getList(super.pageBean);
-			String json = BosCommonUtils.pageBeanJson(pageBean, new String[]{"currentPage","pageCount","criteria"});
+			String json = BosCommonUtils.pageBeanJson(pageBean, new String[]{"currentPage","pageCount","criteria","decidedzones"});
 			BosCommonUtils.getResponse().setContentType("application/json;charset=utf-8");
 			BosCommonUtils.getResponseWriter().print(json);
 		} catch (IOException e) {
