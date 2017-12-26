@@ -28,6 +28,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
+	<!-- easyui 下拉框combobox -->
+	<input data-options="
+		url : '${pageContext.request.contextPath }/json/menu.json',
+		valueField : 'id',
+		textField : 'name'
+	" class="easyui-combobox">
+
 	<input type="button" id="myButton" value="上传文件">
 	<script type="text/javascript">
 		$("#myButton").upload({
