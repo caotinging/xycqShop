@@ -2,6 +2,7 @@ package caotinging.service.impl;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,11 @@ public class RegionServiceImpl implements IRegionService {
 	@Override
 	public void getList(PageBean<Region> pageBean) {
 		regionDao.queryPageBeanList(pageBean);
+	}
+
+	@Override
+	public List<Region> getListByCriteria(DetachedCriteria criteria) {
+		return regionDao.findByCriteria(criteria);
 	}
 
 }

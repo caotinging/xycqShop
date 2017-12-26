@@ -7,7 +7,7 @@ package caotinging.domain;
 public class Subarea implements java.io.Serializable {
 
 	// Fields
-
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private Region region;
 	private Decidedzone decidedzone;

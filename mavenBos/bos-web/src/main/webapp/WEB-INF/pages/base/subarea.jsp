@@ -6,26 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理分区</title>
 <!-- 导入jquery核心类库 -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
 <!-- 导入easyui类库 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/ext/portal.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/css/default.css">	
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
-<script
-	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
-	type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/ext/portal.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/default.css">	
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
+<script src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	function doAdd(){
 		$('#addSubareaWindow').window("open");
@@ -157,7 +148,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			pageList: [30,50,100],
+			pageList: [10,30,50,100],
 			pagination : true,
 			toolbar : toolbar,
 			url : "json/subarea.json",
@@ -191,6 +182,18 @@
 			alert("执行查询...");
 		});
 		
+		//给添加分区窗口的保存按钮绑定点击事件
+		$("#saveSubarea").click(function(){
+			var res = $("#subareaForm").form('validate');
+			if(res) {
+				//表单验证通过--->提交表单
+				$("#subareaForm").submit();
+			}else {
+				//表单验证没通过--->提示信息
+				$.messager.alert("系统提示", "您输入的信息有误!", "warning");
+			}
+		});
+		
 	});
 
 	function doDblClickRow(){
@@ -203,30 +206,23 @@
     	<table id="grid"></table>
 	</div>
 	<!-- 添加 修改分区 -->
-	<div class="easyui-window" title="分区添加修改" id="addSubareaWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+	<div class="easyui-window" title="添加分区" id="addSubareaWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
-				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
+				<a id="saveSubarea" icon="icon-save" href="javascript:void(0);" class="easyui-linkbutton" plain="true" >保存</a>
 			</div>
 		</div>
 		
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="subareaForm" action="${pageContext.request.contextPath }/subareaAction_save">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">分区信息</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>分拣编码</td>
 						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
-					</tr>
-					<tr>
-						<td>选择区域</td>
-						<td>
-							<input class="easyui-combobox" name="region.id"  
-    							data-options="valueField:'id',textField:'name',url:'json/standard.json'" />  
-						</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td>关键字</td>
 						<td><input type="text" name="addresskey" class="easyui-validatebox" required="true"/></td>
@@ -247,6 +243,13 @@
 							    <option value="1">单号</option>  
 							    <option value="2">双号</option>  
 							</select> 
+						</td>
+					</tr>
+					<tr>
+						<td>选择区域</td>
+						<td>
+							<input style="width:200px;" class="easyui-combobox" name="region.id"
+								 data-options="valueField : 'id' ,textField : 'name' ,url : 'regionAction_getListToSubarea.action' ,mode : 'remote'" />  
 						</td>
 					</tr>
 					<tr>

@@ -20,6 +20,11 @@ public class Region implements java.io.Serializable {
 	private String citycode;
 	private Set<Subarea> subareas = new HashSet<Subarea>(0);
 
+	// 添加一个域
+	public String getName() {
+		return province + " " + city + " " + district;
+	}
+
 	// Constructors
 
 	/** default constructor */

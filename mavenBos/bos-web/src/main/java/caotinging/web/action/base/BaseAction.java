@@ -18,10 +18,16 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected DetachedCriteria criteria = null;
 	
 	public void setRows(Integer rows) {
+		if(rows == null) {
+			rows = 0;
+		}
 		pageBean.setPageCount(rows);
 	}
 	
 	public void setPage(Integer page) {
+		if(page == null) {
+			page = 1;
+		}
 		pageBean.setCurrentPage(page);
 	}
 	

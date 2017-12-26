@@ -54,6 +54,13 @@
 		<action name="regionAction_*" class="regionAction" method="{1}">
 		</action>
 		
+		<action name="subareaAction_*" class="subareaAction" method="{1}">
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">page_base_subarea</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
 		<action name="staffAction_*" class="staffAction" method="{1}">
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">page_base_staff</param>

@@ -2,6 +2,8 @@ package caotinging.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import caotinging.domain.Region;
 import caotinging.utils.PageBean;
 
@@ -18,5 +20,12 @@ public interface IRegionService {
 	 * @param pageBean
 	 */
 	void getList(PageBean<Region> pageBean);
+
+	/**
+	 * 通过离线查询条件获取符合条件的region集合
+	 * @param criteria
+	 * @return
+	 */
+	List<Region> getListByCriteria(DetachedCriteria criteria);
 
 }
