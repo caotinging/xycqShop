@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import caotinging.dao.IDecidedzoneDao;
 import caotinging.dao.IStaffDao;
+import caotinging.dao.ISubareaDao;
 import caotinging.domain.Staff;
+import caotinging.domain.Subarea;
 import caotinging.service.IDecidedzoneService;
 
 @Service
@@ -19,10 +21,17 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 	private IDecidedzoneDao decidedzoneDao;
 	@Autowired
 	private IStaffDao staffDao;
+	@Autowired
+	private ISubareaDao subareaDao;
 	
 	@Override
 	public List<Staff> getNDelStaff() {
 		List<Staff> list = staffDao.getNDelStaff();
 		return list;
+	}
+
+	@Override
+	public List<Subarea> getNDidSubarea() {
+		return subareaDao.getNDidSubarea();
 	}
 }

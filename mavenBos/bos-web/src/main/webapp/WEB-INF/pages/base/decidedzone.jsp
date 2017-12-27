@@ -284,7 +284,8 @@
 					<tr height="300">
 						<td valign="top">关联分区</td>
 						<td>
-							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'json/decidedzone_subarea.json',fitColumns:true,singleSelect:false">
+							<!-- -------------------------------------------------修改分区表单地址------------------------------------------------------------------- -->
+							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'decidedzoneAction_getSubareaList.action',fitColumns:true,singleSelect:false">
 								<thead>  
 							        <tr>  
 							            <th data-options="field:'id',width:30,checkbox:true">编号</th>  
