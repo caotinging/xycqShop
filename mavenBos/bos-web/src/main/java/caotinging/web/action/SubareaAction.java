@@ -2,7 +2,11 @@ package caotinging.web.action;
 
 import java.io.IOException;
 
+import javax.servlet.ServletOutputStream;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import caotinging.domain.Subarea;
 import caotinging.service.ISubareaService;
 import caotinging.utils.BosCommonUtils;
+import caotinging.utils.FileUtils;
 import caotinging.web.action.base.BaseAction;
 
 @Controller
@@ -23,6 +28,42 @@ public class SubareaAction extends BaseAction<Subarea> {
 	private ISubareaService subareaService;
 	private Subarea subarea = super.getModel();
 
+	/**
+	 * 生成xls文件提供下载
+	 * @return
+	 */
+	public String exportXls() {
+		//将xls文件传输到service层进行数据包装
+		HSSFWorkbook workbook = new HSSFWorkbook();
+		subareaService.exportAllToXls(workbook);
+		
+		//使用输出流进行文件下载：（一个流，两个头）
+		String filename = "分区数据.xls";
+		//获取文件的类型表示
+		String mimeType = ServletActionContext.getServletContext().getMimeType(filename);
+		
+		String agent = BosCommonUtils.getRequest().getHeader("User-Agent");
+		//解决中文乱码问题
+		try {
+			//根据不同的浏览器进行转码
+			filename = FileUtils.encodeDownloadFilename(filename, agent);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		BosCommonUtils.getResponse().setContentType(mimeType);
+		BosCommonUtils.getResponse().setHeader("content-disposition", "attachment;filename="+filename);
+		
+		//获取输出流
+		try {
+			ServletOutputStream out = BosCommonUtils.getResponse().getOutputStream();
+			workbook.write(out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return NONE;
+	}
+	
 	/**
 	 * 获取subarea对象集合返回页面进行展示
 	 * @return

@@ -1,5 +1,7 @@
 package caotinging.service;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import caotinging.domain.Subarea;
 import caotinging.utils.PageBean;
 
@@ -16,5 +18,12 @@ public interface ISubareaService {
 	 * @param pageBean
 	 */
 	void getPageList(PageBean<Subarea> pageBean);
+
+	/**
+	 * 获取所有分区数据输出到xls文件并返回
+	 * @param workbook 
+	 * @return
+	 */
+	void exportAllToXls(HSSFWorkbook workbook);
 
 }

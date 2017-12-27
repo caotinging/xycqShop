@@ -34,8 +34,9 @@
 		$('#searchWindow').window("open");
 	}
 	
+	//数据导出功能
 	function doExport(){
-		alert("导出");
+		window.location.href = "subareaAction_exportXls.action";
 	}
 	
 	function doImport(){
