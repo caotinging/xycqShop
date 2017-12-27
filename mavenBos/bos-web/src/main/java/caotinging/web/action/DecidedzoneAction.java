@@ -44,6 +44,21 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	private IDecidedzoneService decidedzoneService;
 	
 	/**
+	 * 获取decidedzone列表
+	 * @return
+	 * @throws IOException 
+	 */
+	public String getPageList() throws IOException {
+		decidedzoneService.getPageList(pageBean);
+		
+		String json = BosCommonUtils.pageBeanJson(pageBean, new String[]{"currentPage", "pageCount", "criteria", "subareas", "decidedzones", "haspda", "deltag", "standard"});
+		BosCommonUtils.getResponse().setContentType("application/json;charset=utf-8");
+		BosCommonUtils.getResponseWriter().print(json);
+		
+		return NONE;
+	}
+	
+	/**
 	 * 保存新的定区对象
 	 * @return
 	 */

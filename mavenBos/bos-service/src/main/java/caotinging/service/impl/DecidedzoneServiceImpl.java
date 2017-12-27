@@ -13,6 +13,7 @@ import caotinging.domain.Decidedzone;
 import caotinging.domain.Staff;
 import caotinging.domain.Subarea;
 import caotinging.service.IDecidedzoneService;
+import caotinging.utils.PageBean;
 
 @Service
 @Transactional
@@ -53,5 +54,10 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 		
 		//最后的保存
 		decidedzoneDao.save(model);
+	}
+
+	@Override
+	public void getPageList(PageBean<Decidedzone> pageBean) {
+		decidedzoneDao.queryPageBeanList(pageBean);
 	}
 }

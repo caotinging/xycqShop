@@ -5,6 +5,7 @@ import java.util.List;
 import caotinging.domain.Decidedzone;
 import caotinging.domain.Staff;
 import caotinging.domain.Subarea;
+import caotinging.utils.PageBean;
 
 public interface IDecidedzoneService {
 
@@ -27,5 +28,12 @@ public interface IDecidedzoneService {
 	 * @param staffid  定区中映射的取派员的id
 	 */
 	void saveDecidedzone(Decidedzone model, String staffid, String[] subareaid);
+
+	/**
+	 * 获取所有decidedzone对象
+	 * @param pageBean 
+	 * @return
+	 */
+	void getPageList(PageBean<Decidedzone> pageBean);
 	
 }
