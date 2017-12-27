@@ -98,7 +98,11 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void queryPageBeanList(PageBean<T> pageBean) {
+		
 		int totalCount = getTotalCount(pageBean.getCriteria()).intValue();
+		
+		//修改结果集封装方式
+		pageBean.getCriteria().setResultTransformer(DetachedCriteria.ROOT_ENTITY);
 		int firstResult = (pageBean.getCurrentPage()-1)/pageBean.getPageCount();
 		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(pageBean.getCriteria(), firstResult, pageBean.getPageCount());
 		
