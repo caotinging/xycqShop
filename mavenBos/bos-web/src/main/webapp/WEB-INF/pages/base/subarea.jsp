@@ -151,7 +151,7 @@
 			pageList: [10,30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/subarea.json",
+			url : "subareaAction_getPageList.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -219,10 +219,10 @@
 					<tr class="title">
 						<td colspan="2">分区信息</td>
 					</tr>
-					<!-- <tr>
+					<tr>
 						<td>分拣编码</td>
 						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
-					</tr> -->
+					</tr>
 					<tr>
 						<td>关键字</td>
 						<td><input type="text" name="addresskey" class="easyui-validatebox" required="true"/></td>

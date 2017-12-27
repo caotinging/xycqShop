@@ -10,7 +10,7 @@
             <column name="id" length="32" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="region" class="caotinging.domain.Region" fetch="select">
+        <many-to-one lazy="false" name="region" class="caotinging.domain.Region" fetch="select">
             <column name="region_id" length="32" />
         </many-to-one>
         <many-to-one name="decidedzone" class="caotinging.domain.Decidedzone" fetch="select">

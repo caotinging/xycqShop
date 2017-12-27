@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import caotinging.dao.ISubareaDao;
 import caotinging.domain.Subarea;
 import caotinging.service.ISubareaService;
+import caotinging.utils.PageBean;
 
 @Service
 @Transactional
@@ -18,6 +19,11 @@ public class SubareaServiceImpl implements ISubareaService {
 	@Override
 	public void saveSubarea(Subarea subarea) {
 		subareaDao.save(subarea);
+	}
+
+	@Override
+	public void getPageList(PageBean<Subarea> pageBean) {
+		subareaDao.queryPageBeanList(pageBean);
 	}
 
 }

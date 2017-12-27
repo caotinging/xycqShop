@@ -1,6 +1,7 @@
 package caotinging.service;
 
 import caotinging.domain.Subarea;
+import caotinging.utils.PageBean;
 
 public interface ISubareaService {
 
@@ -9,5 +10,11 @@ public interface ISubareaService {
 	 * @param subarea
 	 */
 	void saveSubarea(Subarea subarea);
+
+	/**
+	 * 获取分页展示对象集合
+	 * @param pageBean
+	 */
+	void getPageList(PageBean<Subarea> pageBean);
 
 }
