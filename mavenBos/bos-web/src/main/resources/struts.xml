@@ -54,6 +54,9 @@
 		<action name="regionAction_*" class="regionAction" method="{1}">
 		</action>
 		
+		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
+		</action>
+		
 		<action name="subareaAction_*" class="subareaAction" method="{1}">
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">page_base_subarea</param>

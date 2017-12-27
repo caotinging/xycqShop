@@ -6,26 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理定区/调度排班</title>
 <!-- 导入jquery核心类库 -->
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
 <!-- 导入easyui类库 -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/js/easyui/ext/portal.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/css/default.css">	
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
-<script
-	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
-	type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/easyui/ext/portal.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/default.css">	
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
+<script src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function doAdd(){
 		$('#addDecidedzoneWindow').window("open");
@@ -281,10 +271,6 @@
 						<td colspan="2">定区信息</td>
 					</tr>
 					<tr>
-						<td>定区编码</td>
-						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
-					</tr>
-					<tr>
 						<td>定区名称</td>
 						<td><input type="text" name="name" class="easyui-validatebox" required="true"/></td>
 					</tr>
@@ -292,7 +278,7 @@
 						<td>选择负责人</td>
 						<td>
 							<input class="easyui-combobox" name="region.id"  
-    							data-options="valueField:'id',textField:'name',url:'json/standard.json'" />  
+    							data-options="valueField:'id',textField:'name',url:'decidedzoneAction_getStaffList.action'" />  
 						</td>
 					</tr>
 					<tr height="300">

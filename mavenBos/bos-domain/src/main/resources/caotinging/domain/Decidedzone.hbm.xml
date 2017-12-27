@@ -8,7 +8,7 @@
     <class name="caotinging.domain.Decidedzone" table="bc_decidedzone" >
         <id name="id" type="java.lang.String">
             <column name="id" length="32" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="staff" class="caotinging.domain.Staff" fetch="select">
             <column name="staff_id" length="32" />
