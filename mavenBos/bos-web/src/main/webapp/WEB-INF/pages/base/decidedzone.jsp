@@ -145,6 +145,15 @@
 		$("#btn").click(function(){
 			alert("执行查询...");
 		});
+		//校验表单，通过就提交表单
+		$("#save").click(function() {
+			var res = $("#addDecForm").form('validate');
+			if(res) {
+				$("#addDecForm").submit();
+			}else {
+				$.messager.alert("系统提示", "输入内容错误！", "warning");
+			}
+		});
 		
 	});
 
@@ -260,12 +269,12 @@
 	<div class="easyui-window" title="定区添加修改" id="addDecidedzoneWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
-				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
+				<a id="save" icon="icon-save" href="javascript:void(0);" class="easyui-linkbutton" plain="true" >保存</a>
 			</div>
 		</div>
 		
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="addDecForm" action="${pageContext.request.contextPath }/decidedzoneAction_save.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">定区信息</td>
@@ -277,7 +286,7 @@
 					<tr>
 						<td>选择负责人</td>
 						<td>
-							<input class="easyui-combobox" name="region.id"  
+							<input class="easyui-combobox" name="staffid"  
     							data-options="valueField:'id',textField:'name',url:'decidedzoneAction_getStaffList.action'" />  
 						</td>
 					</tr>
@@ -288,7 +297,7 @@
 							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'decidedzoneAction_getSubareaList.action',fitColumns:true,singleSelect:false">
 								<thead>  
 							        <tr>  
-							            <th data-options="field:'id',width:30,checkbox:true">编号</th>  
+							            <th data-options="field:'subareaid',width:30,checkbox:true">编号</th>
 							            <th data-options="field:'addresskey',width:150">关键字</th>  
 							            <th data-options="field:'position',width:200,align:'right'">位置</th>  
 							        </tr>  

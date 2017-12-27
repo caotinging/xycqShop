@@ -21,8 +21,41 @@ import net.sf.json.JsonConfig;
 public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	private static final long serialVersionUID = 1L;
 
+	private String staffid;
+	private String[] subareaid;
+	
+	public String getStaffid() {
+		return staffid;
+	}
+
+	public void setStaffid(String staffid) {
+		this.staffid = staffid;
+	}
+
+	public String[] getSubareaid() {
+		return subareaid;
+	}
+
+	public void setSubareaid(String[] subareaid) {
+		this.subareaid = subareaid;
+	}
+
 	@Autowired
 	private IDecidedzoneService decidedzoneService;
+	
+	/**
+	 * 保存新的定区对象
+	 * @return
+	 */
+	public String save() {
+		try{
+			decidedzoneService.saveDecidedzone(this.getModel(), staffid, subareaid);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+		return "tolist";
+	}
 	
 	/**
 	 * 获取还没有分配定区的分区集合

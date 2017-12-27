@@ -2,6 +2,7 @@ package caotinging.service;
 
 import java.util.List;
 
+import caotinging.domain.Decidedzone;
 import caotinging.domain.Staff;
 import caotinging.domain.Subarea;
 
@@ -18,5 +19,13 @@ public interface IDecidedzoneService {
 	 * @return
 	 */
 	List<Subarea> getNDidSubarea();
+
+	/**
+	 * 保存定区对象
+	 * @param model 定区对象
+	 * @param subareaid 定区中映射的区域对象的id
+	 * @param staffid  定区中映射的取派员的id
+	 */
+	void saveDecidedzone(Decidedzone model, String staffid, String[] subareaid);
 	
 }
