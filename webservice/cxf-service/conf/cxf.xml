@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:jaxws="http://cxf.apache.org/jaxws"
+xmlns:soap="http://cxf.apache.org/bindings/soap"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					http://www.springframework.org/schema/beans/spring-beans.xsd
+					http://cxf.apache.org/bindings/soap 
+					http://cxf.apache.org/schemas/configuration/soap.xsd
+					http://cxf.apache.org/jaxws 
+					http://cxf.apache.org/schemas/jaxws.xsd">
+	<!-- 引入CXF Bean定义如下,早期的版本中使用 -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- 声明HelloService -->	
+	<bean id="helloService" class="caotinging.testws.HelloServiceImpl"></bean>
+	
+	<!-- 注册helloService服务 -->
+	<!-- 这里的address：
+			本身应该是http://ip地址:port端口号/项目名/service/cxfService
+			cxf框架为了服务本身的可移植性，只需提供自定义的最后一段地址
+	 -->
+	<jaxws:server id="myService" address="/cxfService">
+		<jaxws:serviceBean>
+			<ref bean="helloService"/>
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+</beans>
+
