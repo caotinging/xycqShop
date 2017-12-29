@@ -19,7 +19,7 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "ICustomerService", targetNamespace = "http://service.caotinging/")
 @XmlSeeAlso({
-    //ObjectFactory.class
+   // ObjectFactory.class
 })
 public interface ICustomerService {
 
@@ -34,6 +34,23 @@ public interface ICustomerService {
     @RequestWrapper(localName = "findAll", targetNamespace = "http://service.caotinging/", className = "caotinging.service.FindAll")
     @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://service.caotinging/", className = "caotinging.service.FindAllResponse")
     public List<Customer> findAll();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "assigncustomerstodecidedzone", targetNamespace = "http://service.caotinging/", className = "caotinging.service.Assigncustomerstodecidedzone")
+    @ResponseWrapper(localName = "assigncustomerstodecidedzoneResponse", targetNamespace = "http://service.caotinging/", className = "caotinging.service.AssigncustomerstodecidedzoneResponse")
+    public Boolean assigncustomerstodecidedzone(
+        @WebParam(name = "arg0", targetNamespace = "")
+        List<Integer> arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
     /**
      * 

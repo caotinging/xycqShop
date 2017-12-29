@@ -46,10 +46,22 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	private IDecidedzoneService decidedzoneService;
 	@Autowired
 	private ICustomerService customerServiceProxy;
+	private List<Integer> customerIds;
 	
+	public void setCustomerIds(List<Integer> customerIds) {
+		this.customerIds = customerIds;
+	}
+
+	/**
+	 * 保存定区与联系人的联系信息
+	 * @return
+	 */
 	public String assigncustomerstodecidedzone() {
-		
-		return LIST;
+		Boolean isSuccess = customerServiceProxy.assigncustomerstodecidedzone(customerIds, getModel().getId());
+		if(!isSuccess) {
+			return ERROR;
+		}
+		return "tolist";
 	}
 	
 	/**
