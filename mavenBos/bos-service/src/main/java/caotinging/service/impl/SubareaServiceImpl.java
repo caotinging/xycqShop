@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,5 +57,11 @@ public class SubareaServiceImpl implements ISubareaService {
 			newRow.createCell(3).setCellValue(subarea.getAddresskey());
 			newRow.createCell(4).setCellValue(subarea.getRegion().getName());
 		}
+	}
+
+	@Override
+	public List<Subarea> getListBydecidedzoneId(DetachedCriteria criteria) {
+		List<Subarea> list = subareaDao.findByCriteria(criteria);
+		return list;
 	}
 }

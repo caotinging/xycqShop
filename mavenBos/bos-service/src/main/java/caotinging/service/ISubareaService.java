@@ -1,6 +1,9 @@
 package caotinging.service;
 
+import java.util.List;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.hibernate.criterion.DetachedCriteria;
 
 import caotinging.domain.Subarea;
 import caotinging.utils.PageBean;
@@ -25,5 +28,12 @@ public interface ISubareaService {
 	 * @return
 	 */
 	void exportAllToXls(HSSFWorkbook workbook);
+
+	/**
+	 * 根据定区id获取分区信息
+	 * @param criteria
+	 * @return
+	 */
+	List<Subarea> getListBydecidedzoneId(DetachedCriteria criteria);
 
 }

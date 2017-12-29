@@ -1,6 +1,7 @@
 package caotinging.web.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 
@@ -27,6 +28,21 @@ public class SubareaAction extends BaseAction<Subarea> {
 	@Autowired
 	private ISubareaService subareaService;
 	private Subarea subarea = super.getModel();
+	
+	private String decidedzoneId;
+	
+	/**
+	 * 通过指定的定区获取关联的分区的信息
+	 * @return
+	 */
+	public String getListBydecidedzoneId() {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Subarea.class);
+		criteria.add(Restrictions.eq("decidedzone.id", decidedzoneId));
+		
+		List<Subarea> list = subareaService.getListBydecidedzoneId(criteria);
+		java2JsonWrite(list, new String[]{"subareas", "decidedzone"});
+		return NONE;
+	}
 
 	/**
 	 * 生成xls文件提供下载
@@ -120,6 +136,14 @@ public class SubareaAction extends BaseAction<Subarea> {
 			subareaService.saveSubarea(subarea);
 		}
 		return "tolist";
+	}
+
+	public String getDecidedzoneId() {
+		return decidedzoneId;
+	}
+
+	public void setDecidedzoneId(String decidedzoneId) {
+		this.decidedzoneId = decidedzoneId;
 	}
 
 }

@@ -182,14 +182,14 @@
 		
 	});
 
-	function doDblClickRow(){
-		alert("双击表格数据...");
+	//为数据表单添加双击事件：双击显示所关联分区信息:index--行索引,row--行数据
+	function doDblClickRow(index, row){
 		$('#association_subarea').datagrid( {
 			fit : true,
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_subarea.json",
+			url : "subareaAction_getListBydecidedzoneId.action?decidedzoneId="+row.id,
 			columns : [ [{
 				field : 'id',
 				title : '分拣编号',
@@ -251,7 +251,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_customer.json",
+			url : "decidedzoneAction_getHasAssociationCustomer.action?id="+row.id,
 			columns : [[{
 				field : 'id',
 				title : '客户编号',
