@@ -12,6 +12,8 @@ import caotinging.domain.Staff;
 import caotinging.domain.Subarea;
 import caotinging.service.IDecidedzoneService;
 import caotinging.utils.BosCommonUtils;
+import caotinging.utils.crm.Customer;
+import caotinging.utils.crm.ICustomerService;
 import caotinging.web.action.base.BaseAction;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
@@ -42,6 +44,33 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 
 	@Autowired
 	private IDecidedzoneService decidedzoneService;
+	@Autowired
+	private ICustomerService customerServiceProxy;
+	
+	public String assigncustomerstodecidedzone() {
+		
+		return LIST;
+	}
+	
+	/**
+	 * 获取指定定区的所有客户信息
+	 * @return
+	 */
+	public String getHasAssociationCustomer() {
+		List<Customer> list = customerServiceProxy.getHasAssociationCustomer(getModel().getId());
+		java2JsonWrite(list, new String[]{});
+		return NONE;
+	}
+	
+	/**
+	 * 获取没有关联定区的所有客户信息
+	 * @return
+	 */
+	public String getNoAssociationCustomer() {
+		List<Customer> list = customerServiceProxy.getNoAssociationCustomer();
+		java2JsonWrite(list, new String[]{});
+		return NONE;
+	}
 	
 	/**
 	 * 获取decidedzone列表

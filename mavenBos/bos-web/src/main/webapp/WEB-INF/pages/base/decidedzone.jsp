@@ -34,7 +34,32 @@
 	}
 	
 	function doAssociations(){
-		$('#customerWindow').window('open');
+		//检测是否选中且只选中了一个定区
+		var row = $("#grid").datagrid('getSelections');
+		if(row.length != 1) {
+			$.messager.alert("系统提示","请选中一项定区进行操作！","warning");
+		}else {
+			$('#customerWindow').window('open');
+		
+			//加载前清空下拉框（前一次加载的option）
+			$("#noassociationSelect").empty();
+			//异步加载左边下拉框的数据
+			$.post("decidedzoneAction_getNoAssociationCustomer.action", function(list) {
+				for(var i = 0; i<list.length; i++) {
+					var customer = list[i];
+					$("#noassociationSelect").append("<option value='"+customer.id+"'>"+customer.name+"("+customer.telephone+")"+"</option>")
+				}
+			},'json');
+			
+			$("#associationSelect").empty();
+			//异步加载右边下拉框的数据
+			$.post("decidedzoneAction_getHasAssociationCustomer.action", {"id":row[0].id}, function(list) {
+				for(var i = 0; i<list.length; i++) {
+					var customer = list[i];
+					$("#associationSelect").append("<option value='"+customer.id+"'>"+customer.name+"("+customer.telephone+")"+"</option>")
+				}
+			},'json');
+		}
 	}
 	
 	//工具栏
@@ -336,7 +361,7 @@
 	<!-- 关联客户窗口 -->
 	<div class="easyui-window" title="关联客户窗口" id="customerWindow" collapsible="false" closed="true" minimizable="false" maximizable="false" style="top:20px;left:200px;width: 400px;height: 300px;">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form id="customerForm" action="${pageContext.request.contextPath }/decidedzone_assigncustomerstodecidedzone.action" method="post">
+			<form id="customerForm" action="${pageContext.request.contextPath }/decidedzoneAction_assigncustomerstodecidedzone.action" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="3">关联客户</td>
@@ -349,13 +374,37 @@
 						<td>
 							<input type="button" value="》》" id="toRight"><br/>
 							<input type="button" value="《《" id="toLeft">
+							<!-- 为左右移动按钮绑定事件 -->
+							<script type="text/javascript">
+								$(function(){
+									$("#toRight").click(function(){
+										$("#associationSelect").append($("#noassociationSelect option:selected"));
+									});
+									$("#toLeft").click(function(){
+										$("#noassociationSelect").append($("#associationSelect option:selected"));
+									});
+									
+									//为关联客户按钮绑定提交表单事件
+									$("#associationBtn").click(function(){
+										//提交表单之前将右边下拉框的所有option设置为选中
+										$("#associationSelect option").attr("selected","selected");
+										
+										//为隐藏域赋值，传递当前定区的id
+										var dId = $("#grid").datagrid('getSelected');
+										$("input[name='id']").val(dId.id);
+										
+										//提交表单
+										$("#customerForm").submit();
+									});
+								});
+							</script>
 						</td>
 						<td>
 							<select id="associationSelect" name="customerIds" multiple="multiple" size="10"></select>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3"><a id="associationBtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">关联客户</a> </td>
+						<td colspan="3"><a id="associationBtn" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'">关联客户</a> </td>
 					</tr>
 				</table>
 			</form>
