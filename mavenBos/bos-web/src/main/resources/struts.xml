@@ -54,6 +54,9 @@
 		<action name="regionAction_*" class="regionAction" method="{1}">
 		</action>
 		
+		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
+		</action>
+		
 		<action name="noticebillAction_*" class="noticebillAction" method="{1}">
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">page_qupai_noticebill_add</param>

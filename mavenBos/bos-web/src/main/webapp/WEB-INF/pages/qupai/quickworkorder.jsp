@@ -163,7 +163,14 @@
 			columns : columns,
 			onDblClickRow : doDblClickRow,
 			onAfterEdit : function(rowIndex, rowData, changes){
-				console.info(rowData);
+				//异步保存当前编辑的工作单
+				$.post("workordermanageAction_quickSave.action",rowData,
+					function(data){
+						if(data == '0'){
+							$.messager.alert("系统提示","操作失败","error");						
+						}
+					}
+				);	
 				editIndex = undefined;
 			}
 		});
