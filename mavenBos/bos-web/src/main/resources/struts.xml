@@ -59,6 +59,7 @@
 				<param name="actionName">page_qupai_noticebill_add</param>
 				<param name="namespace">/</param>
 			</result>
+			<result name="list" type="dispatcher">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
 		</action>
 		
 		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">

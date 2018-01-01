@@ -1,5 +1,7 @@
 package caotinging.web.action;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class NoticebillAction extends BaseAction<Noticebill> {
 	@Autowired
 	private INoticebillService noticeService;
 
+	public static final String SUCCESS = "success";
+	public static final String FAIL = "fail";
+	
 	/**
 	 * 保存新的业务通知单
 	 * 
@@ -30,6 +35,13 @@ public class NoticebillAction extends BaseAction<Noticebill> {
 		noticeService.saveNoticebill(getModel());
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			String error = ex.getMessage();
+			try {
+				BosCommonUtils.getResponseWriter().print(error);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return LIST;
 		}
 		return "tolist";
 	}

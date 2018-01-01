@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -89,6 +89,7 @@
 	</div>
 	<div region="center" style="overflow:auto;padding:5px;" border="false">
 		<form id="noticebillForm" action="${pageContext.request.contextPath }/noticebillAction_save.action" method="post">
+			<s:property value="#error"/>
 			<table class="table-edit" width="95%" align="center">
 				<tr class="title">
 					<td colspan="4">客户信息</td>
@@ -137,5 +138,6 @@
 			</table>
 		</form>
 	</div>
+	<s:debug></s:debug>
 </body>
 </html>
