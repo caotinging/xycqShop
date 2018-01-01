@@ -184,6 +184,10 @@
 
 	//为数据表单添加双击事件：双击显示所关联分区信息:index--行索引,row--行数据
 	function doDblClickRow(index, row){
+		//首先清空
+		//$('#association_subarea').datagrid('loadData', {total:0,rows:[]});
+		//$('#association_customer').datagrid('loadData', {total:0,rows:[]});
+	
 		$('#association_subarea').datagrid( {
 			fit : true,
 			border : true,

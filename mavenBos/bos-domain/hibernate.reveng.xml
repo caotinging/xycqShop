@@ -11,5 +11,25 @@
 	<table name="bc_staff" catalog="maven"
 		class="caotinging.domain.Staff">
 	</table>
-	<table name="bc_subarea" catalog="maven" class="caotinging.domain.Subarea"></table>
+	<table name="bc_subarea" catalog="maven"
+		class="caotinging.domain.Subarea">
+	</table>
+	<table name="qp_noticebill" catalog="maven"
+		class="caotinging.domain.Noticebill">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+	<table name="qp_workbill" catalog="maven"
+		class="captinging.domain.Workbill">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+<table name="qp_workordermanage" catalog="maven"
+	class="caotinging.domain.Workordermanage">
+	<primary-key>
+		<generator class="uuid"></generator>
+	</primary-key>
+</table>
 </hibernate-reverse-engineering>

@@ -19,7 +19,7 @@ import javax.xml.ws.ResponseWrapper;
  */
 @WebService(name = "ICustomerService", targetNamespace = "http://service.caotinging/")
 @XmlSeeAlso({
-   // ObjectFactory.class
+    //ObjectFactory.class
 })
 public interface ICustomerService {
 
@@ -37,6 +37,48 @@ public interface ICustomerService {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<caotinging.service.Customer>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getHasAssociationCustomer", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetHasAssociationCustomer")
+    @ResponseWrapper(localName = "getHasAssociationCustomerResponse", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetHasAssociationCustomerResponse")
+    public List<Customer> getHasAssociationCustomer(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns caotinging.service.Customer
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getCustomerByTel", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetCustomerByTel")
+    @ResponseWrapper(localName = "getCustomerByTelResponse", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetCustomerByTelResponse")
+    public Customer getCustomerByTel(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getDecidedzoneIdByAddress", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetDecidedzoneIdByAddress")
+    @ResponseWrapper(localName = "getDecidedzoneIdByAddressResponse", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetDecidedzoneIdByAddressResponse")
+    public String getDecidedzoneIdByAddress(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
      * @param arg1
      * @param arg0
      * @return
@@ -51,20 +93,6 @@ public interface ICustomerService {
         List<Integer> arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<caotinging.service.Customer>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getHasAssociationCustomer", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetHasAssociationCustomer")
-    @ResponseWrapper(localName = "getHasAssociationCustomerResponse", targetNamespace = "http://service.caotinging/", className = "caotinging.service.GetHasAssociationCustomerResponse")
-    public List<Customer> getHasAssociationCustomer(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
 
     /**
      * 

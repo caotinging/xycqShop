@@ -54,6 +54,13 @@
 		<action name="regionAction_*" class="regionAction" method="{1}">
 		</action>
 		
+		<action name="noticebillAction_*" class="noticebillAction" method="{1}">
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">page_qupai_noticebill_add</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
 		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">page_base_decidedzone</param>

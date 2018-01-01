@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import caotinging.domain.User;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
@@ -33,6 +34,14 @@ public class BosCommonUtils {
 		
 		json = JSONObject.fromObject(pageBean ,config).toString();
 		return json;
+	}
+	
+	/**
+	 * 获取当前登录的用户
+	 * @return
+	 */
+	public static User getLoginUser(){
+		return (User) getSessionValue("user");
 	}
 	
 	/**
