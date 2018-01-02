@@ -31,16 +31,16 @@
 		
 		<!-- 注入url拦截策略 -->
 		<property name="filterChainDefinitions">
+			<!-- /**表示任意子目录以及子孙目录 /*仅仅指子目录不包括子目录下的目录 -->
 			<value>
-				<!-- /**表示任意子目录以及子孙目录 /*仅仅指子目录不包括子目录下的目录 -->
 				/css/** = anon
 				/images/** = anon
 				/js/** = anon
 				/login.jsp* = anon
 				/validatecode.jsp* = anon
-				/userAction_login.* = anon
+				/userAction_login = anon
 				/page_base_staff.* = perms["staff-list"]
-				/** = authc
+				/* = authc
 			</value>
 		</property>
 	</bean>
