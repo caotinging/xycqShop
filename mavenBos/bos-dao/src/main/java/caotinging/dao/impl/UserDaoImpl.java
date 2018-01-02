@@ -28,4 +28,17 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 		return null;
 	}
 
+	@Override
+	public User getUserByUserName(String username) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
+		criteria.add(Restrictions.eq("username", username));
+		
+		List<User> list = findByCriteria(criteria);
+		
+		if(list != null && list.size() >0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
 }
