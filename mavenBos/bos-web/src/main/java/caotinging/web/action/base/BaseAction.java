@@ -76,7 +76,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	public void java2JsonWrite(Object obj, String[] excludeStrs) {
 		JsonConfig config = new JsonConfig();
 		config.setExcludes(excludeStrs);
-		String json = JSONObject.fromObject(obj).toString();
+		String json = JSONObject.fromObject(obj,config).toString();
 		BosCommonUtils.getResponse().setContentType("application/json;charset=utf-8");
 		try {
 			BosCommonUtils.getResponseWriter().print(json);

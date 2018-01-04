@@ -57,6 +57,13 @@
 		<action name="regionAction_*" class="regionAction" method="{1}">
 		</action>
 		
+		<action name="functionAction_*" class="functionAction" method="{1}">
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">page_admin_function</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
 		</action>
 		

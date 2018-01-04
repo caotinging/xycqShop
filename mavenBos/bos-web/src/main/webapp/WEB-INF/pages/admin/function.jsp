@@ -39,12 +39,16 @@
 					}
 				}           
 			],
-			url : '',
+			url : 'functionAction_pageQuery.action',
+			pagination : true,
+			rownumbers : true,
+			fit : true,
 			columns : [[
 			  {
 				  field : 'id',
 				  title : '编号',
-				  width : 200
+				  width : 200,
+				  checkbox : true
 			  },
 			  {
 				  field : 'name',
@@ -57,9 +61,16 @@
 				  width : 200
 			  },  
 			  {
-				  field : 'generateMenu',
+				  field : 'generatemenu',
 				  title : '是否生成菜单',
-				  width : 200
+				  width : 200,
+				 formatter : function(data, row, index) {
+						if (data == "1") {
+							return "生成菜单";
+						} else {
+							return "不生成菜单";
+						}
+					}
 			  },  
 			  {
 				  field : 'zindex',

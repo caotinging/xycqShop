@@ -17,23 +17,23 @@ import caotinging.utils.PageBean;
 
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
-	//运行时class对象
+	// 运行时class对象
 	private Class<T> entityClass;
-	
-	//利用构造方法反射出运行时class对象
+
+	// 利用构造方法反射出运行时class对象
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl() {
-		//this是运行时的类class对象，通过反射方法获取运行时类的泛型父类ParameterizedType
+		// this是运行时的类class对象，通过反射方法获取运行时类的泛型父类ParameterizedType
 		ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
 		entityClass = (Class<T>) type.getActualTypeArguments()[0];
 	}
-	
-	//注入sessionFactory
-	@Resource(name="sessionFactory")
-	public void setSf(SessionFactory sf){
+
+	// 注入sessionFactory
+	@Resource(name = "sessionFactory")
+	public void setSf(SessionFactory sf) {
 		super.setSessionFactory(sf);
 	}
-	
+
 	@Override
 	public void save(T obj) {
 		this.getHibernateTemplate().save(obj);
@@ -48,12 +48,12 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	public void delete(T obj) {
 		this.getHibernateTemplate().delete(obj);
 	}
-	
+
 	@Override
 	public void deleteById(Serializable id) {
 		T obj = findById(id);
-		if(obj==null) {
-			throw new RuntimeException("删除数据错误：不存在一个id="+id+"的数据对象");
+		if (obj == null) {
+			throw new RuntimeException("删除数据错误：不存在一个id=" + id + "的数据对象");
 		}
 		this.getHibernateTemplate().delete(obj);
 	}
@@ -71,8 +71,8 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() {
-		//获取运行类的简单类名作为查询的实体对象
-		List<T> list = (List<T>) this.getHibernateTemplate().find("from "+entityClass.getSimpleName());
+		// 获取运行类的简单类名作为查询的实体对象
+		List<T> list = (List<T>) this.getHibernateTemplate().find("from " + entityClass.getSimpleName());
 		return list;
 	}
 
@@ -84,11 +84,11 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 
 	@Override
 	public void executeUpdate(String queryName, Object... objects) {
-		//---query:update user set password=? where id=?----类似这样的语句
+		// ---query:update user set password=? where id=?----类似这样的语句
 		Query query = this.getSessionFactory().getCurrentSession().getNamedQuery(queryName);
 		int i = 0;
-		
-		//为query中的？参数赋值
+
+		// 为query中的？参数赋值
 		for (Object object : objects) {
 			query.setParameter(i++, object);
 		}
@@ -98,14 +98,15 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void queryPageBeanList(PageBean<T> pageBean) {
-		
+
 		int totalCount = getTotalCount(pageBean.getCriteria()).intValue();
-		
-		//修改结果集封装方式
+
+		// 修改结果集封装方式
 		pageBean.getCriteria().setResultTransformer(DetachedCriteria.ROOT_ENTITY);
-		int firstResult = (pageBean.getCurrentPage()-1)/pageBean.getPageCount();
-		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(pageBean.getCriteria(), firstResult, pageBean.getPageCount());
-		
+		int firstResult = (pageBean.getCurrentPage() - 1) * pageBean.getPageCount();
+		List<T> list = (List<T>) this.getHibernateTemplate().findByCriteria(pageBean.getCriteria(), firstResult,
+				pageBean.getPageCount());
+
 		pageBean.setRows(list);
 		pageBean.setTotal(totalCount);
 	}
@@ -113,11 +114,11 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Long getTotalCount(DetachedCriteria criteria) {
-		//设置count聚合函数
+		// 设置count聚合函数
 		criteria.setProjection(Projections.rowCount());
-		
+
 		List<Long> count = (List<Long>) this.getHibernateTemplate().findByCriteria(criteria);
-		//结束之前，把聚合函数限制去掉
+		// 结束之前，把聚合函数限制去掉
 		criteria.setProjection(null);
 		return count.get(0);
 	}
