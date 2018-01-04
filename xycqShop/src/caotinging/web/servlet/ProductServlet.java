@@ -105,6 +105,23 @@ public class ProductServlet extends BaseServlet {
 	 */
 	public void categoryList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductService service = new ProductService();
+		List<Category> categoryList = service.getCategoryList();
+		Gson gson = new Gson();
+		String categoryListJson = gson.toJson(categoryList);
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().write(categoryListJson);
+	}
+	
+	/**
+	 * 获取所有的商品的类别
+	 * 使用redis作为缓存
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void categoryList_bak(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductService service = new ProductService();
 		Jedis jedis = JedisPoolUtils.getJedis();
 		
 		String categoryListJson = jedis.get("categoryList");
