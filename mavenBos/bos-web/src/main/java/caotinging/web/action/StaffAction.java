@@ -2,6 +2,7 @@ package caotinging.web.action;
 
 import java.io.IOException;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,7 @@ public class StaffAction extends BaseAction<Staff> {
 	 * 对取派员进行逻辑删除操作
 	 * @return
 	 */
+	@RequiresPermissions("staff-delete")// shiro注解，这个方法需要用户具有staff-delete权限
 	public String deleteStaff(){
 		if(ids != null ){
 			try{

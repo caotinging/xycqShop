@@ -1,6 +1,8 @@
 package caotinging.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -18,6 +20,7 @@ public class User implements java.io.Serializable {
 	private String station;
 	private String telephone;
 	private String remark;
+	private Set roles = new HashSet(0);
 
 	// Constructors
 	/** default constructor */
@@ -114,6 +117,14 @@ public class User implements java.io.Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public Set getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set roles) {
+		this.roles = roles;
 	}
 
 }

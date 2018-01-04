@@ -54,6 +54,20 @@
 	<!-- 配置realm -->
 	<bean id="realm" class="caotinging.realm.MyRealm" />
 	
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 开启shiro注解支持 -->
+	<bean id="defaultAdvisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+		<!-- 强制使用cglib方式创建代理对象（cglib继承实现、jdk代理通过实现相同接口实现代理） -->
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	
+	<!-- 配置shiro提供的切面类，用于创建代理对象
+			切面=切入点+通知
+			切入点：需要进行代理的类，通知：代理需要进行的操作
+	 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor" />
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	
 	<!-- 配置连接池 -->
 	<!-- user是liunx的关键字，所以要加前缀jdbc. -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

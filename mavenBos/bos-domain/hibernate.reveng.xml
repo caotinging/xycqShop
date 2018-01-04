@@ -26,10 +26,15 @@
 			<generator class="uuid"></generator>
 		</primary-key>
 	</table>
-<table name="qp_workordermanage" catalog="maven"
-	class="caotinging.domain.Workordermanage">
-	<primary-key>
-		<generator class="uuid"></generator>
-	</primary-key>
-</table>
+	<table name="qp_workordermanage" catalog="maven"
+		class="caotinging.domain.Workordermanage">
+		<primary-key>
+			<generator class="uuid"></generator>
+		</primary-key>
+	</table>
+	<table name="auth_function" catalog="maven"
+		class="caotinging.domain.Function">
+		<column name="pid" property="parentFunction"></column>
+	</table>
+	<table name="auth_role" catalog="maven" class="caotinging.domain.Role"></table>
 </hibernate-reverse-engineering>

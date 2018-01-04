@@ -37,12 +37,15 @@
 		
 		<!-- 配置全局结果值处理 -->
 		<global-results>
-			<result name="error" type="redirect">/error.jsp</result>
+			<result name="error" type="dispatcher">/error.jsp</result>
 			<result name="tologin" type="redirect">/login.jsp</result>
+			<result name="unauthorized" type="dispatcher">/unauthorized.jsp</result>
 		</global-results>
 		
 		<!-- 配置全局异常处理 -->
 		<global-exception-mappings>
+			<!-- 权限不足shiro框架抛出的异常 -->
+			<exception-mapping result="unauthorized" exception="org.apache.shiro.authz.UnauthorizedException"></exception-mapping>
 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 		
