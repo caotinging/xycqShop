@@ -47,23 +47,36 @@
 					}
 				}           
 			],
-			url : '',
+			url : '${pageContext.request.contextPath}/roleAction_pageQuery.action',
+			pagination : true,
+			rownumbers : true,
+			fit : true,
 			columns : [[
 				{
 					field : 'id',
-					title : '编号',
-					width : 200
+					width : 200,
+					checkbox : true
 				},
 				{
-					field : 'name',
-					title : '名称',
+					field : 'code',
+					title : '关键字',
 					width : 200
 				}, 
 				{
 					field : 'description',
 					title : '描述',
 					width : 200
-				} 
+				},
+				{
+					field : 'name',
+					title : '名称',
+					width : 200
+				},
+				{
+					field : 'functionsName',
+					title : '权限',
+					width : 200
+				}
 			]]
 		});
 	});

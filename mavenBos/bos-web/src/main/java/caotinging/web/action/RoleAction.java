@@ -11,10 +11,20 @@ import caotinging.web.action.base.BaseAction;
 @Controller
 @Scope("prototype")
 public class RoleAction extends BaseAction<Role> {
-
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IRoleService roleService;
 	private String functionIds;
+	
+	/**
+	 * 获取角色列表数据
+	 * @return
+	 */
+	public String pageQuery() {
+		roleService.pageQuery(pageBean);
+		java2JsonWrite(pageBean, new String[]{"currentPage","pageCount","criteria","functions","users"});
+		return NONE;
+	}
 	
 	/**
 	 * 保存一个新的role对象

@@ -1,5 +1,7 @@
 package caotinging.service.impl;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import caotinging.dao.IRoleDao;
 import caotinging.domain.Function;
 import caotinging.domain.Role;
 import caotinging.service.IRoleService;
+import caotinging.utils.PageBean;
 
 @Service
 @Transactional
@@ -31,5 +34,10 @@ public class RoleServiceImpl implements IRoleService {
 		}
 		
 		roleDao.save(model);
+	}
+
+	@Override
+	public void pageQuery(PageBean<Role> pageBean) {
+		roleDao.queryPageBeanList(pageBean);
 	}
 }

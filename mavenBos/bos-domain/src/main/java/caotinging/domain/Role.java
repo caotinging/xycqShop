@@ -15,8 +15,21 @@ public class Role implements java.io.Serializable {
 	private String name;
 	private String code;
 	private String description;
-	private Set functions = new HashSet(0);
+	private Set<Function> functions = new HashSet(0);
 	private Set users = new HashSet(0);
+	
+	public String getFunctionsName() {
+		String fNames = "";
+		int i = 1;
+		for(Function f : functions) {
+			fNames += f.getName() + " ";
+			if(i >= 5) {
+				fNames += "...";
+				break;
+			}
+		}
+		return fNames;
+	}
 
 	// Constructors
 
