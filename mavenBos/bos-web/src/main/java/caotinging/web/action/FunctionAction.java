@@ -44,8 +44,8 @@ public class FunctionAction extends BaseAction<Function> {
 	 * @return
 	 */
 	public String getParent() {
-		List<Function> list = functionService.findAll();
-		java2JsonWrite(list, new String[]{"parentFunction","code","description","page","generatemenu","zindex","children","roles"});
+		List<Function> list = functionService.findAllAsTree();
+		java2JsonWrite(list, new String[]{"parentFunction","code","description","page","generatemenu","zindex","roles","name"});
 		return NONE;
 	}
 	

@@ -46,7 +46,6 @@
 		<global-exception-mappings>
 			<!-- 权限不足shiro框架抛出的异常 -->
 			<exception-mapping result="unauthorized" exception="org.apache.shiro.authz.UnauthorizedException"></exception-mapping>
-			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 		
 		<action name="userAction_*" class="userAction" method="{1}">

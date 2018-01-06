@@ -11,7 +11,7 @@ public interface IFunctionService {
 	 * 查询所有权限数据
 	 * @return
 	 */
-	List<Function> findAll();
+	List<Function> findAllAsTree();
 
 	/**
 	 * 保存一个新的权限数据

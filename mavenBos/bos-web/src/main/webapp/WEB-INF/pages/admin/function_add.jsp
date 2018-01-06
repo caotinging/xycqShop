@@ -85,7 +85,7 @@
 					<tr>
 						<td>父功能点</td>
 						<td>
-							<input name="parentFunction.id" class="easyui-combobox" data-options="valueField:'id',textField:'name',url:'functionAction_getParent.action'"/>
+							<select id="cc" name="parentFunction.id" class="easyui-combotree" style="width:200px;" data-options="url:'functionAction_getParent.action'"></select>
 						</td>
 					</tr>
 					<tr>

@@ -22,6 +22,11 @@ public class Function implements java.io.Serializable {
 	private Set children = new HashSet(0);
 	private Set roles = new HashSet(0);
 
+	//树形结构下拉框需要的属性
+	public String getText(){
+		return name;
+	}
+	
 	// Constructors
 
 	/** default constructor */

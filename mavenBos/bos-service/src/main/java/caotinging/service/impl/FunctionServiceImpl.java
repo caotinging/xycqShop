@@ -20,8 +20,8 @@ public class FunctionServiceImpl implements IFunctionService {
 	private IFunctionDao functionDao;
 
 	@Override
-	public List<Function> findAll() {
-		List<Function> list = functionDao.findAll();
+	public List<Function> findAllAsTree() {
+		List<Function> list = functionDao.findAllAsTree();
 		return list;
 	}
 
