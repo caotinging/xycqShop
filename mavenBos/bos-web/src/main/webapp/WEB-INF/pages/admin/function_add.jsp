@@ -85,7 +85,7 @@
 					<tr>
 						<td>父功能点</td>
 						<td>
-							<select id="cc" name="parentFunction.id" class="easyui-combotree" style="width:200px;" data-options="url:'functionAction_getParent.action'"></select>
+							<select id="cc" name="parentFunction.id" class="easyui-combotree" style="width:200px;" data-options="url:'functionAction_findAllAsTree.action'"></select>
 						</td>
 					</tr>
 					<tr>

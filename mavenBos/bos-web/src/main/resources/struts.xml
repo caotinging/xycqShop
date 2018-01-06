@@ -66,6 +66,13 @@
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
 		</action>
 		
+		<action name="roleAction_*" class="roleAction" method="{1}">
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">page_admin_role</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
 		<action name="noticebillAction_*" class="noticebillAction" method="{1}">
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">page_qupai_noticebill_add</param>

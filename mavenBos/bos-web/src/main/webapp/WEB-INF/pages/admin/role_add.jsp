@@ -51,7 +51,7 @@
 		};
 		
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
+			url : '${pageContext.request.contextPath}/functionAction_findAllAsTree.action',
 			type : 'POST',
 			dataType : 'text',
 			success : function(data) {
@@ -67,7 +67,24 @@
 		
 		// 点击保存
 		$('#save').click(function(){
-			location.href='${pageContext.request.contextPath}/page_admin_privilege.action';
+			var res = $("#roleForm").form('validate');
+			if(res) {
+				//获取选中的zTree节点		
+				var treeObj = $.fn.zTree.getZTreeObj("functionTree");
+				var nodes = treeObj.getCheckedNodes(true);
+				
+				var array = new Array();
+				for(var i=0; i<nodes.length; i++) {
+					console.info(nodes[i]);
+					array.push(nodes[i].id);
+				}
+				
+				var funs = array.join(",");
+				//将拼接好的权限数据放置到隐藏域
+				$("#hin-function").val(funs);
+				alert(funs);
+				$("#roleForm").submit();
+			}
 		});
 	});
 </script>	
@@ -79,15 +96,17 @@
 			</div>
 		</div>
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form id="roleForm" method="post">
+			<form id="roleForm" method="post" action="${pageContext.request.contextPath}/roleAction_save.action">
+				<!-- 选中的权限的集合提交的隐藏域 -->
+				<input type="hidden" name="functionIds" id="hin-function" />
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">角色信息</td>
 					</tr>
 					<tr>
-						<td width="200">编号</td>
+						<td width="200">关键字</td>
 						<td>
-							<input type="text" name="id" class="easyui-validatebox" data-options="required:true" />						
+							<input type="text" name="code" class="easyui-validatebox" data-options="required:true" />						
 						</td>
 					</tr>
 					<tr>
@@ -103,7 +122,7 @@
 					<tr>
 						<td>授权</td>
 						<td>
-							<ul id="functionTree" class="ztree"></ul>
+							<ul id="functionTree" class="ztree" ></ul>
 						</td>
 					</tr>
 					</table>

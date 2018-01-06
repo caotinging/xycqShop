@@ -43,9 +43,9 @@ public class FunctionAction extends BaseAction<Function> {
 	 * 获取所有父功能点
 	 * @return
 	 */
-	public String getParent() {
+	public String findAllAsTree() {
 		List<Function> list = functionService.findAllAsTree();
-		java2JsonWrite(list, new String[]{"parentFunction","code","description","page","generatemenu","zindex","roles","name"});
+		java2JsonWrite(list, new String[]{"parentFunction","code","description","page","generatemenu","zindex","roles"});
 		return NONE;
 	}
 	
