@@ -25,4 +25,17 @@ public interface IFunctionService {
 	 */
 	void pageQuery(PageBean<Function> pageBean);
 
+	/**
+	 * 获取所有权限数据
+	 * @return
+	 */
+	List<Function> findAllMenu();
+
+	/**
+	 * 获取当前用户对应的显示菜单
+	 * @param id
+	 * @return
+	 */
+	List<Function> findMenuByUserId(String id);
+
 }

@@ -82,7 +82,6 @@
 				var funs = array.join(",");
 				//将拼接好的权限数据放置到隐藏域
 				$("#hin-function").val(funs);
-				alert(funs);
 				$("#roleForm").submit();
 			}
 		});

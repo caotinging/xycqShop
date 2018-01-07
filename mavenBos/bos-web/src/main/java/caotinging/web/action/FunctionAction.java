@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import caotinging.domain.Function;
+import caotinging.domain.User;
 import caotinging.service.IFunctionService;
+import caotinging.utils.BosCommonUtils;
 import caotinging.web.action.base.BaseAction;
 
 @Controller
@@ -17,6 +19,25 @@ public class FunctionAction extends BaseAction<Function> {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IFunctionService functionService;
+	
+	/**
+	 * 根据登录用户动态获取显示菜单
+	 * @return
+	 */
+	public String findMenu() {
+		//判断当前用户是不是admin
+		User user = BosCommonUtils.getLoginUser();
+		List<Function> list = null;
+		if(user.getUsername().equals("admin")){
+			//获取所有菜单
+			list = functionService.findAllMenu();
+		}else{
+			//从数据库获取当前登录用户权限对应的菜单显示
+			list = functionService.findMenuByUserId(user.getId());
+		}
+		java2JsonWrite(list, new String[]{"parentFunction","description","generatemenu","zindex","roles","children"});
+		return NONE;
+	}
 	
 	/**
 	 * 权限分页查询

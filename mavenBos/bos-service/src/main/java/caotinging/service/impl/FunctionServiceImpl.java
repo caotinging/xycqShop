@@ -40,4 +40,14 @@ public class FunctionServiceImpl implements IFunctionService {
 		functionDao.queryPageBeanList(pageBean);
 	}
 
+	@Override
+	public List<Function> findAllMenu() {
+		return functionDao.findAllMenu();
+	}
+
+	@Override
+	public List<Function> findMenuByUserId(String id) {
+		return functionDao.findMenuByUserId(id);
+	}
+
 }
