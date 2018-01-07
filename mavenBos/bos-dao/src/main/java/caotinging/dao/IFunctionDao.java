@@ -13,4 +13,11 @@ public interface IFunctionDao extends IBaseDao<Function> {
 	 */
 	List<Function> findAllAsTree();
 
+	/**
+	 * 通过用户id获取用户的所有权限
+	 * @param id
+	 * @return
+	 */
+	List<Function> findFunctionsByUserId(String id);
+
 }
