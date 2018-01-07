@@ -1,5 +1,7 @@
 package caotinging.web.action;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,16 @@ public class RoleAction extends BaseAction<Role> {
 	@Autowired
 	private IRoleService roleService;
 	private String functionIds;
+	
+	/**
+	 * 获取所有角色信息
+	 * @return
+	 */
+	public String findAllRole() {
+		List<Role> list = roleService.findAll();
+		java2JsonWrite(list, new String[]{"functions","users","description","functionsName"});
+		return NONE;
+	}
 	
 	/**
 	 * 获取角色列表数据

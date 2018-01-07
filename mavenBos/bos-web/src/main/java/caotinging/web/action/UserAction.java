@@ -30,7 +30,32 @@ public class UserAction extends BaseAction<User> {
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
+	
+	private String[] rolesId;
 
+	/**
+	 * 用户列表查询
+	 * @return
+	 */
+	public String pageQuery() {
+		try{
+		userService.pageQuery(pageBean);
+		java2JsonWrite(pageBean, new String[]{"currentPage","pageCount","criteria","roles","birthday"});
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return NONE;
+	}
+	
+	/**
+	 * 新增用户
+	 * @return
+	 */
+	public String addUser() {
+		userService.addUser(getModel(), rolesId);
+		return "tolist";
+	}
+	
 	/**
 	 * 用户修改密码
 	 * 
@@ -161,6 +186,14 @@ public class UserAction extends BaseAction<User> {
 
 	public String getCheckCode() {
 		return checkCode;
+	}
+
+	public String[] getRolesId() {
+		return rolesId;
+	}
+
+	public void setRolesId(String[] rolesId) {
+		this.rolesId = rolesId;
 	}
 
 }

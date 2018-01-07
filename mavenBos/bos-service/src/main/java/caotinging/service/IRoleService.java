@@ -15,4 +15,10 @@ public interface IRoleService {
 	 */
 	void pageQuery(PageBean<Role> pageBean);
 
+	/**
+	 * 获取所有角色信息
+	 * @return
+	 */
+	List<Role> findAll();
+
 }

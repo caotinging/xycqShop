@@ -1,5 +1,6 @@
 package caotinging.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,8 +21,23 @@ public class User implements java.io.Serializable {
 	private String station;
 	private String telephone;
 	private String remark;
-	private Set roles = new HashSet(0);
+	private Set<Role> roles = new HashSet(0);
 
+	public String getRolesName() {
+		String rolesName = "";
+		for (Role role : roles) {
+			rolesName += role.getName();
+		}
+		return rolesName;
+	}
+	
+	public String getStrbirthday() {
+		if(birthday != null)
+			return new SimpleDateFormat("yyyy-MM-dd").format(birthday);
+		else
+			return "";
+	}
+	
 	// Constructors
 	/** default constructor */
 	public User() {

@@ -1,6 +1,7 @@
 package caotinging.service;
 
 import caotinging.domain.User;
+import caotinging.utils.PageBean;
 
 public interface IUserService {
 
@@ -17,6 +18,19 @@ public interface IUserService {
 	 * @param newPassword
 	 */
 	void modifyPassword(User loginUser, String newPassword);
+
+	/**
+	 * 新增一个用户
+	 * @param model
+	 * @param rolesId
+	 */
+	void addUser(User model, String[] rolesId);
+
+	/**
+	 * 获取用户列表
+	 * @param pageBean
+	 */
+	void pageQuery(PageBean<User> pageBean);
 
 	
 }

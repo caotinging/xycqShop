@@ -51,6 +51,10 @@
 		<action name="userAction_*" class="userAction" method="{1}">
 			<result name="login" type="dispatcher">/login.jsp</result>
 			<result name="home" type="dispatcher">/index.jsp</result>
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">page_admin_userlist</param>
+				<param name="namespace">/</param>
+			</result>
 		</action>
 		
 		<action name="regionAction_*" class="regionAction" method="{1}">
