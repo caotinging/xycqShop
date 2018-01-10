@@ -15,6 +15,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/ext/jquery.portal.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/easyui/ext/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/highcharts/exporting.js"></script>
 <script src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -41,6 +43,10 @@
 	
 	function doImport(){
 		alert("导入");
+	}
+	
+	function doShow() {
+		$('#showHighChartsWindow').window("open");
 	}
 	
 	//工具栏
@@ -74,6 +80,11 @@
 		text : '导出',
 		iconCls : 'icon-undo',
 		handler : doExport
+	},{
+		id : 'button-show',
+		text : '展示区域分区分布图',
+		iconCls : 'icon-search',
+		handler : doShow
 	}];
 	// 定义列
 	var columns = [ [ {
@@ -158,6 +169,16 @@
 	        shadow: true,
 	        closed: true,
 	        height: 400,
+	        resizable:false
+	    });
+	    
+	    //显示分布图
+		$('#showHighChartsWindow').window({
+	        width: 800,
+	        modal: true,
+	        shadow: true,
+	        closed: true,
+	        height: 500,
 	        resizable:false
 	    });
 		
@@ -274,6 +295,50 @@
 			</form>
 		</div>
 	</div>
+	
+	<!-- 显示分布图 -->
+	<div class="easyui-window" title="区域分区分布图" id="showHighChartsWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+		<div id="highcharts-div"></div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$.post('subareaAction_getHighchartsData.action',function(list){
+				$('#highcharts-div').highcharts({
+					chart : {
+						plotBackgroundColor : null,
+						plotBorderWidth : null,
+						plotShadow : false
+					},
+					title : {
+						text : '区域分区分布图'
+					},
+					tooltip : {
+						headerFormat : '{series.name}<br>',
+						pointFormat : '{point.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					plotOptions : {
+						pie : {
+							allowPointSelect : true,
+							cursor : 'pointer',
+							dataLabels : {
+								enabled : true,
+								format : '<b>{point.name}</b>: {point.percentage:.1f} %',
+								style : {
+									color : (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
+							}
+						}
+					},
+					series : [ {
+						type : 'pie',
+						name : '浏览器访问量占比',
+						data : list
+					} ]
+				});
+			},'json');
+		});
+	</script>
+	
 	<!-- 查询分区 -->
 	<div class="easyui-window" title="查询分区窗口" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="overflow:auto;padding:5px;" border="false">

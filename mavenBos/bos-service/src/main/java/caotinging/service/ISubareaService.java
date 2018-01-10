@@ -36,4 +36,10 @@ public interface ISubareaService {
 	 */
 	List<Subarea> getListBydecidedzoneId(DetachedCriteria criteria);
 
+	/**
+	 * 获取区域分区分布图
+	 * @return
+	 */
+	List<Object> getHighchartsData();
+
 }

@@ -13,4 +13,10 @@ public interface ISubareaDao extends IBaseDao<Subarea> {
 	 */
 	List<Subarea> getNDidSubarea();
 
+	/**
+	 * 获取区域分区需要的数据
+	 * @return
+	 */
+	List<Object> getHighchartsData();
+
 }

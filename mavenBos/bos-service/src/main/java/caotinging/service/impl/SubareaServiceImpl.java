@@ -64,4 +64,9 @@ public class SubareaServiceImpl implements ISubareaService {
 		List<Subarea> list = subareaDao.findByCriteria(criteria);
 		return list;
 	}
+
+	@Override
+	public List<Object> getHighchartsData() {
+		return subareaDao.getHighchartsData();
+	}
 }

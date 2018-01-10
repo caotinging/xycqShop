@@ -32,6 +32,16 @@ public class SubareaAction extends BaseAction<Subarea> {
 	private String decidedzoneId;
 	
 	/**
+	 * 获取区域分区分布图的数据
+	 * @return
+	 */
+	public String getHighchartsData() {
+		List<Object> list = subareaService.getHighchartsData();
+		java2JsonWrite(list, new String[]{});
+		return NONE;
+	}
+	
+	/**
 	 * 通过指定的定区获取关联的分区的信息
 	 * @return
 	 */

@@ -21,4 +21,14 @@ public class SubareaDaoImpl extends BaseDaoImpl<Subarea> implements ISubareaDao 
 		return (List<Subarea>) list;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> getHighchartsData() {
+		String hql = "select r.province,count(*) from Subarea s left join s.region r group by r.province";
+		List<?> list = this.getHibernateTemplate().find(hql);
+		if(list == null || list.size() == 0)
+			return null;
+		return (List<Object>) list;
+	}
+
 }
