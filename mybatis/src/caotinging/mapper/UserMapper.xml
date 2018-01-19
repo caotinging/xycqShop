@@ -2,7 +2,8 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user">
+<!-- 通过命名空间完成与接口的绑定 -->
+<mapper namespace="caotinging.mapper.UserMapper">
 	<!-- 更次年用户信息 -->
 	<update id="updateUserAll" parameterType="caotinging.pojo.User">
 		update user set username=#{username},birthday=#{birthday},address=#{address},sex=#{sex} where id=#{id}

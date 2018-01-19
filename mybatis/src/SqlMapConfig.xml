@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- 引入mapper映射文件 -->
 	<mappers>
-		<mapper resource="caotinging/mapper/User.xml"/>
+		<!-- <mapper resource="caotinging/mapper/User.xml"/> -->
+		<package name="caotinging.mapper"/>
 	</mappers>
 </configuration>
