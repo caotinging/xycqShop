@@ -35,7 +35,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findUserByQueryVo" parameterType="Queryvo" resultType="User">
 		<!-- #{}中的名称是参数类型的属性名字不是参数本身 -->
-		select * from user where username like '%${user.username}%'
+		select * from user where username like "%"#{user.username}"%"
+	</select>
+	
+	<select id="getUserCount" resultType="Integer">
+		select count(*) from user
 	</select>
 	
 	<!-- 根据用户id删除用户 -->

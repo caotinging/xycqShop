@@ -25,6 +25,23 @@ public class MybatisMapperTest {
 	}
 	
 	@Test
+	/**
+	 * 查询用户表的所有数据的条数
+	 */
+	public void mapperTest3(){
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		Integer count = mapper.getUserCount();
+		System.out.println(count);
+		
+		session.close();
+	}
+	
+	/**
+	 * 通过QueryVo封装的user对象进行用户名模糊查询
+	 */
+	@Test
 	public void mapperTest2() {
 		Queryvo vo = new Queryvo();
 		User user = new User();

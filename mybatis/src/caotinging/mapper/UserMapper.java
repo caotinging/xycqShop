@@ -15,6 +15,12 @@ public interface UserMapper {
 	 */
 	
 	/**
+	 * 查询用户数量
+	 * @return
+	 */
+	public Integer getUserCount();
+	
+	/**
 	 * 通过pojo封装pojo对象完成映射
 	 * @param vo
 	 * @return
