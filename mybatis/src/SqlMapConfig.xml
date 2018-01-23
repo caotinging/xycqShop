@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 读取jdbc.properties文件 -->
 	<properties resource="jdbc.properties"></properties>
 
+	<typeAliases>
+		<package name="caotinging.pojo"/>
+	</typeAliases>
+	
 	<!-- 配置mysql环境 -->
 	<environments default="development" >
 		<environment id="development" >
@@ -26,4 +30,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- <mapper resource="caotinging/mapper/User.xml"/> -->
 		<package name="caotinging.mapper"/>
 	</mappers>
+	
 </configuration>

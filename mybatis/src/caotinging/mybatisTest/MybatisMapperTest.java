@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import caotinging.mapper.UserMapper;
+import caotinging.pojo.Queryvo;
 import caotinging.pojo.User;
 
 public class MybatisMapperTest {
@@ -21,6 +22,22 @@ public class MybatisMapperTest {
 	public void init() throws Exception {
 		InputStream stream = Resources.getResourceAsStream("SqlMapConfig.xml");
 		factory = new SqlSessionFactoryBuilder().build(stream);
+	}
+	
+	@Test
+	public void mapperTest2() {
+		Queryvo vo = new Queryvo();
+		User user = new User();
+		user.setUsername("张");
+		vo.setUser(user);
+		
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		List<User> list = mapper.findUserByQueryVo(vo);
+		for (User user2 : list) {
+			System.out.println(user2.getUsername());
+		}
 	}
 	
 	/**
