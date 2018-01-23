@@ -10,7 +10,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import caotinging.mapper.OrderMapper;
 import caotinging.mapper.UserMapper;
+import caotinging.pojo.Order;
 import caotinging.pojo.Queryvo;
 import caotinging.pojo.User;
 
@@ -22,6 +24,21 @@ public class MybatisMapperTest {
 	public void init() throws Exception {
 		InputStream stream = Resources.getResourceAsStream("SqlMapConfig.xml");
 		factory = new SqlSessionFactoryBuilder().build(stream);
+	}
+	
+	/**
+	 * 查询全部的订单信息
+	 */
+	@Test
+	public void mapperTest4() {
+		SqlSession session = factory.openSession();
+		OrderMapper mapper = session.getMapper(OrderMapper.class);
+		
+		List<Order> list = mapper.findAllOrder();
+		for (Order order : list) {
+			System.out.println(order);
+		}
+		
 	}
 	
 	@Test
