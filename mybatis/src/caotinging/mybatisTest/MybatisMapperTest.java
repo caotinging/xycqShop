@@ -27,6 +27,41 @@ public class MybatisMapperTest {
 	}
 	
 	/**
+	 * 测试根据用户名和性别模糊查询的优化方法
+	 */
+	@Test
+	public void mapperTest6() {
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		User user = new User();
+		user.setUsername("张");
+		
+		List<User> list = mapper.findUserByNameAndSex(user);
+		for (User user2 : list) {
+			System.out.println(user2);
+		}
+	}
+	
+	/**
+	 * 测试根据用户名和性别查询用户
+	 */
+	@Test
+	public void mapperTest5() {
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		User user = new User();
+		user.setUsername("张");
+		user.setSex("1");
+		
+		List<User> list = mapper.getUserbyNameAndSex(user);
+		for (User user2 : list) {
+			System.out.println(user2);
+		}
+	}
+	
+	/**
 	 * 查询全部的订单信息
 	 */
 	@Test

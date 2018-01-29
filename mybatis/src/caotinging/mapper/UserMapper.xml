@@ -33,6 +33,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 -->
 	</select>
 	
+	<!-- 根据用户名和性别选择用户 -->
+	<select id="getUserbyNameAndSex" parameterType="User" resultType="User">
+		select * from user where username like "%"#{username}"%" and sex=#{sex}
+	</select>
+	<!-- 根据用户名和性别模糊查询用户功能优化 -->
+	<!-- <select id="findUserByNameAndSex" parameterType="User" resultType="User">
+		select * from user where 1=1 
+		<if test="username != null and username != ''">
+			and username like "%"#{username}"%" 
+		</if>
+		<if test="sex != null and sex != ''">
+			and sex=#{sex}
+		</if>
+	</select>
+ 	-->	
+ 	<!-- 声明sql片段实现同一片段复用 -->
+ 	<sql id="selectUser">
+ 		select * from user 
+ 	</sql>
+	 <select id="findUserByNameAndSex" parameterType="User" resultType="User">
+		<include refid="selectUser"></include>
+		<!-- where标签可以代替where 1=1 处理多if标签第一个多余的and的情况 -->
+		<where>
+			<if test="username != null and username != ''">
+				and username like "%"#{username}"%"
+			</if>
+			<if test="sex != null and sex != ''">
+				and sex=#{sex}
+			</if>
+		</where>
+	</select>
+	
 	<select id="findUserByQueryVo" parameterType="Queryvo" resultType="User">
 		<!-- #{}中的名称是参数类型的属性名字不是参数本身 -->
 		select * from user where username like "%"#{user.username}"%"

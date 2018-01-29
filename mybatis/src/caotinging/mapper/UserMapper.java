@@ -15,6 +15,19 @@ public interface UserMapper {
 	 */
 	
 	/**
+	 * 根据用户名和性别模糊查询用户优化
+	 * @param user
+	 * @return
+	 */
+	public List<User> findUserByNameAndSex(User user);
+	
+	/**
+	 * 根据姓名和性别查询用户
+	 * @return
+	 */
+	public List<User> getUserbyNameAndSex(User user);
+	
+	/**
 	 * 查询用户数量
 	 * @return
 	 */
