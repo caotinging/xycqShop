@@ -65,6 +65,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	
+	<!-- 根据多个id查询用户 -->
+	<select id="findUsersByIds" parameterType="Queryvo" resultType="User">
+		<!-- 使用foreach标签获取list参数中的值 -->
+		<include refid="selectUser"></include>
+		<where>
+		<!-- collection表示要遍历的集合:
+				collection中的名称是有学问的，ids是因为传递的是Queryvo对象中封装的list类型的属性为ids
+				直接传递Integer数组，名称应该为array，传递list<Integer>值应该为list
+			item:遍历的每一项的名称
+			open：遍历前sql片段
+			close：遍历后的sql片段
+			separator：遍历的元素之间使用的分隔符
+		 -->
+			<foreach collection="ids" open=" id in(" close=")" separator="," item="item">
+				#{item}
+			</foreach>
+		</where>
+	</select>
+	
 	<select id="findUserByQueryVo" parameterType="Queryvo" resultType="User">
 		<!-- #{}中的名称是参数类型的属性名字不是参数本身 -->
 		select * from user where username like "%"#{user.username}"%"

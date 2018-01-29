@@ -1,6 +1,7 @@
 package caotinging.mybatisTest;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -24,6 +25,28 @@ public class MybatisMapperTest {
 	public void init() throws Exception {
 		InputStream stream = Resources.getResourceAsStream("SqlMapConfig.xml");
 		factory = new SqlSessionFactoryBuilder().build(stream);
+	}
+	
+	/**
+	 * 根据多个id查询用户
+	 */
+	@Test
+	public void mapperTest7() {
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		Queryvo vo = new Queryvo();
+		List<Integer> ids = new ArrayList<Integer>();
+		ids.add(1);
+		ids.add(10);
+		ids.add(3);
+		vo.setIds(ids);
+		
+		List<User> list = mapper.findUsersByIds(vo);
+		for (User user : list) {
+			System.out.println(user);
+		}
+		session.close();
 	}
 	
 	/**

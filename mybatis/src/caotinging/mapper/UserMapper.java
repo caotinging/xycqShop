@@ -15,6 +15,12 @@ public interface UserMapper {
 	 */
 	
 	/**
+	 * 根据多个id查询用户
+	 * @param ids
+	 */
+	public List<User> findUsersByIds(Queryvo vo);
+	
+	/**
 	 * 根据用户名和性别模糊查询用户优化
 	 * @param user
 	 * @return
