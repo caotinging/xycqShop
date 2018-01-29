@@ -2,6 +2,7 @@ package caotinging.mapper;
 
 import java.util.List;
 
+import caotinging.pojo.OrderUser;
 import caotinging.pojo.Queryvo;
 import caotinging.pojo.User;
 
@@ -13,6 +14,12 @@ public interface UserMapper {
 	 * 3、Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同
 	 * 4、Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同
 	 */
+	
+	/**
+	 * 查询订单以及相应的用户信息
+	 * @return
+	 */
+	public List<OrderUser> findOrderUser();
 	
 	/**
 	 * 根据多个id查询用户

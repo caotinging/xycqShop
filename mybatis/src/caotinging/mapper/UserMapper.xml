@@ -33,6 +33,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 -->
 	</select>
 	
+	<!-- 查询订单对应的下单用户信息 -->
+	<select id="findOrderUser" resultType="OrderUser">
+		select
+			o.id, 
+			o.number, 
+			o.user_id userId, 
+			o.createtime, 
+			u.username, 
+			u.address 
+		from orders o 
+		left join user u on o.user_id = u.id
+	</select>
+	
 	<!-- 根据用户名和性别选择用户 -->
 	<select id="getUserbyNameAndSex" parameterType="User" resultType="User">
 		select * from user where username like "%"#{username}"%" and sex=#{sex}

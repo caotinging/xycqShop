@@ -14,6 +14,7 @@ import org.junit.Test;
 import caotinging.mapper.OrderMapper;
 import caotinging.mapper.UserMapper;
 import caotinging.pojo.Order;
+import caotinging.pojo.OrderUser;
 import caotinging.pojo.Queryvo;
 import caotinging.pojo.User;
 
@@ -25,6 +26,21 @@ public class MybatisMapperTest {
 	public void init() throws Exception {
 		InputStream stream = Resources.getResourceAsStream("SqlMapConfig.xml");
 		factory = new SqlSessionFactoryBuilder().build(stream);
+	}
+	
+	/**
+	 * 测试查询订单并获取相应的用户信息
+	 */
+	@Test
+	public void mapperTest8() {
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		List<OrderUser> list = mapper.findOrderUser();
+		for (OrderUser orderUser : list) {
+			System.out.println(orderUser);
+		}
+		session.close();
 	}
 	
 	/**
