@@ -28,4 +28,15 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 	
+	<!-- 配置mapper代理 
+	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="mapperInterface" value="caotinging.mapper.UserMapper"></property>
+	</bean>-->
+	
+	<!-- 配置mapper包扫描 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="caotinging.mapper"></property>
+	</bean>
+	
 </beans>
