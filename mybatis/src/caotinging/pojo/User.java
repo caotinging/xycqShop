@@ -1,6 +1,7 @@
 package caotinging.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -9,6 +10,8 @@ public class User {
 	private Date birthday;
 	private String sex;
 	private String address;
+	private List<Order> orders;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -39,9 +42,15 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public List<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", birthday=" + birthday + ", sex=" + sex + ", address="
-				+ address + "]";
+				+ address + ", orders=" + orders + "]";
 	}
 }

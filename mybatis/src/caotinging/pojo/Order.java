@@ -9,6 +9,8 @@ public class Order {
 	private String number;
 	private Date createtime;
 	private String note;
+	private User user;
+	
 	public int getId() {
 		return id;
 	}
@@ -39,10 +41,15 @@ public class Order {
 	public void setNote(String note) {
 		this.note = note;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", userId=" + userId + ", number=" + number + ", createtime=" + createtime
-				+ ", note=" + note + "]";
+				+ ", note=" + note + ", user=" + user + "]";
 	}
-	
 }

@@ -11,4 +11,10 @@ public interface OrderMapper {
 	 * @return
 	 */
 	public List<Order> findAllOrder();
+	
+	/**
+	 * 获取所有订单信息以及订单的下单用户信息
+	 * @return
+	 */
+	public List<Order> findAllOrderUser();
 }

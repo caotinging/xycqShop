@@ -4,68 +4,96 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 通过命名空间完成与接口的绑定 -->
 <mapper namespace="caotinging.mapper.UserMapper">
+	<resultMap type="User" id="user">
+		<id column="user_id" property="id" />
+		<result column="username" property="username" />
+		<result property="birthday" column="birthday" />
+		<result property="sex" column="sex" />
+		<result property="address" column="address" />
+		<!-- 指定一对多映射 -->
+		<collection property="orders" javaType="List" ofType="Order">
+			<id column="id" property="id" />
+			<result column="number" property="number"/>
+		</collection>
+	</resultMap>
+
 	<!-- 更次年用户信息 -->
 	<update id="updateUserAll" parameterType="caotinging.pojo.User">
-		update user set username=#{username},birthday=#{birthday},address=#{address},sex=#{sex} where id=#{id}
+		update user set
+		username=#{username},birthday=#{birthday},address=#{address},sex=#{sex}
+		where id=#{id}
 	</update>
 
 	<!-- 新增一个用户 -->
 	<insert id="addUser" parameterType="caotinging.pojo.User">
-		insert into user(username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address});
+		insert into
+		user(username,birthday,sex,address)
+		values(#{username},#{birthday},#{sex},#{address});
 	</insert>
-	
-	
+
+
 	<!-- 新增一个用户 -->
 	<insert id="addUserGetId" parameterType="caotinging.pojo.User">
 		<!-- 设置mysql主键自增返回id的值 -->
-		<selectKey keyProperty="id" keyColumn="id" resultType="Integer" order="AFTER">
+		<selectKey keyProperty="id" keyColumn="id" resultType="Integer"
+			order="AFTER">
 			select LAST_INSERT_ID()
 		</selectKey>
-		insert into user(username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address});
+		insert into user(username,birthday,sex,address)
+		values(#{username},#{birthday},#{sex},#{address});
 	</insert>
 
 	<!-- 根据用户名模糊查询用户信息 -->
-	<select id="findUSerByUsername" parameterType="String" resultType="caotinging.pojo.User">
+	<select id="findUSerByUsername" parameterType="String"
+		resultType="caotinging.pojo.User">
 		select * from user u where u.username like "%"#{v2}"%"
-		<!-- select * from user u where u.username like '%${v2}%'
-				#{}:自带单引号	
-				${}:不带引号		
-		 -->
+		<!-- select * from user u where u.username like '%${v2}%' #{}:自带单引号 ${}:不带引号 -->
 	</select>
-	
+
+	<!-- 查询用户对应的全部下单信息 -->
+	<select id="findUserOrder" resultMap="user">
+		select
+		u.username,
+		u.address,
+		u.birthday,
+		u.sex,
+		o.user_id,
+		o.id,
+		o.number
+		from user u
+		left join orders o on u.id=o.user_id
+	</select>
+
 	<!-- 查询订单对应的下单用户信息 -->
 	<select id="findOrderUser" resultType="OrderUser">
 		select
-			o.id, 
-			o.number, 
-			o.user_id userId, 
-			o.createtime, 
-			u.username, 
-			u.address 
-		from orders o 
+		o.id,
+		o.number,
+		o.user_id userId,
+		o.createtime,
+		u.username,
+		u.address
+		from orders o
 		left join user u on o.user_id = u.id
 	</select>
-	
+
 	<!-- 根据用户名和性别选择用户 -->
-	<select id="getUserbyNameAndSex" parameterType="User" resultType="User">
-		select * from user where username like "%"#{username}"%" and sex=#{sex}
+	<select id="getUserbyNameAndSex" parameterType="User"
+		resultType="User">
+		select * from user where username like "%"#{username}"%"
+		and sex=#{sex}
 	</select>
 	<!-- 根据用户名和性别模糊查询用户功能优化 -->
-	<!-- <select id="findUserByNameAndSex" parameterType="User" resultType="User">
-		select * from user where 1=1 
-		<if test="username != null and username != ''">
-			and username like "%"#{username}"%" 
-		</if>
-		<if test="sex != null and sex != ''">
-			and sex=#{sex}
-		</if>
-	</select>
- 	-->	
- 	<!-- 声明sql片段实现同一片段复用 -->
- 	<sql id="selectUser">
- 		select * from user 
- 	</sql>
-	 <select id="findUserByNameAndSex" parameterType="User" resultType="User">
+	<!-- <select id="findUserByNameAndSex" parameterType="User" resultType="User"> 
+		select * from user where 1=1 <if test="username != null and username != ''"> 
+		and username like "%"#{username}"%" </if> <if test="sex != null and sex != 
+		''"> and sex=#{sex} </if> </select> -->
+	<!-- 声明sql片段实现同一片段复用 -->
+	<sql id="selectUser">
+		select * from user
+	</sql>
+	<select id="findUserByNameAndSex" parameterType="User"
+		resultType="User">
 		<include refid="selectUser"></include>
 		<!-- where标签可以代替where 1=1 处理多if标签第一个多余的and的情况 -->
 		<where>
@@ -77,38 +105,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- 根据多个id查询用户 -->
 	<select id="findUsersByIds" parameterType="Queryvo" resultType="User">
 		<!-- 使用foreach标签获取list参数中的值 -->
 		<include refid="selectUser"></include>
 		<where>
-		<!-- collection表示要遍历的集合:
-				collection中的名称是有学问的，ids是因为传递的是Queryvo对象中封装的list类型的属性为ids
-				直接传递Integer数组，名称应该为array，传递list<Integer>值应该为list
-			item:遍历的每一项的名称
-			open：遍历前sql片段
-			close：遍历后的sql片段
-			separator：遍历的元素之间使用的分隔符
-		 -->
-			<foreach collection="ids" open=" id in(" close=")" separator="," item="item">
+			<!-- collection表示要遍历的集合: collection中的名称是有学问的，ids是因为传递的是Queryvo对象中封装的list类型的属性为ids 
+				直接传递Integer数组，名称应该为array，传递list<Integer>值应该为list item:遍历的每一项的名称 open：遍历前sql片段 
+				close：遍历后的sql片段 separator：遍历的元素之间使用的分隔符 -->
+			<foreach collection="ids" open=" id in(" close=")" separator=","
+				item="item">
 				#{item}
 			</foreach>
 		</where>
 	</select>
-	
-	<select id="findUserByQueryVo" parameterType="Queryvo" resultType="User">
+
+	<select id="findUserByQueryVo" parameterType="Queryvo"
+		resultType="User">
 		<!-- #{}中的名称是参数类型的属性名字不是参数本身 -->
 		select * from user where username like "%"#{user.username}"%"
 	</select>
-	
+
 	<select id="getUserCount" resultType="Integer">
 		select count(*) from user
 	</select>
-	
+
 	<!-- 根据用户id删除用户 -->
 	<delete id="deleteUserById" parameterType="Integer">
-		delete from user where id=#{id}
+		delete from user where
+		id=#{id}
 	</delete>
 
 	<!-- 根据用户id查询用户 -->

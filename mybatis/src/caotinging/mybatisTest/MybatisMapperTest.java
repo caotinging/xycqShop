@@ -29,6 +29,36 @@ public class MybatisMapperTest {
 	}
 	
 	/**
+	 * 测试查询用户信息以及用户对应的订单信息
+	 */
+	@Test
+	public void mapperTest10() {
+		SqlSession session = factory.openSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+		
+		List<User> list = mapper.findUserOrder();
+		for (User user : list) {
+			System.out.println(user);
+		}
+		session.close();
+	}
+	
+	/**
+	 * 测试利用resultMap获取订单以及对应的用户信息
+	 */
+	@Test
+	public void mapperTest9() {
+		SqlSession session = factory.openSession();
+		OrderMapper mapper = session.getMapper(OrderMapper.class);
+		
+		List<Order> list = mapper.findAllOrderUser();
+		for (Order order : list) {
+			System.out.println(order);
+		}
+		session.close();
+	}
+	
+	/**
 	 * 测试查询订单并获取相应的用户信息
 	 */
 	@Test

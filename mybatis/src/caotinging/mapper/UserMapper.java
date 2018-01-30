@@ -16,6 +16,12 @@ public interface UserMapper {
 	 */
 	
 	/**
+	 * 查询用户以及用户的下单信息
+	 * @return
+	 */
+	public List<User> findUserOrder();
+	
+	/**
 	 * 查询订单以及相应的用户信息
 	 * @return
 	 */
