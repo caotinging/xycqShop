@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addUser" parameterType="caotinging.pojo.User">
 		insert into
 		user(username,birthday,sex,address)
-		values(#{username},#{birthday},#{sex},#{address});
+		values(#{username},#{birthday},#{sex},#{address})
 	</insert>
 
 
