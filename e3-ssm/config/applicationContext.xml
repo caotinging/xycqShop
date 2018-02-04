@@ -40,7 +40,16 @@
 	-->
 	
 	<!-- springmv注解驱动自动配置以上两个适配器和映射器 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="formattingConversionService" />
+	
+	<!-- 配置自定义springmvc参数转换器 -->
+	<bean id="formattingConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="caotinging.controller.converter.DateConverter" />
+			</list>
+		</property>
+	</bean>
 	
 	<!-- 配置springmvc视图解析器 -->
 	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

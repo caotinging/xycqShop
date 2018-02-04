@@ -29,4 +29,9 @@ public class ItemServiceImpl implements ItemService {
 		return items;
 	}
 
+	@Override
+	public void updateItem(Items item) {
+		itemsMapper.updateByPrimaryKeySelective(item);
+	}
+
 }

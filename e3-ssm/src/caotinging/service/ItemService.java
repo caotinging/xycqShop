@@ -18,4 +18,10 @@ public interface ItemService {
 	 * @return
 	 */
 	public Items findItemById(Integer id);
+
+	/**
+	 * 更新Item的信息
+	 * @param item
+	 */
+	public void updateItem(Items item);
 }
