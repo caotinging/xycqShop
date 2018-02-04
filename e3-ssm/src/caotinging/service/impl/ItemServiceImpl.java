@@ -23,4 +23,10 @@ public class ItemServiceImpl implements ItemService {
 		return list;
 	}
 
+	@Override
+	public Items findItemById(Integer id) {
+		Items items = itemsMapper.selectByPrimaryKey(id);
+		return items;
+	}
+
 }

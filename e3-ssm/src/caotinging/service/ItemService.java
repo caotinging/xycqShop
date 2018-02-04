@@ -11,4 +11,11 @@ public interface ItemService {
 	 * @return
 	 */
 	public List<Items> findAllItems();
+
+	/**
+	 * 根据id查询item信息
+	 * @param id
+	 * @return
+	 */
+	public Items findItemById(Integer id);
 }
