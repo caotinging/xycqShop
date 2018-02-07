@@ -11,6 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,21 @@ public class ItemsController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	/**
+	 * 测试RESTful风格开发
+	 * PathVariable：如果路径上的变量和形参变量名称一致不需要指定，否则需要PathVariable("路径上的名称")
+	 * 特别注意这里的RequestMapping不能用value=
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/items/{id}.action")
+	public String testRESTful(@PathVariable Integer id,Model model) {
+		Items items = itemService.findItemById(id);
+		model.addAttribute("item", items);
+		return "editItem";
+	}
 	
 	/**
 	 * 测试json数据交互

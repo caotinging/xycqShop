@@ -70,6 +70,19 @@
 		<property name="maxUploadSize" value="5242880"/>
 	</bean>
 	
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login.action"/>
+			<bean class="caotinging.intercepter.MyIntecepter1" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="caotinging.intercepter.MyIntecepter2"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 配置事务处理器 -->
