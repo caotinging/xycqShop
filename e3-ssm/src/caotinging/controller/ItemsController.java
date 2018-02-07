@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import caotinging.pojo.Items;
@@ -22,6 +23,25 @@ public class ItemsController {
 	@Autowired
 	private ItemService itemService;
 	
+	/**
+	 * 批量修改操作，只进行演示不进行数据库操作
+	 * 接收List类型的数据必须是pojo的属性，方法的形参为ArrayList类型无法正确接收到数据
+	 * RequestMapping(method:指定请求的方式只能为--这里是get、post)
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping(value="/items/editItemList.action",method={RequestMethod.GET,RequestMethod.POST})
+	public String editItemList(QueryVo vo) {
+		System.out.println(vo.getItemList().get(0));
+		return "redirect:/items/itemList.action";
+	}
+	
+	/**
+	 * 批量删除操作
+	 * @param model
+	 * @param ids 接收要删除的所有item的id值
+	 * @return
+	 */
 	@RequestMapping(value="/items/deleteitem.action")
 	public String deleteItem(Model model, Integer[] ids) {
 		for (Integer id : ids) {
