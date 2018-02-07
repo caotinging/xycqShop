@@ -11,8 +11,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,6 +28,20 @@ public class ItemsController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	/**
+	 * 测试json数据交互
+	 * RequestBody标签将json字符串转换为Item对象item
+	 * ResposeBody标签将Item对象转换为json字符串
+	 * 如果不是以为配置了<mvc:annotation-driven />还需要手动配置json转换器
+	 * @param item
+	 * @return
+	 */
+	@RequestMapping(value="/jsonTest.action")
+	public @ResponseBody Items jsonTest(@RequestBody Items item) {
+		System.out.println(item);
+		return item;
+	}
 	
 	/**
 	 * 批量修改操作，只进行演示不进行数据库操作

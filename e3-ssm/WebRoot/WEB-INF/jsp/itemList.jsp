@@ -6,6 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询商品列表</title>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	alert("111");
+	
+	var jsonStr = '{"id": 1,"name": "测试商品","price": 99.9,"detail": "测试商品描述","pic": "123456.jpg"}';
+
+	$.ajax({
+		url: "${pageContext.request.contextPath }/jsonTest.action",
+		data: jsonStr,
+		contentType: "application/json;charset=utf-8",
+ 	 	type: "POST",
+ 	 	dataType: "json",
+ 	 	success: function(data) {
+ 	 		alert(data.name);
+ 	 	}
+	});
+});
+</script>
 </head>
 <body> 
 <form action="${pageContext.request.contextPath }/items/queryitem.action" method="post">
