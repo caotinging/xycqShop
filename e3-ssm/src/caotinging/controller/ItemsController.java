@@ -16,10 +16,19 @@ import caotinging.service.ItemService;
 import caotinging.tools.QueryVo;
 
 @Controller
+//@RequestMapping("/items")
 public class ItemsController {
 
 	@Autowired
 	private ItemService itemService;
+	
+	@RequestMapping(value="/items/deleteitem.action")
+	public String deleteItem(Model model, Integer[] ids) {
+		for (Integer id : ids) {
+			itemService.deleteItem(id);
+		}
+		return "redirect:/items/itemList.action";
+	}
 	
 	/**
 	 * 使用包装pojo类接收参数

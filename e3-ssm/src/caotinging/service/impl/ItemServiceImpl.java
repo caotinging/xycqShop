@@ -34,4 +34,9 @@ public class ItemServiceImpl implements ItemService {
 		itemsMapper.updateByPrimaryKeySelective(item);
 	}
 
+	@Override
+	public void deleteItem(Integer id) {
+		itemsMapper.deleteByPrimaryKey(id);
+	}
+
 }

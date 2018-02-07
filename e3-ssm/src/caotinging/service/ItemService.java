@@ -24,4 +24,10 @@ public interface ItemService {
 	 * @param item
 	 */
 	public void updateItem(Items item);
+
+	/**
+	 * 根据id从数据库删除item
+	 * @param id
+	 */
+	public void deleteItem(Integer id);
 }
