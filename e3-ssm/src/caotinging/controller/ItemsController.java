@@ -117,6 +117,7 @@ public class ItemsController {
 	 */
 	@RequestMapping(value="/items/itemList.action")
 	public ModelAndView findItemsList(){
+//		Integer i = 1/0;	异常测试
 		List<Items> list = itemService.findAllItems();
 		
 		ModelAndView mav = new ModelAndView();

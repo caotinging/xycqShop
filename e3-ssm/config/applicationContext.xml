@@ -51,6 +51,9 @@
 		</property>
 	</bean>
 	
+	<!-- 配置全局异常处理器 -->
+	<bean id="myExceptionHandler" class="caotinging.tools.MyExceptionHandler" />
+	
 	<!-- 配置springmvc视图解析器 -->
 	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 配合逻辑视图的前缀用于拼接jsp的路径 ItemList:/WEB-INF/jsp/ItemList.jsp -->
