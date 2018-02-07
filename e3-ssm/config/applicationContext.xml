@@ -34,6 +34,8 @@
 		<property name="basePackage" value="caotinging.mapper"></property>	
 	</bean>
 	
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
+	
 	<!-- 配置springmvc的默认处理器适配器和映射器 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
@@ -61,6 +63,14 @@
 		<!-- 配置逻辑视图的后缀 -->
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
+	<!-- 配置文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置最大上传文件大小：5M -->
+		<property name="maxUploadSize" value="5242880"/>
+	</bean>
+	
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 配置事务处理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

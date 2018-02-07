@@ -1,15 +1,19 @@
 package caotinging.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import caotinging.pojo.Items;
@@ -67,9 +71,17 @@ public class ItemsController {
 	 * @return
 	 */
 	@RequestMapping(value="/items/updateItem.action")
-	public ModelAndView updateItem(Items item){
+	public ModelAndView updateItem(Items item,MultipartFile multipartFile){
 		ModelAndView mav = new ModelAndView();
 		try{
+			//上传商品图片
+			//重命名图片名称
+			String filename = UUID.randomUUID().toString().replace("-", "")+"."+
+					FilenameUtils.getExtension(multipartFile.getOriginalFilename());
+			//保存图片
+			multipartFile.transferTo(new File("D:\\upload\\e3-ssm\\"+filename));
+			//将图片访问路径保存到数据库
+			item.setPic("pic/"+filename);
 			itemService.updateItem(item);
 			mav.setViewName("success");
 		}catch(Exception ex){
