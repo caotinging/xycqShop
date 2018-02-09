@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="caotinging.mapper.CustMapper" >
-  
+	<!-- 查询符合条件的客户信息总条数 -->
+	<select id="findCustListCount" parameterType="caotinging.tools.QueryVo" resultType="Integer">
+		select count(1) from customer
+		<where>
+			<if test="custName != null and custName != ''">
+				cust_name like "%"#{custName}"%"
+			</if>
+			<if test="custSource != null and custSource != ''">
+				and cust_source = #{custSource}
+			</if>
+			<if test="custIndustry != null and custIndustry != ''">
+				and cust_industry = #{custIndustry}
+			</if>
+			<if test="custLevel != null and custLevel != ''">
+				and cust_level = #{custLevel}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询符合查询条件的客户信息page集合 -->
+	<select id="findCustList" parameterType="caotinging.tools.QueryVo" resultType="Customer">
+		select * from customer 
+		<where>
+			<if test="custName != null and custName != ''">
+				cust_name like "%"#{custName}"%"
+			</if>
+			<if test="custSource != null and custSource != ''">
+				and cust_source = #{custSource}
+			</if>
+			<if test="custIndustry != null and custIndustry != ''">
+				and cust_industry = #{custIndustry}
+			</if>
+			<if test="custLevel != null and custLevel != ''">
+				and cust_level = #{custLevel}
+			</if>
+		</where>
+		limit #{startRows},#{pageSize}
+	</select>
 </mapper>
