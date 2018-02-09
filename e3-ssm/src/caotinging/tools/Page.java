@@ -32,4 +32,7 @@ public class Page<T> {
 	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
+    
+	
+    
 }
