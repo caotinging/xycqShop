@@ -6,6 +6,8 @@ import caotinging.pojo.Items;
 
 public class QueryVo {
 
+	
+	
 	private Items item;
 	
 	private List<Items> itemList;
