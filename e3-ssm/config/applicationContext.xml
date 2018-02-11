@@ -12,8 +12,8 @@
 
 	<!-- 组件扫描 -->
 	<context:component-scan base-package="caotinging" />
-	
-	<!-- 配置阿里druid数据源 -->
+
+	<!-- 配置阿里druid数据源以及解决硬编码的资源文件 -->
 	<context:property-placeholder location="classpath:db.properties"/>
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="${jdbc.driverClass}"></property>

@@ -20,16 +20,12 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="<%=basePath%>css/bootstrap.min.css" rel="stylesheet">
-
 <!-- MetisMenu CSS -->
 <link href="<%=basePath%>css/metisMenu.min.css" rel="stylesheet">
-
 <!-- DataTables CSS -->
 <link href="<%=basePath%>css/dataTables.bootstrap.css" rel="stylesheet">
-
 <!-- Custom CSS -->
 <link href="<%=basePath%>css/sb-admin-2.css" rel="stylesheet">
-
 <!-- Custom Fonts -->
 <link href="<%=basePath%>css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
@@ -42,6 +38,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+<!-- <script type="text/javascript">
+	$(function(){
+		$.post(
+			"${pageContext.request.contextPath }/baseDict/getList.action",
+			function(data) {
+				alert(data);
+			}
+			);
+	});
+</script> -->
 
 </head>
 
