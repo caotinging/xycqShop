@@ -56,4 +56,14 @@ public class CustomerServiceImpl implements CustomerService {
 		return custMapper.findCustById(id);
 	}
 
+	@Override
+	public void updateCustomer(Customer customer) {
+		custMapper.updateCustomer(customer);
+	}
+
+	@Override
+	public void delCustomer(Integer id) {
+		custMapper.delCustomer(id);
+	}
+
 }

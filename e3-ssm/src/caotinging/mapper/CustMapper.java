@@ -26,4 +26,16 @@ public interface CustMapper {
 	 * @return
 	 */
 	public Customer findCustById(Integer id);
+
+	/**
+	 * 更新客户信息
+	 * @param customer
+	 */
+	public void updateCustomer(Customer customer);
+
+	/**
+	 * 删除客户信息
+	 * @param id
+	 */
+	public void delCustomer(Integer id);
 }

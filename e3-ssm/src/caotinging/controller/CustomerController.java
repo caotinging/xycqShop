@@ -33,13 +33,20 @@ public class CustomerController {
 	@Autowired
 	private BaseDictService baseDictService;
 	
+	@RequestMapping(value="/delete.action")
+	public @ResponseBody String delCustomer(Integer id) {
+		customerService.delCustomer(id);
+		return "success";
+	}
+	
 	/**
 	 * 保存客户更新信息
 	 * @param customer
 	 */
 	@RequestMapping(value="/update.action")
-	public void updateCustomer(Customer customer) {
-		
+	public @ResponseBody String updateCustomer(Customer customer) {
+		customerService.updateCustomer(customer);
+		return "success";
 	}
 	
 	/**
