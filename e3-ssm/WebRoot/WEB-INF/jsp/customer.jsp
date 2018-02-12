@@ -216,7 +216,7 @@
 			<!-- /.row -->
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-inline" action="${pageContext.request.contextPath }/customer/list.action" method="get">
+					<form class="form-inline" action="${pageContext.request.contextPath }/customer/getList.action" method="get">
 						<div class="form-group">
 							<label for="customerName">客户名称</label> 
 							<input type="text" class="form-control" id="customerName" value="${custName }" name="custName">
@@ -289,7 +289,7 @@
 							</tbody>
 						</table>
 						<div class="col-md-12 text-right">
-							<caotinging:page url="${pageContext.request.contextPath }/customer/findCustList.action" />
+							<caotinging:page url="${pageContext.request.contextPath }/customer/getList.action" />
 						</div>
 						<!-- /.panel-body -->
 					</div>

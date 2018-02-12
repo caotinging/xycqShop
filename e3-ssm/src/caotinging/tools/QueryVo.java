@@ -16,6 +16,9 @@ public class QueryVo {
 	private String custIndustry;
 	private String custLevel;
 	
+	private Integer page;//当前页
+	private Integer rows;//每页显示数量
+	
 	private Integer currentPage;
 	private Integer pageSize;
 	
@@ -54,6 +57,21 @@ public class QueryVo {
 	}
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
+	}
+	
+	public Integer getRows() {
+		return rows;
+	}
+	public void setRows(Integer rows) {
+		this.rows = rows;
+		this.setPageSize(rows);
+	}
+	public Integer getPage() {
+		return page;
+	}
+	public void setPage(Integer page) {
+		this.page = page;
+		this.setCurrentPage(page);
 	}
 	
 	/*
