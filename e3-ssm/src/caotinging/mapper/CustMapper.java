@@ -19,4 +19,11 @@ public interface CustMapper {
 	 * @return
 	 */
 	public List<Customer> findCustList(QueryVo vo);
+
+	/**
+	 * 根据客户id获取客户信息
+	 * @param id
+	 * @return
+	 */
+	public Customer findCustById(Integer id);
 }

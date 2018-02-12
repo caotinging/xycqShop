@@ -12,4 +12,11 @@ public interface CustomerService {
 	 * @return
 	 */
 	public Page<Customer> findCustList(QueryVo vo);
+
+	/**
+	 * 根据客户id获取客户信息
+	 * @param id
+	 * @return
+	 */
+	public Customer findCustById(Integer id);
 }

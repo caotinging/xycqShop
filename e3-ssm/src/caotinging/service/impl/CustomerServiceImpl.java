@@ -51,4 +51,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return page;
 	}
 
+	@Override
+	public Customer findCustById(Integer id) {
+		return custMapper.findCustById(id);
+	}
+
 }

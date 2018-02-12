@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="caotinging.mapper.CustMapper" >
+	<!-- 根据客户id获取客户信息 -->
+	<select id="findCustById" parameterType="Integer" resultType="Customer">
+		select * from customer
+		<where>
+			cust_id = #{id}
+		</where>
+	</select>
+
 	<!-- 查询符合条件的客户信息总条数 -->
 	<select id="findCustListCount" parameterType="caotinging.tools.QueryVo" resultType="Integer">
 		select count(1) from customer
