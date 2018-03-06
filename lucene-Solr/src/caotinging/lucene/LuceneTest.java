@@ -11,8 +11,15 @@ import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.document.LongField;
 import org.apache.lucene.document.StoredField;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -25,6 +32,47 @@ import org.junit.Test;
  */
 public class LuceneTest {
 
+	/**
+	 * 测试查询索引
+	 * @throws Exception 
+	 */
+	@Test
+	public void testQueryIndex() throws Exception {
+//		第一步：创建一个Directory对象，也就是索引库存放的位置。
+		Directory directory = FSDirectory.open(new File("F:\\files\\data"));
+//		第二步：创建一个indexReader对象，需要指定Directory对象。
+		IndexReader indexReader = DirectoryReader.open(directory);
+//		第三步：创建一个indexsearcher对象，需要指定IndexReader对象
+		IndexSearcher indexSearcher = new IndexSearcher(indexReader);
+//		第四步：创建一个TermQuery对象，指定查询的域和查询的关键词。Term("域名","域值")
+		TermQuery termQuery = new TermQuery(new Term("fileName", "apache"));
+//		第五步：执行查询。（这里的意思是根据查询条件查询评分最高的10条记录）过滤策略和评分策略都可以通过重载方法自定义
+		TopDocs topDocs = indexSearcher.search(termQuery, 10);
+//		第六步：返回查询结果。遍历查询结果并输出。
+		ScoreDoc[] docs = topDocs.scoreDocs;
+		for (ScoreDoc scoreDoc : docs) {
+			//拿到查询出来的索引的id
+			int doc = scoreDoc.doc;
+			//根据id获取到相对应的文档
+			Document document = indexSearcher.doc(doc);
+			// 文件名称
+			String fileName = document.get("fileName");
+			System.out.println(fileName);
+			// 文件内容
+			String fileContent = document.get("fileContent");
+			System.out.println(fileContent);
+			// 文件大小
+			String fileSize = document.get("fileSize");
+			System.out.println(fileSize);
+			// 文件路径
+			String filePath = document.get("filePath");
+			System.out.println(filePath);
+			System.out.println("-------------------------------------------------");
+		}
+//		第七步：关闭IndexReader对象
+		indexReader.close();
+	}
+	
 	/**
 	 * 测试创建索引库
 	 * @throws Exception 
