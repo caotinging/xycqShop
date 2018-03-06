@@ -4,7 +4,10 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.TokenStream;
+//import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.Field.Store;
@@ -16,7 +19,14 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.BooleanClause.Occur;
+import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.NumericRangeQuery;
+import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
@@ -24,6 +34,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.junit.Test;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 /**
  * lucene入门的测试类
@@ -32,6 +43,150 @@ import org.junit.Test;
  */
 public class LuceneTest {
 
+	/**
+	 * 测试多个默认域名解析查询
+	 * @throws Exception 
+	 */
+	@Test
+	public void testMultiFiledQueryParser() throws Exception {
+		IndexSearcher indexSearcher = LuceneUtils.getIndexSearcher();
+		
+		String[] strs = {"fileName","fileContent"};
+		
+		//默认到fileName和fileContent中寻找
+		MultiFieldQueryParser queryParser = new MultiFieldQueryParser(strs, new IKAnalyzer());
+		Query query = queryParser.parse("java and lucene");
+		
+		LuceneUtils.printResult(indexSearcher, query);
+	}
+	
+	/**
+	 * 测试解析查询器（利用查询语法查询）
+	 * @throws Exception 
+	 */
+	@Test
+	public void testQueryParser() throws Exception {
+		IndexSearcher indexSearcher = LuceneUtils.getIndexSearcher();
+		
+		//参数：1.默认采用的域名 2.采用的分析器
+		QueryParser queryParser = new QueryParser("fileName", new IKAnalyzer());
+		//	 *:*   域：值
+		Query query = queryParser.parse("fileName:lucene");
+		
+		LuceneUtils.printResult(indexSearcher, query);
+	}
+	
+	/**
+	 * 测试组合查询索引
+	 * @throws Exception 
+	 */
+	@Test
+	public void testBooleanQuery() throws Exception {
+		IndexSearcher indexSearcher = LuceneUtils.getIndexSearcher();
+		
+		BooleanQuery query = new BooleanQuery();
+		//组合条件查询：1.查询条件。2.条件是否必须
+		query.add(new TermQuery(new Term("fileName","lucene")), Occur.MUST);
+		query.add(NumericRangeQuery.newLongRange("fileSize", 10L, 100L, true, false), Occur.SHOULD);
+		
+		LuceneUtils.printResult(indexSearcher, query);
+	}
+	
+	/**
+	 * 测试根据数值范围查询
+	 * @throws Exception 
+	 */
+	@Test
+	public void testNumericRangeQuery() throws Exception {
+		IndexSearcher indexSearcher = LuceneUtils.getIndexSearcher();
+		
+		//参数：1.域名 2.最小值 3.最大值 4.最小值是否包括 5.最大值是否包括
+		Query query = NumericRangeQuery.newLongRange("fileSize", 10L, 100L, true, false);
+		
+		LuceneUtils.printResult(indexSearcher, query);
+	}
+	
+	/**
+	 * 测试查询全部索引MatchAllDocsQuery查询方法
+	 * @throws Exception 
+	 */
+	@Test
+	public void testMatchAllDocsQuery() throws Exception {
+		IndexSearcher indexSearcher = LuceneUtils.getIndexSearcher();
+		LuceneUtils.printResult(indexSearcher, new MatchAllDocsQuery());
+	}
+	
+	/**
+	 * 测试修改索引库：原理就是先删除后添加
+	 * @throws Exception 
+	 */
+	@Test
+	public void testModifyIndex() throws Exception {
+		IndexWriter indexWriter = LuceneUtils.getIndexWriter();
+		
+		Document doc = new Document();
+		doc.add(new TextField("fileC", "测试文件1", Store.YES));
+		doc.add(new TextField("fileN", "测试文件2", Store.YES));
+		
+		indexWriter.updateDocument(new Term("fileName", "java"), doc, new IKAnalyzer());
+		indexWriter.close();
+	}
+	
+	/**
+	 * 测试按条件查询删除
+	 * @throws Exception 
+	 */
+	@Test
+	public void testDeleteByQuery() throws Exception {
+		IndexWriter indexWriter = LuceneUtils.getIndexWriter();
+		
+		Query query = new TermQuery(new Term("fileName", "apache"));
+		indexWriter.deleteDocuments(query);
+		
+		indexWriter.close();
+	}
+	
+	/**
+	 * 测试索引的全部删除
+	 * @throws Exception
+	 */
+	@Test
+	public void testDeleteAllIndex() throws Exception {
+		IndexWriter indexWriter = LuceneUtils.getIndexWriter();
+		indexWriter.deleteAll();
+		indexWriter.close();
+	}
+	
+	/**
+	 * 查看分析器的分词效果
+	 */
+	@Test
+	public void testTokenStream() throws Exception {
+		//创建一个标准分析器对象
+		@SuppressWarnings("resource")
+		Analyzer analyzer = new IKAnalyzer();
+		//获得tokenStream对象
+		//第一个参数：域名，可以随便给一个
+		//第二个参数：要分析的文本内容
+		TokenStream tokenStream = analyzer.tokenStream("test", "心语长情二维表和中国人的羁绊");
+		//添加一个引用，可以获得每个关键词
+		CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
+		//添加一个偏移量的引用，记录了关键词的开始位置以及结束位置
+		OffsetAttribute offsetAttribute = tokenStream.addAttribute(OffsetAttribute.class);
+		//将指针调整到列表的头部
+		tokenStream.reset();
+		//遍历关键词列表，通过incrementToken方法判断列表是否结束
+		while(tokenStream.incrementToken()) {
+			//关键词的起始位置
+			System.out.println("start->" + offsetAttribute.startOffset());
+			//取关键词
+			System.out.println(charTermAttribute);
+			//结束位置
+			System.out.println("end->" + offsetAttribute.endOffset());
+		}
+		tokenStream.close();
+	}
+	
 	/**
 	 * 测试查询索引
 	 * @throws Exception 
@@ -84,7 +239,7 @@ public class LuceneTest {
 //			1）指定索引库的存放位置Directory对象
 //			2）指定一个分析器，对文档内容进行分析。
 		Directory directory = FSDirectory.open(new File("F:\\files\\data"));
-		Analyzer analyzer = new StandardAnalyzer();
+		Analyzer analyzer = new IKAnalyzer();
 		IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, analyzer );
 		
 		IndexWriter indexWriter = new IndexWriter(directory, config);
