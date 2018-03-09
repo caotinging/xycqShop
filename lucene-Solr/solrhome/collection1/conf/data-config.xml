@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!-- mysql数据库文件导入 -->
+<dataConfig>   
+<dataSource type="JdbcDataSource"   
+		  driver="com.mysql.jdbc.Driver"   
+		  url="jdbc:mysql://localhost:3306/jdsolr"   
+		  user="root"   
+		  password="980515"/>   
+<document>   
+	<entity name="product" query="SELECT pid,name,catalog_name,price,description,picture FROM products ">
+		 <field column="pid" name="id"/> 
+		 <field column="name" name="product_name"/> 
+		 <field column="catalog_name" name="product_catalog_name"/> 
+		 <field column="price" name="product_price"/> 
+		 <field column="description" name="product_description"/> 
+		 <field column="picture" name="product_picture"/> 
+	</entity>   
+</document>   
+
+</dataConfig>

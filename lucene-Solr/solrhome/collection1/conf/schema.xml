@@ -1170,4 +1170,15 @@
 
 	<field name="title_ik" type="text_ik" indexed="true" stored="true"/>
 	
+	<!--product-->
+	<field name="product_name" type="text_ik" indexed="true" stored="true"/>
+    <field name="product_price"  type="float" indexed="true" stored="true"/>
+    <field name="product_description" type="text_ik" indexed="true" stored="false" />
+    <field name="product_picture" type="string" indexed="false" stored="true" />
+    <field name="product_catalog_name" type="string" indexed="true" stored="true" />
+    <field name="product_keywords" type="text_ik" indexed="true" stored="false" multiValued="true"/>
+   
+    <copyField source="product_name" dest="product_keywords"/>
+    <copyField source="product_description" dest="product_keywords"/>
+	
 </schema>
