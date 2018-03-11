@@ -11,8 +11,8 @@
 		</commentGenerator>
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/ssm" userId="Tom"
-			password="1234">
+			connectionURL="jdbc:mysql://localhost:3306/e3mall" userId="root"
+			password="980515">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg" 
 			userId="yycg" password="yycg"> </jdbcConnection> -->
@@ -44,8 +44,17 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="user"></table>
-		<table schema="" tableName="items"></table>
+		<table schema="" tableName="tb_content" domainObjectName="content"></table>
+		<table schema="" tableName="tb_content_category" domainObjectName="contentCategory"></table>
+		<table schema="" tableName="tb_item" domainObjectName="item"></table>
+		<table schema="" tableName="tb_item_cat" domainObjectName="itemCat"></table>
+		<table schema="" tableName="tb_item_desc" domainObjectName="itemDesc"></table>
+		<table schema="" tableName="tb_item_param" domainObjectName="itemParam"></table>
+		<table schema="" tableName="tb_item_param_item" domainObjectName="itemParamItem"></table>
+		<table schema="" tableName="tb_order" domainObjectName="order"></table>
+		<table schema="" tableName="tb_order_item" domainObjectName="orderItem"></table>
+		<table schema="" tableName="tb_order_shipping" domainObjectName="orderShipping"></table>
+		<table schema="" tableName="tb_user" domainObjectName="user"></table>
 
 		<!-- 有些表的字段需要指定java类型 <table schema="" tableName="user"> <columnOverride 
 			column="id" javaType="Long" /> </table> -->
