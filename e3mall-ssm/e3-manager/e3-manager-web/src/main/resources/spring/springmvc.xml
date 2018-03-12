@@ -15,14 +15,14 @@
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 	-->
 	
-	<context:component-scan base-package="caotinging.controller"></context:component-scan>
+	<context:component-scan base-package="caotinging.controller"/>
 	
 	<!-- 自动处理静态资源无法加载的问题 -->
 	<mvc:default-servlet-handler/>
 	
 	<!-- springmv注解驱动自动配置以上两个适配器和映射器 -->
-	<mvc:annotation-driven conversion-service="formattingConversionService" />
-	
+	<!-- <mvc:annotation-driven conversion-service="formattingConversionService" /> -->
+	<mvc:annotation-driven />
 	<!-- 配置自定义springmvc参数转换器 -->
 	<!-- <bean id="formattingConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
