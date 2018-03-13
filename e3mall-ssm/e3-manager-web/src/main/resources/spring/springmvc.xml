@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 引用dubbo服务 -->
+	<dubbo:application name="e3-manager-web"/>
+	<!-- timeout是服务器响应超时时间，这里调成这样是为了debug，默认时间是一秒 -->
+	<dubbo:registry protocol="zookeeper" address="192.168.192.128:2181" timeout="600000"/>
+	<dubbo:reference interface="caotinging.service.ItemService" id="itemService"/>
+	
+	<context:component-scan base-package="caotinging.controller"/>
+	
+	
+	<!-- springmv注解驱动自动配置以上两个适配器和映射器 -->
+	<mvc:annotation-driven />
+	
+	<!-- 配置springmvc视图解析器 -->
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 配合逻辑视图的前缀用于拼接jsp的路径 ItemList:/WEB-INF/jsp/ItemList.jsp -->
+		<property name="prefix" value="/WEB-INF/jsp/"></property>		
+		<!-- 配置逻辑视图的后缀 -->
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<!-- 自动处理静态资源无法加载的问题 -->
+	<mvc:default-servlet-handler/>
+	<!-- 配置资源映射 -->
+	<!-- <mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/> -->
+	
+</beans>
