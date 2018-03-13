@@ -1,8 +1,14 @@
 package caotinging.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ItemParamItem {
+public class ItemParamItem implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
     private Long id;
 
     private Long itemId;
